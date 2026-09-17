@@ -221,12 +221,12 @@ export const portfolioData: PortfolioData = {
       company: "Feast Software",
       role: "Unity Developer (VR Developer)",
       location: "Mumbai, Maharashtra",
-      period: "01/2025 - Present",
+      period: "01/2025 - 09/2026",
       description: [
-        "Architecting scalable, production-ready VR applications and open-ended simulations on Meta Quest 2 and 3.",
+        "Architected scalable, production-ready VR applications and open-ended simulations on Meta Quest 2 and 3.",
         "Automated asset reference management and prefab assembly workflows, increasing development iteration speeds by 300%.",
         "Engineered intuitive custom Unity editor tools and designer-friendly pipelines for non-technical team members.",
-        "Mentoring developers on VR performance optimization, frame rate budgets, and code standards."
+        "Mentored developers on VR performance optimization, frame rate budgets, and code standards."
       ],
       sampleLink: {
         label: "View Company / Work Context",
