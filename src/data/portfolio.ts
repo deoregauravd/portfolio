@@ -8,6 +8,7 @@
 export interface Project {
   id: string;
   title: string;
+  company?: string;
   category: 'XR / VR' | 'Games' | 'Web & Cloud' | 'AI';
   description: string;
   tags: string[];
@@ -151,6 +152,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "feast-vr",
       title: "Interactive Open-Ended VR Simulations",
+      company: "Feast Software",
       category: "XR / VR",
       description: "Custom VR educational simulation pipelines and editor tools built for Meta Quest, accelerating team production speeds by 300% with automated prefab and reference systems.",
       tags: ["Unity3D", "Meta Quest 2/3", "C#", "Custom Tooling", "VR Simulation"],
@@ -161,6 +163,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "skyshowtime",
       title: "SkyShowtime OTT Platform",
+      company: "Globant",
       category: "Web & Cloud",
       description: "High-scale European OTT streaming service backend integration, leveraging AWS cloud infrastructure, microservices, and continuous deployment pipelines.",
       tags: ["AWS", "Java", "Spring Boot", "CI/CD", "High Availability"],
@@ -171,6 +174,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "webxr-cardboard",
       title: "Cross-Platform WebXR Experience",
+      company: "Cyber Infrastructure",
       category: "XR / VR",
       description: "Pioneered lightweight WebXR deployment running seamlessly inside mobile browsers and Google Cardboard with Meta Quest 3 backward compatibility.",
       tags: ["WebXR", "Unity3D", "WebGL", "Mobile Optimization", "JavaScript"],
@@ -180,6 +184,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "luvbug",
       title: "LuvBug: Emotional Growth App",
+      company: "Game App Studio",
       category: "Games",
       description: "Interactive educational game title with custom AI behavior, complex game rules, and high-fidelity Universal Render Pipeline (URP) visuals on iOS.",
       tags: ["Unity3D", "C#", "iOS", "URP", "App Store"],
@@ -190,6 +195,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "hungama-games",
       title: "Hungama BB Cricket / Sports Titles",
+      company: "GameShastra",
       category: "Games",
       description: "High-octane mobile sports game with dynamic camera systems, rigorous gameplay profiling, CI automation, and multi-threaded game state logic.",
       tags: ["Unity3D", "C#", "Google Play", "Android", "Profiling"],
@@ -200,6 +206,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "photon-multiplayer",
       title: "Real-Time Strategy Multiplayer Game",
+      company: "Globant",
       category: "Games",
       description: "Low-latency multiplayer battle strategy mechanics using Photon Engine, state synchronization, client prediction, and top-down tactical UI.",
       tags: ["Photon Engine", "Multiplayer", "C#", "Networking"],
@@ -208,6 +215,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "agentic-ai",
       title: "Agentic AI & Spatial Computing Experiments",
+      company: "Independent R&D",
       category: "AI",
       description: "Explorations combining autonomous LLM agents, spatial reasoning, and dynamic Unity procedural generation for responsive virtual environments.",
       tags: ["Python", "Agentic AI", "LLMs", "Unity3D", "Prompt Eng"],
