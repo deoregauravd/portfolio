@@ -63,6 +63,7 @@ export interface PortfolioData {
     availabilityText: string;
     yearsOfExperience: string;
     completedProjects: string;
+    avatar?: string;
     bio: string[];
   };
   socials: {
@@ -99,6 +100,7 @@ export const portfolioData: PortfolioData = {
     availabilityText: "Open for Opportunities & Collaborations",
     yearsOfExperience: "4.8+",
     completedProjects: "15+",
+    avatar: "/images/profile.jpg",
     bio: [
       "Software Developer and XR/Unity specialist with nearly 5 years of professional experience building cutting-edge VR/AR, WebXR, and interactive 3D applications.",
       "Specialized in architecting scalable solutions for Meta Quest 2/3, HTC Vive, and WebXR, optimizing high-load OTT media pipelines (SkyShowtime Europe), and streamlining game development pipelines by up to 300%.",
