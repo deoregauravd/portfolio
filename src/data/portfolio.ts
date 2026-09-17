@@ -97,11 +97,11 @@ export const portfolioData: PortfolioData = {
     email: "deoregauravd@gmail.com",
     availableForHire: true,
     availabilityText: "Open for Opportunities & Collaborations",
-    yearsOfExperience: "4.8+",
+    yearsOfExperience: "5.5+",
     completedProjects: "15+",
     avatar: "/images/profile.jpg",
     bio: [
-      "Software Developer and XR/Unity specialist with nearly 5 years of professional experience building cutting-edge VR/AR, WebXR, and interactive 3D applications.",
+      "Software Developer and XR/Unity specialist with over 5.5 years of experience building cutting-edge VR/AR, WebXR, and interactive 3D applications.",
       "Specialized in architecting scalable solutions for Meta Quest 2/3, HTC Vive, and WebXR, optimizing high-load OTT media pipelines (SkyShowtime Europe), and streamlining game development pipelines by up to 300%.",
       "Passionate about blending game engine mechanics, spatial computing, and Agentic AI to forge the next generation of interactive software."
     ]
@@ -289,6 +289,18 @@ export const portfolioData: PortfolioData = {
         label: "View App Store Title",
         url: "https://apps.apple.com/us/app/luvbug-emotional-growth/id1585519683"
       }
+    },
+    {
+      company: "Self-employed",
+      role: "Game Designer & Independent Developer",
+      location: "India",
+      period: "08/2019 - 10/2021",
+      description: [
+        "Conceptualized, designed, and prototyped indie gameplay mechanics, player progression systems, and level designs using Unity and C#.",
+        "Authored custom 3D game assets, environmental models, and interactive props leveraging Blender and texture authoring workflows.",
+        "Implemented responsive character controllers, physics-based interactions, and fluid UI systems.",
+        "Iteratively conducted player playtests, gathered user feedback, and tuned core gameplay balance and mechanics."
+      ]
     }
   ],
 
