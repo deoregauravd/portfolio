@@ -1,82 +1,108 @@
 /* ==========================================================================
    PORTFOLIO GLOBAL DESIGN SYSTEM & THEME
-   Tailored for XR / Unity / Software Engineer Aesthetic
+   Google Gemini Aesthetic · Light Mode Default
    ========================================================================== */
 
-:root {
-  /* Color Palette - Dark Theme (Default) */
-  --bg-primary: #0a0b10;
-  --bg-secondary: #12141e;
-  --bg-tertiary: #181b2a;
-  --bg-card: rgba(22, 26, 40, 0.7);
-  --bg-card-hover: rgba(30, 36, 56, 0.85);
-  --bg-glass: rgba(18, 20, 32, 0.65);
+:root, [data-theme="light"] {
+  /* Google Gemini Light Mode Palette (Default) */
+  --bg-primary: #f0f4f9;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e9eef6;
+  --bg-card: rgba(255, 255, 255, 0.88);
+  --bg-card-hover: #ffffff;
+  --bg-glass: rgba(240, 244, 249, 0.84);
   
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-focus: rgba(99, 102, 241, 0.4);
-  --border-glow: rgba(129, 140, 248, 0.25);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-focus: rgba(26, 115, 232, 0.45);
+  --border-glow: rgba(155, 114, 203, 0.25);
 
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-inverse: #090d16;
+  --text-primary: #1f1f1f;
+  --text-secondary: #444746;
+  --text-muted: #747775;
+  --text-inverse: #ffffff;
 
-  /* Vibrant XR / Cyber Accents */
-  --accent-cyan: #06b6d4;
-  --accent-blue: #3b82f6;
-  --accent-indigo: #6366f1;
-  --accent-purple: #a855f7;
-  --accent-emerald: #10b981;
+  /* Signature Google Gemini Colors */
+  --accent-blue: #1a73e8;
+  --accent-indigo: #4285f4;
+  --accent-purple: #7c3aed;
+  --accent-gemini: #9b72cb;
+  --accent-rose: #d96570;
+  --accent-cyan: #0284c7;
+  --accent-emerald: #0f9d58;
   
-  --gradient-brand: linear-gradient(135deg, #06b6d4 0%, #6366f1 50%, #a855f7 100%);
-  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15), transparent 70%);
-  --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+  /* Gemini Gradients */
+  --gradient-brand: linear-gradient(135deg, #1a73e8 0%, #8ab4f8 25%, #9b72cb 65%, #d96570 100%);
+  --gradient-gemini: linear-gradient(90deg, #1a73e8 0%, #9b72cb 50%, #d96570 100%);
+  --gradient-glow: radial-gradient(ellipse at 50% 0%, rgba(66, 133, 244, 0.12), rgba(155, 114, 203, 0.07) 35%, transparent 70%);
+  --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 244, 249, 0.8) 100%);
+  --gradient-halo: linear-gradient(135deg, #1a73e8, #9b72cb, #d96570, #1a73e8);
 
   /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 16px 36px -6px rgba(0, 0, 0, 0.45);
-  --shadow-glow: 0 0 35px -5px rgba(99, 102, 241, 0.25);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 20px -2px rgba(26, 115, 232, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 12px 36px -4px rgba(26, 115, 232, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 35px -5px rgba(155, 114, 203, 0.25);
 
   /* Layout */
   --max-width: 1140px;
   --nav-height: 72px;
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
   --radius-full: 9999px;
 
   /* Typography */
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  --badge-bg: rgba(26, 115, 232, 0.08);
+  --badge-border: rgba(26, 115, 232, 0.2);
+  --badge-text: #1a73e8;
 }
 
-/* Light Mode Overrides */
-[data-theme="light"] {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-tertiary: #e2e8f0;
-  --bg-card: rgba(255, 255, 255, 0.85);
-  --bg-card-hover: rgba(255, 255, 255, 0.98);
-  --bg-glass: rgba(255, 255, 255, 0.75);
+/* Google Gemini Dark Mode */
+[data-theme="dark"] {
+  --bg-primary: #131314;
+  --bg-secondary: #1e1f20;
+  --bg-tertiary: #282a2c;
+  --bg-card: rgba(30, 31, 32, 0.85);
+  --bg-card-hover: rgba(40, 42, 44, 0.95);
+  --bg-glass: rgba(19, 19, 20, 0.84);
 
-  --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-focus: rgba(99, 102, 241, 0.5);
-  --border-glow: rgba(99, 102, 241, 0.15);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-focus: rgba(138, 180, 248, 0.45);
+  --border-glow: rgba(197, 138, 249, 0.3);
 
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #64748b;
-  --text-inverse: #ffffff;
+  --text-primary: #e3e3e3;
+  --text-secondary: #c4c7c5;
+  --text-muted: #8e918f;
+  --text-inverse: #131314;
 
-  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.08), transparent 70%);
-  --gradient-card: linear-gradient(180deg, rgba(0, 0, 0, 0.01) 0%, rgba(0, 0, 0, 0.03) 100%);
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 16px 36px -6px rgba(0, 0, 0, 0.12);
+  --accent-blue: #8ab4f8;
+  --accent-indigo: #8ab4f8;
+  --accent-purple: #c58af9;
+  --accent-gemini: #c58af9;
+  --accent-rose: #f28b82;
+  --accent-cyan: #78d9ec;
+  --accent-emerald: #81c995;
+
+  --gradient-brand: linear-gradient(135deg, #4285f4 0%, #8ab4f8 25%, #c58af9 65%, #f28b82 100%);
+  --gradient-gemini: linear-gradient(90deg, #8ab4f8 0%, #c58af9 50%, #f28b82 100%);
+  --gradient-glow: radial-gradient(ellipse at 50% 0%, rgba(66, 133, 244, 0.22), rgba(155, 114, 203, 0.16) 40%, transparent 70%);
+  --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  --gradient-halo: linear-gradient(135deg, #4285f4, #c58af9, #f28b82, #4285f4);
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px -4px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 36px -6px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 35px -5px rgba(138, 180, 248, 0.25);
+
+  --badge-bg: rgba(138, 180, 248, 0.12);
+  --badge-border: rgba(138, 180, 248, 0.25);
+  --badge-text: #8ab4f8;
 }
 
 /* Base Styles */
@@ -114,12 +140,15 @@ body {
   background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--bg-tertiary);
+  background: #cdd5df;
   border-radius: 5px;
   border: 2px solid var(--bg-primary);
 }
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: #3c4043;
+}
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-indigo);
+  background: var(--accent-blue);
 }
 
 /* Typography Helpers */
@@ -166,11 +195,11 @@ p {
   font-size: 0.8125rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent-cyan);
-  background: rgba(6, 182, 212, 0.1);
-  border: 1px solid rgba(6, 182, 212, 0.2);
-  padding: 0.35rem 0.9rem;
+  letter-spacing: 0.1em;
+  color: var(--badge-text);
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  padding: 0.35rem 0.95rem;
   border-radius: var(--radius-full);
   margin-bottom: 1rem;
 }
@@ -213,6 +242,10 @@ p {
   left: 0;
   right: 0;
   height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+[data-theme="dark"] .glass-card::before {
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
 }
 
@@ -232,7 +265,7 @@ p {
   font-size: 0.95rem;
   font-weight: 600;
   padding: 0.75rem 1.5rem;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-full);
   cursor: pointer;
   transition: all var(--transition-fast);
   border: 1px solid transparent;
@@ -242,18 +275,19 @@ p {
 .btn-primary {
   background: var(--gradient-brand);
   color: #ffffff;
-  box-shadow: 0 4px 18px rgba(99, 102, 241, 0.35);
+  box-shadow: 0 4px 18px rgba(26, 115, 232, 0.3);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 6px 24px rgba(99, 102, 241, 0.5);
+  box-shadow: 0 6px 24px rgba(155, 114, 203, 0.45);
   transform: translateY(-2px);
 }
 
 .btn-secondary {
-  background: var(--bg-tertiary);
+  background: var(--bg-card);
   color: var(--text-primary);
   border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary:hover {
@@ -269,8 +303,8 @@ p {
 }
 
 .btn-outline:hover {
-  border-color: var(--accent-indigo);
-  background: rgba(99, 102, 241, 0.08);
+  border-color: var(--accent-blue);
+  background: var(--badge-bg);
   transform: translateY(-2px);
 }
 
@@ -279,20 +313,21 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.25rem 0.65rem;
+  padding: 0.25rem 0.7rem;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 500;
-  border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  border: 1px solid var(--badge-border);
   transition: all var(--transition-fast);
 }
 
 .badge:hover {
-  border-color: var(--accent-indigo);
-  color: var(--text-primary);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  transform: translateY(-1px);
 }
 
 /* Toast Notification */

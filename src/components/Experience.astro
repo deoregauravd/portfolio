@@ -93,8 +93,8 @@ const { experiences } = portfolioData;
     height: 18px;
     border-radius: 50%;
     background: var(--bg-primary);
-    border: 3px solid var(--accent-indigo);
-    box-shadow: 0 0 12px var(--accent-indigo);
+    border: 3px solid var(--accent-blue);
+    box-shadow: 0 0 12px rgba(26, 115, 232, 0.4);
     z-index: 2;
     margin-top: 1.5rem;
   }
@@ -102,7 +102,7 @@ const { experiences } = portfolioData;
   .marker-line {
     width: 2px;
     flex-grow: 1;
-    background: linear-gradient(180deg, var(--accent-indigo), rgba(99, 102, 241, 0.1));
+    background: linear-gradient(180deg, var(--accent-blue), rgba(155, 114, 203, 0.15));
     margin-top: 0.5rem;
   }
 
@@ -135,7 +135,7 @@ const { experiences } = portfolioData;
 
   .exp-company {
     font-weight: 600;
-    color: var(--accent-cyan);
+    color: var(--accent-blue);
   }
 
   .exp-separator {
@@ -150,10 +150,10 @@ const { experiences } = portfolioData;
     font-family: var(--font-mono);
     font-size: 0.8125rem;
     font-weight: 600;
-    padding: 0.3rem 0.75rem;
-    background: rgba(99, 102, 241, 0.1);
-    color: var(--accent-indigo);
-    border: 1px solid rgba(99, 102, 241, 0.25);
+    padding: 0.3rem 0.85rem;
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    border: 1px solid var(--badge-border);
     border-radius: var(--radius-full);
     white-space: nowrap;
   }
@@ -177,7 +177,7 @@ const { experiences } = portfolioData;
     content: "▹";
     position: absolute;
     left: 0;
-    color: var(--accent-cyan);
+    color: var(--accent-gemini);
     font-size: 1rem;
     line-height: 1.4;
   }

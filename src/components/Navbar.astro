@@ -5,7 +5,11 @@ import { portfolioData } from '../data/portfolio';
 <header class="header">
   <div class="container header-container">
     <a href="#" class="brand" aria-label="Home">
-      <span class="brand-badge">GD</span>
+      <span class="brand-badge">
+        <svg class="brand-sparkle" viewBox="0 0 24 24" width="20" height="20" fill="none">
+          <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z" fill="currentColor"/>
+        </svg>
+      </span>
       <span class="brand-name">{portfolioData.personal.name}</span>
     </a>
 
@@ -122,14 +126,16 @@ import { portfolioData } from '../data/portfolio';
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
     background: var(--gradient-brand);
     color: #ffffff;
-    font-size: 0.85rem;
-    font-weight: 800;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 14px rgba(26, 115, 232, 0.35);
+  }
+
+  .brand-sparkle {
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
   }
 
   .nav-desktop {
@@ -147,7 +153,7 @@ import { portfolioData } from '../data/portfolio';
   }
 
   .nav-link:hover {
-    color: var(--text-primary);
+    color: var(--accent-blue);
   }
 
   .header-actions {
@@ -162,27 +168,28 @@ import { portfolioData } from '../data/portfolio';
     gap: 0.5rem;
     font-size: 0.85rem;
     font-weight: 600;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-sm);
-    background: rgba(99, 102, 241, 0.12);
-    border: 1px solid rgba(99, 102, 241, 0.3);
-    color: var(--text-primary);
+    padding: 0.5rem 1.15rem;
+    border-radius: var(--radius-full);
+    background: var(--badge-bg);
+    border: 1px solid var(--badge-border);
+    color: var(--badge-text);
     transition: all var(--transition-fast);
   }
 
   .btn-resume:hover {
-    background: var(--accent-indigo);
+    background: var(--gradient-brand);
     color: #ffffff;
-    border-color: var(--accent-indigo);
+    border-color: transparent;
+    box-shadow: 0 4px 14px rgba(26, 115, 232, 0.3);
   }
 
   .theme-btn, .mobile-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: var(--radius-sm);
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
     background: var(--bg-tertiary);
     border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
@@ -193,6 +200,7 @@ import { portfolioData } from '../data/portfolio';
   .theme-btn:hover, .mobile-btn:hover {
     color: var(--text-primary);
     border-color: var(--border-focus);
+    background: var(--bg-card-hover);
   }
 
   /* Icons toggle */
@@ -267,7 +275,7 @@ import { portfolioData } from '../data/portfolio';
   // Theme Switcher Logic
   const themeBtn = document.getElementById('theme-toggle');
   themeBtn?.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
     const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', nextTheme);
     localStorage.setItem('theme', nextTheme);

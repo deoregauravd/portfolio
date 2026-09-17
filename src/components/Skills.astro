@@ -73,8 +73,8 @@ const { skills } = portfolioData;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.45rem 0.9rem;
-    border-radius: var(--radius-sm);
+    padding: 0.45rem 1rem;
+    border-radius: var(--radius-full);
     background: var(--bg-tertiary);
     border: 1px solid var(--border-subtle);
     font-size: 0.875rem;
@@ -84,8 +84,9 @@ const { skills } = portfolioData;
   }
 
   .skill-pill:hover {
-    border-color: var(--accent-indigo);
-    background: rgba(99, 102, 241, 0.12);
+    border-color: var(--accent-blue);
+    background: var(--badge-bg);
+    color: var(--accent-blue);
     transform: translateY(-2px);
   }
 
@@ -93,7 +94,7 @@ const { skills } = portfolioData;
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: var(--accent-cyan);
+    background: var(--accent-blue);
   }
 
   @media (max-width: 768px) {
