@@ -1,0 +1,119 @@
+---
+import { portfolioData } from '../data/portfolio';
+
+const { personal, socials } = portfolioData;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer-container">
+    <div class="footer-brand">
+      <div class="brand-title">{personal.name}</div>
+      <p class="brand-sub">{personal.headline}</p>
+    </div>
+
+    <div class="footer-links">
+      <a href={socials.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href={socials.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href={socials.medium} target="_blank" rel="noopener noreferrer">Medium</a>
+      <a href={socials.youtube} target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a href={socials.resumeGoogleDocs} target="_blank" rel="noopener noreferrer">Resume</a>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="copyright">
+        © {currentYear} {personal.name}. Built with <span class="powered-badge">Astro</span> • Ready for Vercel & Cloudflare.
+      </p>
+      <a href="#" class="back-to-top" aria-label="Back to top">
+        <span>Back to Top</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: 4rem 0 2.5rem 0;
+    border-top: 1px solid var(--border-subtle);
+    background: var(--bg-secondary);
+  }
+
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer-brand {
+    text-align: center;
+  }
+
+  .brand-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .brand-sub {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .footer-links a {
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+  }
+
+  .footer-links a:hover {
+    color: var(--accent-cyan);
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .powered-badge {
+    color: var(--accent-indigo);
+    font-weight: 700;
+  }
+
+  .back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+  }
+
+  .back-to-top:hover {
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 600px) {
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>

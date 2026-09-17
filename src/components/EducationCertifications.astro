@@ -1,0 +1,137 @@
+---
+import { portfolioData } from '../data/portfolio';
+
+const { education, certifications } = portfolioData;
+---
+
+<section class="section credentials-section">
+  <div class="container">
+    <div class="credentials-grid">
+      <!-- Certifications -->
+      <div class="credentials-col">
+        <div class="col-header">
+          <span class="col-icon">📜</span>
+          <h3 class="col-title">Certifications</h3>
+        </div>
+
+        <div class="cards-stack">
+          {certifications.map((cert) => (
+            <div class="credential-card glass-card">
+              <div class="credential-top">
+                <h4 class="credential-name">{cert.name}</h4>
+                <span class="credential-date">{cert.date}</span>
+              </div>
+              <div class="credential-issuer">{cert.issuer}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="credentials-col">
+        <div class="col-header">
+          <span class="col-icon">🎓</span>
+          <h3 class="col-title">Education</h3>
+        </div>
+
+        <div class="cards-stack">
+          {education.map((edu) => (
+            <div class="credential-card glass-card">
+              <div class="credential-top">
+                <h4 class="credential-name">{edu.degree}</h4>
+                <span class="credential-date">{edu.year}</span>
+              </div>
+              <div class="credential-institution">{edu.institution}</div>
+              <div class="credential-location">{edu.location}</div>
+              {edu.details && (
+                <div class="credential-details">{edu.details}</div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .credentials-section {
+    padding-top: 1rem;
+  }
+
+  .credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .col-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .col-icon {
+    font-size: 1.5rem;
+  }
+
+  .col-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+
+  .cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .credential-card {
+    padding: 1.35rem 1.5rem;
+  }
+
+  .credential-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .credential-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .credential-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-cyan);
+    white-space: nowrap;
+  }
+
+  .credential-issuer, .credential-institution {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .credential-location {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .credential-details {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-emerald);
+  }
+
+  @media (max-width: 768px) {
+    .credentials-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

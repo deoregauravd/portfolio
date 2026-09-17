@@ -1,0 +1,222 @@
+---
+import { portfolioData } from '../data/portfolio';
+
+const { experiences } = portfolioData;
+---
+
+<section id="experience" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Career Journey</span>
+      <h2 class="section-title">Work <span class="gradient-text">Experience</span></h2>
+      <p class="section-subtitle">
+        Nearly 5 years of engineering experience across XR startups, global tech firms, and game studios.
+      </p>
+    </div>
+
+    <div class="timeline">
+      {experiences.map((exp, index) => (
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <div class="marker-dot"></div>
+            {index < experiences.length - 1 && <div class="marker-line"></div>}
+          </div>
+
+          <div class="timeline-content glass-card">
+            <div class="exp-header">
+              <div>
+                <h3 class="exp-role">{exp.role}</h3>
+                <div class="exp-company-row">
+                  <span class="exp-company">{exp.company}</span>
+                  <span class="exp-separator">•</span>
+                  <span class="exp-location">{exp.location}</span>
+                </div>
+              </div>
+              <div class="exp-period">{exp.period}</div>
+            </div>
+
+            <ul class="exp-list">
+              {exp.description.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+
+            {exp.sampleLink && (
+              <div class="exp-link-box">
+                <a
+                  href={exp.sampleLink.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="sample-work-link"
+                >
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                  </svg>
+                  <span>{exp.sampleLink.label}</span>
+                  <span class="arrow-icon">↗</span>
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    position: relative;
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  .timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .marker-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 3px solid var(--accent-indigo);
+    box-shadow: 0 0 12px var(--accent-indigo);
+    z-index: 2;
+    margin-top: 1.5rem;
+  }
+
+  .marker-line {
+    width: 2px;
+    flex-grow: 1;
+    background: linear-gradient(180deg, var(--accent-indigo), rgba(99, 102, 241, 0.1));
+    margin-top: 0.5rem;
+  }
+
+  .timeline-content {
+    padding: 1.85rem;
+  }
+
+  .exp-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .exp-role {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-company-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .exp-company {
+    font-weight: 600;
+    color: var(--accent-cyan);
+  }
+
+  .exp-separator {
+    color: var(--text-muted);
+  }
+
+  .exp-location {
+    color: var(--text-muted);
+  }
+
+  .exp-period {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--accent-indigo);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+  }
+
+  .exp-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .exp-list li {
+    position: relative;
+    padding-left: 1.4rem;
+  }
+
+  .exp-list li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--accent-cyan);
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .exp-link-box {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .sample-work-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-cyan);
+    transition: all var(--transition-fast);
+  }
+
+  .sample-work-link:hover {
+    color: var(--accent-indigo);
+    transform: translateX(3px);
+  }
+
+  .arrow-icon {
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 640px) {
+    .timeline-item {
+      grid-template-columns: 24px 1fr;
+      gap: 1rem;
+    }
+    .marker-dot {
+      width: 14px;
+      height: 14px;
+      border-width: 2px;
+      margin-top: 1.25rem;
+    }
+  }
+</style>

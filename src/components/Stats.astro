@@ -1,0 +1,89 @@
+---
+import { portfolioData } from '../data/portfolio';
+
+const stats = [
+  {
+    number: portfolioData.personal.yearsOfExperience,
+    label: "Years of Experience",
+    subtext: "VR/XR, Unity & Scalable Systems"
+  },
+  {
+    number: "300%",
+    label: "Workflow Speedup",
+    subtext: "Prefab & reference automation"
+  },
+  {
+    number: "1M+",
+    label: "Player & OTT Reach",
+    subtext: "Google Play & SkyShowtime Europe"
+  },
+  {
+    number: "15+",
+    label: "Projects & Modules",
+    subtext: "WebXR, Meta Quest & Games"
+  }
+];
+---
+
+<section class="stats-section">
+  <div class="container">
+    <div class="stats-grid">
+      {stats.map((item) => (
+        <div class="stat-card glass-card">
+          <div class="stat-number gradient-text">{item.number}</div>
+          <div class="stat-label">{item.label}</div>
+          <div class="stat-subtext">{item.subtext}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-section {
+    padding: 2rem 0 4rem 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  .stat-card {
+    padding: 1.75rem 1.25rem;
+    text-align: center;
+    border-radius: var(--radius-md);
+  }
+
+  .stat-number {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-subtext {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 900px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
