@@ -1,0 +1,267 @@
+---
+import { portfolioData } from '../data/portfolio';
+
+const { featuredProjects } = portfolioData;
+const categories = ['All', 'XR / VR', 'Games', 'Web & Cloud', 'AI'];
+---
+
+<section id="projects" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-eyebrow">Portfolio Works</span>
+      <h2 class="section-title">Featured <span class="gradient-text">Projects & Systems</span></h2>
+      <p class="section-subtitle">
+        A selection of immersive virtual reality applications, scalable cloud infrastructure, and published games.
+      </p>
+
+      <!-- Interactive Category Filter -->
+      <div class="filter-bar" role="tablist" aria-label="Project filter">
+        {categories.map((cat, idx) => (
+          <button
+            class={`filter-btn ${idx === 0 ? 'active' : ''}`}
+            data-filter={cat}
+            role="tab"
+            aria-selected={idx === 0 ? "true" : "false"}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Project Grid -->
+    <div class="projects-grid" id="projects-grid">
+      {featuredProjects.map((project) => (
+        <article class="project-card glass-card" data-category={project.category}>
+          <div class="card-top">
+            <span class="category-tag">{project.category}</span>
+            {project.metrics && (
+              <span class="metric-tag">{project.metrics}</span>
+            )}
+          </div>
+
+          <h3 class="project-title">{project.title}</h3>
+          <p class="project-desc">{project.description}</p>
+
+          <div class="tech-tags">
+            {project.tags.map((tag) => (
+              <span class="badge">{tag}</span>
+            ))}
+          </div>
+
+          <div class="project-links">
+            {project.link && (
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link-action primary-link"
+              >
+                <span>Live Project / Preview</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            )}
+
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link-action"
+                title="View Code on GitHub"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+                <span>Source Code</span>
+              </a>
+            )}
+
+            {project.videoUrl && (
+              <a
+                href={project.videoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="link-action video-link"
+                title="Watch Demo Video"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span>Demo Video</span>
+              </a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  .filter-btn {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.5rem 1.15rem;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .filter-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-focus);
+  }
+
+  .filter-btn.active {
+    background: var(--accent-indigo);
+    color: #ffffff;
+    border-color: var(--accent-indigo);
+    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.75rem;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    height: 100%;
+  }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .category-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-cyan);
+  }
+
+  .metric-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--accent-emerald);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: var(--radius-full);
+  }
+
+  .project-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+  }
+
+  .project-desc {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .project-links {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .link-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+  }
+
+  .link-action:hover {
+    color: var(--text-primary);
+  }
+
+  .primary-link {
+    color: var(--accent-cyan);
+  }
+
+  .primary-link:hover {
+    color: var(--accent-indigo);
+  }
+
+  @media (max-width: 840px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Project filtering logic
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const projectCards = document.querySelectorAll<HTMLElement>('.project-card');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const selected = btn.dataset.filter;
+
+      // Update active button
+      filterBtns.forEach((b) => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      // Filter cards
+      projectCards.forEach((card) => {
+        const cat = card.dataset.category;
+        if (selected === 'All' || cat === selected) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

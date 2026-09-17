@@ -1,0 +1,205 @@
+---
+import { portfolioData } from '../data/portfolio';
+
+const { personal, socials } = portfolioData;
+---
+
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-box glass-card">
+      <div class="contact-content">
+        <span class="section-eyebrow">Get In Touch</span>
+        <h2 class="contact-title">Let's Build Something <span class="gradient-text">Exceptional</span></h2>
+        <p class="contact-desc">
+          Whether you have an XR simulation project, a game title in need of architecture & performance optimization, or an engineering role — my inbox is always open.
+        </p>
+
+        <!-- Quick Copy Email Row -->
+        <div class="email-action-card">
+          <div class="email-details">
+            <span class="email-sub">Direct Email</span>
+            <span class="email-address">{personal.email}</span>
+          </div>
+
+          <div class="email-buttons">
+            <button id="copy-email-btn" class="btn btn-secondary" data-email={personal.email} aria-label="Copy email address">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy Email</span>
+            </button>
+
+            <a href={`mailto:${personal.email}`} class="btn btn-primary">
+              <span>Send Message</span>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Badges -->
+        <div class="contact-meta">
+          <div class="meta-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>{personal.location}</span>
+          </div>
+          <div class="meta-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-emerald)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>{personal.phone}</span>
+          </div>
+          <div class="meta-item">
+            <a
+              href={socials.resumeGoogleDocs}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="resume-direct-link"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-indigo)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+              <span>Live Google Docs Resume ↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-box {
+    padding: 3.5rem;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(22, 26, 40, 0.85) 0%, rgba(15, 17, 26, 0.95) 100%);
+    border: 1px solid var(--border-glow);
+    text-align: center;
+  }
+
+  .contact-content {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .contact-title {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .contact-desc {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .email-action-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.25rem 1.75rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    margin-bottom: 2.25rem;
+    text-align: left;
+  }
+
+  .email-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .email-sub {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+
+  .email-address {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .email-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .contact-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .resume-direct-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-indigo);
+    font-weight: 600;
+    transition: color var(--transition-fast);
+  }
+
+  .resume-direct-link:hover {
+    color: var(--accent-cyan);
+  }
+
+  @media (max-width: 768px) {
+    .contact-box {
+      padding: 2.25rem 1.5rem;
+    }
+    .email-action-card {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+    }
+    .email-buttons {
+      flex-direction: column;
+    }
+    .contact-meta {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+</style>
+
+<script>
+  // Copy email to clipboard
+  const copyBtn = document.getElementById('copy-email-btn');
+  copyBtn?.addEventListener('click', async () => {
+    const email = copyBtn.dataset.email || '';
+    try {
+      await navigator.clipboard.writeText(email);
+      if ((window as any).showToast) {
+        (window as any).showToast('Email copied to clipboard!');
+      }
+    } catch (err) {
+      console.error('Failed to copy email:', err);
+    }
+  });
+</script>

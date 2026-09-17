@@ -1,0 +1,353 @@
+---
+import { portfolioData } from '../data/portfolio';
+
+const { personal, socials } = portfolioData;
+---
+
+<section id="about" class="hero-section">
+  <div class="container hero-container">
+    <div class="hero-content">
+      <!-- Status Badge -->
+      {personal.availableForHire && (
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span>{personal.availabilityText}</span>
+        </div>
+      )}
+
+      <!-- Main Headline -->
+      <h1 class="hero-title">
+        Hello, I'm <span class="gradient-text">{personal.name}</span>
+      </h1>
+      <p class="hero-role">{personal.headline}</p>
+
+      <!-- Subheadline / Bio -->
+      <div class="hero-bio">
+        {personal.bio.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">
+          <span>View Featured Work</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <a
+          href={socials.resumeGoogleDocs}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-secondary"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+          <span>Open Resume</span>
+        </a>
+
+        <a href="#contact" class="btn btn-outline">
+          <span>Contact Me</span>
+        </a>
+      </div>
+
+      <!-- Social Links Row -->
+      <div class="social-links">
+        <span class="social-label">Connect:</span>
+        <a href={socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="social-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+        </a>
+        <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="social-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+        </a>
+        <a href={socials.medium} target="_blank" rel="noopener noreferrer" aria-label="Medium Blog" class="social-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+          </svg>
+        </a>
+        <a href={socials.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube Channel" class="social-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Interactive XR / Engineering Showcase Card -->
+    <div class="hero-visual">
+      <div class="terminal-card glass-card">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="terminal-title">xr_core_engine.cs</span>
+          <span class="terminal-badge">Meta Quest 3 / URP</span>
+        </div>
+
+        <div class="terminal-body">
+          <div class="code-line"><span class="token-kw">using</span> UnityEngine;</div>
+          <div class="code-line"><span class="token-kw">using</span> UnityEngine.XR;</div>
+          <div class="code-line"><span class="token-kw">using</span> AgenticAI.Runtime;</div>
+          <div class="code-line">&nbsp;</div>
+          <div class="code-line"><span class="token-comment">// Gaurav Deore - Spatial Engineering</span></div>
+          <div class="code-line"><span class="token-kw">public class</span> <span class="token-cls">SpatialSimController</span> : <span class="token-cls">MonoBehaviour</span> &#123;</div>
+          <div class="code-line indent-1">[SerializeField] <span class="token-kw">private float</span> targetFPS = <span class="token-num">90f</span>;</div>
+          <div class="code-line indent-1">[SerializeField] <span class="token-kw">private bool</span> zeroLatency = <span class="token-bool">true</span>;</div>
+          <div class="code-line">&nbsp;</div>
+          <div class="code-line indent-1"><span class="token-kw">void</span> <span class="token-fn">InitializeExperience</span>() &#123;</div>
+          <div class="code-line indent-2">XRSettings.enabled = <span class="token-bool">true</span>;</div>
+          <div class="code-line indent-2">OptimizeAssetPipeline(<span class="token-str">"MetaQuest3"</span>);</div>
+          <div class="code-line indent-2">Debug.Log(<span class="token-str">"✓ XR Simulation Ready: 300% Speedup"</span>);</div>
+          <div class="code-line indent-1">&#125;</div>
+          <div class="code-line">&#125;</div>
+        </div>
+
+        <div class="terminal-footer">
+          <div class="tech-chip">Unity 3D</div>
+          <div class="tech-chip">Meta Quest 3</div>
+          <div class="tech-chip">WebXR</div>
+          <div class="tech-chip">C# / .NET</div>
+          <div class="tech-chip">Agentic AI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    padding: 4.5rem 0 3.5rem 0;
+    position: relative;
+  }
+
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.4rem 1rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    border-radius: var(--radius-full);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--accent-emerald);
+    margin-bottom: 1.5rem;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent-emerald);
+    box-shadow: 0 0 10px var(--accent-emerald);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  }
+
+  .hero-title {
+    font-size: clamp(1.85rem, 6vw, 3.75rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.18;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-role {
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+
+  .hero-bio {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 2.25rem;
+    font-size: 1.025rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .social-links {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .social-label {
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-right: 0.25rem;
+  }
+
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+  }
+
+  .social-btn:hover {
+    color: #ffffff;
+    background: var(--accent-indigo);
+    border-color: var(--accent-indigo);
+    transform: translateY(-3px);
+  }
+
+  /* Terminal Card Visual */
+  .terminal-card {
+    padding: 0;
+    border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-lg), 0 0 40px -10px rgba(99, 102, 241, 0.2);
+  }
+
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1.25rem;
+    background: rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .dot-red { background: #ef4444; }
+  .dot-yellow { background: #f59e0b; }
+  .dot-green { background: #10b981; }
+
+  .terminal-title {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    color: var(--text-secondary);
+  }
+
+  .terminal-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    background: rgba(99, 102, 241, 0.15);
+    color: var(--accent-cyan);
+    border-radius: var(--radius-sm);
+  }
+
+  .terminal-body {
+    padding: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    background: rgba(10, 11, 16, 0.85);
+    overflow-x: auto;
+  }
+
+  .indent-1 { padding-left: 1.25rem; }
+  .indent-2 { padding-left: 2.5rem; }
+
+  .token-kw { color: #f43f5e; font-weight: 600; }
+  .token-cls { color: #38bdf8; }
+  .token-fn { color: #a78bfa; }
+  .token-str { color: #34d399; }
+  .token-num { color: #fbbf24; }
+  .token-bool { color: #fb923c; }
+  .token-comment { color: #64748b; font-style: italic; }
+
+  .terminal-footer {
+    padding: 1rem 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .tech-chip {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.65rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 960px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .hero-visual {
+      max-width: 540px;
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .hero-actions .btn {
+      width: 100%;
+    }
+    .social-links {
+      flex-wrap: wrap;
+    }
+  }
+</style>
