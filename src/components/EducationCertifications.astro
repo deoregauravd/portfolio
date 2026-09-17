@@ -39,7 +39,7 @@ const { education, certifications } = portfolioData;
             <div class="credential-card glass-card">
               <div class="credential-top">
                 <h4 class="credential-name">{edu.degree}</h4>
-                <span class="credential-date">{edu.year}</span>
+                {edu.year && <span class="credential-date">{edu.year}</span>}
               </div>
               <div class="credential-institution">{edu.institution}</div>
               <div class="credential-location">{edu.location}</div>
