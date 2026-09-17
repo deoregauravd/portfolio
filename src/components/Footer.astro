@@ -17,7 +17,9 @@ const currentYear = new Date().getFullYear();
       <a href={socials.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <a href={socials.medium} target="_blank" rel="noopener noreferrer">Medium</a>
       <a href={socials.youtube} target="_blank" rel="noopener noreferrer">YouTube</a>
-      <a href={socials.resumeGoogleDocs} target="_blank" rel="noopener noreferrer">Resume</a>
+      {socials.resumeGoogleDocs && (
+        <a href={socials.resumeGoogleDocs} target="_blank" rel="noopener noreferrer">Resume</a>
+      )}
     </div>
 
     <div class="footer-bottom">

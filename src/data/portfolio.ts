@@ -71,7 +71,7 @@ export interface PortfolioData {
     linkedin: string;
     medium: string;
     youtube: string;
-    resumeGoogleDocs: string;
+    resumeGoogleDocs?: string;
   };
   skills: SkillCategory[];
   featuredProjects: Project[];
@@ -111,9 +111,7 @@ export const portfolioData: PortfolioData = {
     github: "https://github.com/deoregauravd",
     linkedin: "https://www.linkedin.com/in/deoregauravd/",
     medium: "https://medium.com/@backspaceBlog",
-    youtube: "https://www.youtube.com/@gauravdeore1915",
-    // Connected directly to your Google Docs resume
-    resumeGoogleDocs: "https://docs.google.com/document/d/1NIY2qz9U-CSOHCqHgyP9xItEkPQl-zvWS1BYCL2Z01M/edit?usp=drivesdk"
+    youtube: "https://www.youtube.com/@gauravdeore1915"
   },
 
   // 🎬 FEATURED VIDEO / SHOWREEL
