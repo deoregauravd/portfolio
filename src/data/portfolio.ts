@@ -41,7 +41,7 @@ export interface Education {
   degree: string;
   institution: string;
   location: string;
-  year: string;
+  year?: string;
   details?: string;
 }
 
@@ -324,11 +324,16 @@ export const portfolioData: PortfolioData = {
 
   education: [
     {
+      degree: "Postgraduate Degree, International Business Operations",
+      institution: "Indira Gandhi National Open University",
+      location: "India"
+    },
+    {
       degree: "Bachelor of Mechanical Engineering",
       institution: "Sinhgad Institute of Technology",
       location: "Savitribai Phule Pune University, Pune",
-      year: "Graduated ",
-      details: "First Class with Distinction "
+      year: "Graduated",
+      details: "First Class with Distinction"
     }
   ]
 };
