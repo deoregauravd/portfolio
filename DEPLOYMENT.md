@@ -10,7 +10,7 @@ All content in this portfolio is managed in a single file:
 👉 **[`src/data/portfolio.ts`](src/data/portfolio.ts)**
 
 Inside that file, you can edit:
-- **Personal Info**: Name, title, headline, location, phone, email, availability badge
+- **Personal Info**: Name, title, headline, location, email, availability badge
 - **Resume Link**: Direct link to your Google Docs resume or PDF
 - **Social Profiles**: GitHub, LinkedIn, Medium, YouTube
 - **Featured Video / Demo Reel**: Turn on `enabled: true` and paste any YouTube link or MP4 path
