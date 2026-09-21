@@ -1,0 +1,579 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { portfolioData } from '../data/portfolio';
+
+const publisherName = portfolioData.personal.name || "Gaurav Deore";
+const publisherBrand = "DevPhoton";
+const supportEmail = "gauravarchdesigner@gmail.com";
+const primaryApp = "Cosmic Eye Live Interactive 3D Wallpaper";
+---
+
+<BaseLayout
+  title={`Support & Help Center | ${publisherBrand}`}
+  description={`Official customer support, technical assistance, and troubleshooting help desk for ${primaryApp} and DevPhoton applications.`}
+>
+  <!-- Minimalist Header -->
+  <header class="support-header">
+    <div class="container support-header-inner">
+      <a href="/" class="back-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back to DevPhoton</span>
+      </a>
+
+      <div class="header-right">
+        <a href="/privacy" class="nav-extra-link">Privacy Hub</a>
+        <button id="theme-toggle-support" class="theme-btn" aria-label="Toggle light and dark mode">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Support Content -->
+  <main class="support-main">
+    <div class="container support-container">
+      <!-- Title & Intro -->
+      <div class="support-hero">
+        <span class="support-eyebrow">Customer Care & Support</span>
+        <h1 class="support-title">Help & Support Desk</h1>
+        <p class="support-subtitle">
+          Need help with <strong>{primaryApp}</strong> or have a question about our software? We're here to assist you.
+        </p>
+      </div>
+
+      <!-- Quick Contact Card -->
+      <div class="contact-card">
+        <div class="contact-card-header">
+          <div class="icon-bubble">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div class="contact-card-info">
+            <h2>Direct Developer Support</h2>
+            <p>Direct inquiries, bug reports, and feature requests are handled by the core developer.</p>
+          </div>
+        </div>
+
+        <div class="email-box">
+          <div class="email-address-display">
+            <span class="email-label">Support Email:</span>
+            <span class="email-val">{supportEmail}</span>
+          </div>
+          <div class="email-actions">
+            <button id="copy-support-email" class="btn-secondary" data-email={supportEmail}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy Email</span>
+            </button>
+            <a
+              href={`mailto:${supportEmail}?subject=${encodeURIComponent("Support Request - " + primaryApp)}`}
+              class="btn-primary"
+            >
+              <span>Send Email</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="support-meta-notes">
+          <div class="note-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-emerald)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>Typical Response Time: <strong>24 to 48 hours</strong></span>
+          </div>
+          <div class="note-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>Publisher: <strong>{publisherName} ({publisherBrand})</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <section class="faq-section">
+        <h2 class="faq-heading">Frequently Asked Questions</h2>
+        <div class="faq-grid">
+          <!-- Question 1 -->
+          <div class="faq-card">
+            <h3>How do I report a bug or glitch?</h3>
+            <p>
+              Please send an email to <a href={`mailto:${supportEmail}`}>{supportEmail}</a> with the subject <em>"Bug Report - Cosmic Eye"</em>. If possible, include your Windows version (e.g., Windows 11), your graphics card model, and a brief description or screenshot of what happened.
+            </p>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="faq-card">
+            <h3>How do I reduce battery and GPU resource usage?</h3>
+            <p>
+              Inside the application settings menu, you can adjust the target Frame Rate (e.g., cap at 30 or 60 FPS) and enable the <em>"Pause when backgrounded / full-screen games"</em> option. This ensures virtually 0% GPU load while playing games or working on intensive tasks.
+            </p>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="faq-card">
+            <h3>Does Cosmic Eye support multi-monitor setups?</h3>
+            <p>
+              Yes. You can choose which display monitor to run the wallpaper on, or duplicate across monitors via the in-app Display Settings tab.
+            </p>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="faq-card">
+            <h3>How are updates delivered?</h3>
+            <p>
+              Updates, performance improvements, and shader additions are delivered automatically and safely through the <strong>Microsoft Store</strong> app on your Windows PC.
+            </p>
+          </div>
+
+          <!-- Question 5 -->
+          <div class="faq-card">
+            <h3>How can I request a refund?</h3>
+            <p>
+              All purchases and licensing for the application are securely processed by Microsoft. If you need a refund, you can request one directly through your 
+              <a href="https://account.microsoft.com/billing/orders" target="_blank" rel="noopener noreferrer">Microsoft Account Order History</a> according to Microsoft Store refund policies.
+            </p>
+          </div>
+
+          <!-- Question 6 -->
+          <div class="faq-card">
+            <h3>Where can I review the Privacy Policy?</h3>
+            <p>
+              We maintain full transparency with zero personal data collection. You can inspect the complete legal declaration at our 
+              <a href="/cosmic-eye/privacy">Cosmic Eye Privacy Policy</a> page.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Nav -->
+      <div class="support-bottom-nav">
+        <a href="/cosmic-eye/privacy" class="btn-return">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>Privacy Policy</span>
+        </a>
+        <a href="/" class="btn-return">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Return to Portfolio</span>
+        </a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  // Theme toggle
+  const themeBtn = document.getElementById('theme-toggle-support');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  }
+
+  // Copy Email Handler
+  const copyBtn = document.getElementById('copy-support-email');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async () => {
+      const email = copyBtn.getAttribute('data-email');
+      if (email) {
+        try {
+          await navigator.clipboard.writeText(email);
+          if ((window as any).showToast) {
+            (window as any).showToast('Support email copied to clipboard!');
+          }
+        } catch {
+          window.location.href = `mailto:${email}`;
+        }
+      }
+    });
+  }
+</script>
+
+<style>
+  .support-header {
+    height: var(--nav-height);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .support-header-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .back-link:hover {
+    color: var(--accent-blue);
+    transform: translateX(-3px);
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .nav-extra-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+  }
+
+  .nav-extra-link:hover {
+    color: var(--accent-blue);
+  }
+
+  .theme-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .theme-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-focus);
+    transform: scale(1.05);
+  }
+
+  :global([data-theme="light"]) .icon-sun {
+    display: none;
+  }
+  :global([data-theme="light"]) .icon-moon {
+    display: block;
+  }
+  :global([data-theme="dark"]) .icon-sun {
+    display: block;
+  }
+  :global([data-theme="dark"]) .icon-moon {
+    display: none;
+  }
+
+  .support-main {
+    padding: 3.5rem 0 5rem 0;
+    min-height: calc(100vh - var(--nav-height));
+  }
+
+  .support-container {
+    max-width: 860px;
+  }
+
+  .support-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .support-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-full);
+    background: rgba(26, 115, 232, 0.1);
+    color: var(--accent-blue);
+    border: 1px solid rgba(26, 115, 232, 0.2);
+    margin-bottom: 1rem;
+  }
+
+  .support-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .support-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  /* Contact Card */
+  .contact-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 3.5rem;
+  }
+
+  .contact-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .icon-bubble {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-md);
+    background: rgba(26, 115, 232, 0.1);
+    color: var(--accent-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-card-info h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-card-info p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+
+  .email-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+  }
+
+  .email-address-display {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .email-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .email-val {
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .email-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    background: var(--accent-blue);
+    color: #ffffff;
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-indigo);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--border-focus);
+    transform: translateY(-2px);
+  }
+
+  .support-meta-notes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  .note-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* FAQ Section */
+  .faq-section {
+    margin-bottom: 3.5rem;
+  }
+
+  .faq-heading {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    margin-bottom: 1.5rem;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .faq-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .faq-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.65rem;
+  }
+
+  .faq-card p {
+    font-size: 0.925rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .faq-card a {
+    color: var(--accent-blue);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* Bottom Nav */
+  .support-bottom-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .btn-return {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+  }
+
+  .btn-return:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  @media (max-width: 640px) {
+    .support-title {
+      font-size: 1.85rem;
+    }
+    .contact-card {
+      padding: 1.5rem;
+    }
+    .email-box {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

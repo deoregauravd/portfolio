@@ -43,7 +43,7 @@ export const appsPrivacyList: AppPrivacyData[] = [
     ],
     permissionsDescription:
       'The application runs as an interactive desktop background on Windows. It processes local cursor movement solely in volatile memory (RAM) in real time to render responsive 3D visuals. It never monitors keystrokes, records screens, or tracks user behavior.',
-    contactEmail: 'support@devphoton.com'
+    contactEmail: 'gauravarchdesigner@gmail.com'
   }
 ];
 
