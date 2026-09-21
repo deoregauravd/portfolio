@@ -1,0 +1,541 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { portfolioData } from '../../data/portfolio';
+import { appsPrivacyList, type AppPrivacyData } from '../../data/appsPrivacy';
+
+export function getStaticPaths() {
+  const paths: Array<{ params: { app: string }; props: { app: AppPrivacyData } }> = [];
+
+  for (const app of appsPrivacyList) {
+    // Primary slug
+    paths.push({
+      params: { app: app.id },
+      props: { app }
+    });
+
+    // Aliases (e.g. full app name, hyphenated name)
+    if (app.aliases) {
+      for (const alias of app.aliases) {
+        paths.push({
+          params: { app: alias },
+          props: { app }
+        });
+      }
+    }
+  }
+
+  return paths;
+}
+
+interface Props {
+  app: AppPrivacyData;
+}
+
+const { app } = Astro.props;
+const publisherName = portfolioData.personal.name || "Gaurav Deore";
+const publisherBrand = "DevPhoton";
+const email = app.contactEmail || portfolioData.personal.email || "support@devphoton.com";
+---
+
+<BaseLayout
+  title={`Privacy Policy - ${app.name} | ${publisherBrand}`}
+  description={`Official Privacy Policy for ${app.name} (${app.platform}) published by ${publisherName} (${publisherBrand}).`}
+>
+  <!-- Sticky Header -->
+  <header class="policy-header">
+    <div class="container policy-header-inner">
+      <a href="/" class="back-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back to DevPhoton</span>
+      </a>
+
+      <div class="header-right">
+        <a href="/privacy" class="all-policies-link">All Policies</a>
+        <button id="theme-toggle-app-privacy" class="theme-btn" aria-label="Toggle light and dark mode">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="policy-main">
+    <div class="container policy-container">
+      <article class="policy-card">
+        <!-- Document Title & Meta -->
+        <div class="doc-header">
+          <div class="badge-row">
+            {app.stores.map((store) => (
+              <span class="policy-badge">{store} Compliant</span>
+            ))}
+          </div>
+          <h1 class="doc-title">Privacy Policy</h1>
+          <p class="doc-subtitle">
+            Applicable to <strong>{app.name}</strong>
+          </p>
+          <div class="doc-meta-bar">
+            <span><strong>Publisher:</strong> {publisherName} ({publisherBrand})</span>
+            <span>•</span>
+            <span><strong>Platform:</strong> {app.platform}</span>
+            <span>•</span>
+            <span><strong>Last Updated:</strong> {app.lastUpdated}</span>
+          </div>
+        </div>
+
+        <div class="doc-divider"></div>
+
+        <!-- Privacy Guarantee Summary -->
+        <div class="summary-box">
+          <div class="summary-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="summary-text">
+            <strong>Privacy Guarantee:</strong> {app.summary}
+          </div>
+        </div>
+
+        <!-- Section 1: Overview -->
+        <section class="policy-section">
+          <h2>1. Introduction</h2>
+          <p>
+            This Privacy Policy sets out the privacy practices of <strong>{publisherName}</strong> (operating as <strong>{publisherBrand}</strong>, "we", "us", or "our") regarding the application <strong>{app.name}</strong> ("the Application"), distributed via {app.stores.join(', ')}.
+          </p>
+          <p>
+            We take user privacy very seriously. Because this application is engineered as a standalone {app.category.toLowerCase()}, we believe that user software should respect personal boundaries by design.
+          </p>
+        </section>
+
+        <!-- Section 2: Personal Information -->
+        <section class="policy-section">
+          <h2>2. Personal Data Collection</h2>
+          <p>
+            <strong>We do not collect any personal data.</strong>
+          </p>
+          <p>
+            When downloading, installing, or running {app.name}, you are not required to create an account, sign in, or provide any personal details (such as names, phone numbers, email addresses, payment methods, or geographical locations). We do not possess servers that collect or log your personal identities.
+          </p>
+        </section>
+
+        <!-- Section 3: Telemetry & Permissions -->
+        <section class="policy-section">
+          <h2>3. Telemetry, Analytics & System Permissions</h2>
+          <p>
+            <strong>No Tracking or Diagnostics:</strong> The Application does not contain hidden telemetry modules, behavioral trackers, or analytics software (e.g., Unity Analytics, Google Analytics, Firebase). We do not record or analyze your usage frequency, system sessions, or background multitasking activities.
+          </p>
+          <p>
+            <strong>Input & Runtime Behavior:</strong> {app.permissionsDescription}
+          </p>
+        </section>
+
+        <!-- Section 4: Local Storage -->
+        <section class="policy-section">
+          <h2>4. Local Storage & Device Configuration</h2>
+          <p>
+            The Application may persist lightweight configuration parameters locally on your storage drive (such as standard Windows LocalAppData or local user registry settings). These settings typically include:
+          </p>
+          <ul>
+            {app.localDataStored.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+          <p>
+            All configuration parameters remain exclusively on your local device and are never uploaded, synced, or shared across external networks.
+          </p>
+        </section>
+
+        <!-- Section 5: Network Connectivity -->
+        <section class="policy-section">
+          <h2>5. Network & Internet Access</h2>
+          <p>
+            {app.name} operates offline. The application does not require internet connectivity to function and does not transmit network packets or communicate with external cloud servers during normal runtime.
+          </p>
+        </section>
+
+        <!-- Section 6: Third-Party Distribution -->
+        <section class="policy-section">
+          <h2>6. Third-Party App Stores & Platform Services</h2>
+          <p>
+            The download, purchase verification, and initial installation of {app.name} are managed by platform store partners ({app.stores.join(', ')}).
+          </p>
+          <p>
+            Platform-level diagnostics or payment processing executed by Microsoft or other store platforms are governed by their respective terms and privacy policies (e.g., the 
+            <a href="https://privacy.microsoft.com/en-us/privacystatement" target="_blank" rel="noopener noreferrer">Microsoft Privacy Statement</a>). We never receive or store your billing data or Microsoft account passwords.
+          </p>
+        </section>
+
+        <!-- Section 7: COPPA -->
+        <section class="policy-section">
+          <h2>7. Children's Online Privacy (COPPA)</h2>
+          <p>
+            {app.name} does not address, target, or knowingly collect data from children under the age of 13. The application complies with the Children's Online Privacy Protection Act (COPPA) and international child privacy directives.
+          </p>
+        </section>
+
+        <!-- Section 8: Data Retention & Removal -->
+        <section class="policy-section">
+          <h2>8. Data Retention & Uninstallation</h2>
+          <p>
+            Because we do not collect or store user data on remote servers, there is no remote data to retain or erase. To delete all local preference files created by the application, uninstall {app.name} using standard Windows Settings (<em>Settings &gt; Apps &gt; Installed apps</em>).
+          </p>
+        </section>
+
+        <!-- Section 9: Updates -->
+        <section class="policy-section">
+          <h2>9. Changes to This Privacy Policy</h2>
+          <p>
+            We may update this Privacy Policy from time to time to maintain compliance with relevant store policies and legal regulations. Any revisions will be published immediately on this page with an updated "Last Updated" timestamp.
+          </p>
+        </section>
+
+        <!-- Section 10: Contact -->
+        <section class="policy-section contact-section">
+          <h2>10. Contact Information</h2>
+          <p>
+            For any questions, clarifications, or support regarding this Privacy Policy or <strong>{app.name}</strong>, you can reach out directly to:
+          </p>
+          <div class="contact-details-box">
+            <p><strong>Publisher:</strong> {publisherName} ({publisherBrand})</p>
+            <p><strong>Website:</strong> <a href="https://devphoton.com">https://devphoton.com</a></p>
+            <p><strong>Email Support:</strong> <a href={`mailto:${email}`}>{email}</a></p>
+          </div>
+        </section>
+      </article>
+
+      <!-- Bottom Nav -->
+      <div class="policy-bottom-nav">
+        <a href="/privacy" class="btn-return">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>View All DevPhoton App Policies</span>
+        </a>
+        <a href="/" class="btn-return">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Return to Portfolio</span>
+        </a>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<script>
+  const themeBtn = document.getElementById('theme-toggle-app-privacy');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  }
+</script>
+
+<style>
+  .policy-header {
+    height: var(--nav-height);
+    border-bottom: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .policy-header-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .back-link:hover {
+    color: var(--accent-blue);
+    transform: translateX(-3px);
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .all-policies-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+  }
+
+  .all-policies-link:hover {
+    color: var(--accent-blue);
+  }
+
+  .theme-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .theme-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-focus);
+    transform: scale(1.05);
+  }
+
+  :global([data-theme="light"]) .icon-sun {
+    display: none;
+  }
+  :global([data-theme="light"]) .icon-moon {
+    display: block;
+  }
+  :global([data-theme="dark"]) .icon-sun {
+    display: block;
+  }
+  :global([data-theme="dark"]) .icon-moon {
+    display: none;
+  }
+
+  .policy-main {
+    padding: 3rem 0 5rem 0;
+    min-height: calc(100vh - var(--nav-height));
+  }
+
+  .policy-container {
+    max-width: 820px;
+  }
+
+  .policy-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .doc-header {
+    margin-bottom: 2rem;
+  }
+
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .policy-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-full);
+    background: rgba(26, 115, 232, 0.1);
+    color: var(--accent-blue);
+    border: 1px solid rgba(26, 115, 232, 0.2);
+  }
+
+  .doc-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .doc-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .doc-meta-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .doc-divider {
+    height: 1px;
+    background: var(--border-subtle);
+    margin: 2rem 0;
+  }
+
+  .summary-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: rgba(15, 157, 88, 0.08);
+    border: 1px solid rgba(15, 157, 88, 0.25);
+    border-radius: var(--radius-md);
+    margin-bottom: 2.5rem;
+    color: var(--text-primary);
+  }
+
+  .summary-icon {
+    color: var(--accent-emerald);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .summary-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .policy-section {
+    margin-bottom: 2.25rem;
+  }
+
+  .policy-section h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+
+  .policy-section p {
+    font-size: 0.975rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+  }
+
+  .policy-section ul {
+    margin: 0.5rem 0 1rem 1.5rem;
+    list-style-type: disc;
+  }
+
+  .policy-section li {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.4rem;
+  }
+
+  .policy-section a {
+    color: var(--accent-blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .policy-section a:hover {
+    color: var(--accent-purple);
+  }
+
+  .contact-details-box {
+    margin-top: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+  }
+
+  .contact-details-box p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  .contact-details-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .policy-bottom-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .btn-return {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+  }
+
+  .btn-return:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  @media (max-width: 640px) {
+    .policy-card {
+      padding: 1.75rem 1.25rem;
+      border-radius: var(--radius-md);
+    }
+
+    .doc-title {
+      font-size: 1.75rem;
+    }
+
+    .doc-meta-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+
+    .doc-meta-bar span:nth-child(even) {
+      display: none;
+    }
+  }
+</style>
