@@ -117,11 +117,11 @@ export const portfolioData: PortfolioData = {
   // 🎬 FEATURED VIDEO / SHOWREEL
   // Turn enabled to true whenever you want to display your video on your portfolio!
   featuredShowreel: {
-    enabled: false,
-    title: "Featured XR / Unity Demo Reel",
-    subtitle: "A visual showcase of my virtual reality simulations, interactive mechanics, and shaders.",
+    enabled: true,
+    title: "Cosmos Eye 3D Interactive Wallpaper",
+    subtitle: "Real-time interactive 3D graphics, dynamic shader effects, and high-performance simulation showcase.",
     // Supports YouTube URLs (e.g., "https://www.youtube.com/watch?v=VIDEO_ID") or local MP4 files placed in public/
-    videoUrl: ""
+    videoUrl: "https://youtu.be/EWxAQ0wtgw8"
   },
 
   skills: [
