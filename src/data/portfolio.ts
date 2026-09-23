@@ -87,6 +87,13 @@ export interface PortfolioData {
     /** YouTube URL (e.g. "https://www.youtube.com/watch?v=...") or local MP4 path ("/videos/demo.mp4") */
     videoUrl: string;
   };
+  /** Optional Site Visitor Counter configuration */
+  visitorCounter?: {
+    enabled: boolean;
+    key?: string;
+    label?: string;
+    baseCount?: number;
+  };
 }
 
 export const portfolioData: PortfolioData = {
@@ -342,5 +349,12 @@ export const portfolioData: PortfolioData = {
       year: "Graduated",
       details: "First Class with Distinction"
     }
-  ]
+  ],
+
+  visitorCounter: {
+    enabled: true,
+    key: "gaurav-deore-portfolio-visits",
+    label: "Total Site Visits",
+    baseCount: 0
+  }
 };
