@@ -1,5 +1,6 @@
 ---
 import { portfolioData } from '../data/portfolio';
+import VisitorCounter from './VisitorCounter.astro';
 
 const { personal, socials } = portfolioData;
 const currentYear = new Date().getFullYear();
@@ -28,6 +29,9 @@ const currentYear = new Date().getFullYear();
       <p class="copyright">
         © {currentYear} {personal.name} • <a href="/privacy" class="footer-privacy-link">Privacy Policy</a> • <a href="/support" class="footer-privacy-link">Support</a>
       </p>
+      <div class="footer-counter-container">
+        <VisitorCounter />
+      </div>
       <a href="#" class="back-to-top" aria-label="Back to top">
         <span>Back to Top</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -94,7 +98,13 @@ const currentYear = new Date().getFullYear();
     font-size: 0.85rem;
     color: var(--text-muted);
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.25rem;
+  }
+
+  .footer-counter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .footer-privacy-link {
@@ -125,10 +135,15 @@ const currentYear = new Date().getFullYear();
     color: var(--text-primary);
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     .footer-bottom {
       flex-direction: column;
       text-align: center;
+      gap: 1.5rem;
+    }
+
+    .footer-counter-container {
+      order: -1;
     }
   }
 </style>
