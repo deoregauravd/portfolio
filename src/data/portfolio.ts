@@ -109,7 +109,7 @@ export const portfolioData: PortfolioData = {
     avatar: "/images/profile.jpg",
     bio: [
       "Software Developer and XR/Unity specialist with over 5.5 years of experience building cutting-edge VR/AR, WebXR, and interactive 3D applications.",
-      "Specialized in architecting scalable solutions for Meta Quest 2/3, HTC Vive, and WebXR, optimizing high-load OTT media pipelines (SkyShowtime Europe), and streamlining game development pipelines by up to 300%.",
+      "Specialized in architecting scalable solutions for Meta Quest 2/3, HTC Vive, and WebXR, optimizing high-load OTT media pipelines (SkyShowtime Europe), and streamlining development pipelines by building dynamic automated tools to boost team productivity by up to 300%.",
       "Passionate about blending game engine mechanics, spatial computing, and Agentic AI to forge the next generation of interactive software."
     ]
   },
@@ -118,7 +118,9 @@ export const portfolioData: PortfolioData = {
     github: "https://github.com/deoregauravd",
     linkedin: "https://www.linkedin.com/in/deoregauravd/",
     medium: "https://medium.com/@backspaceBlog",
-    youtube: "https://www.youtube.com/@gauravdeore1915"
+    youtube: "https://www.youtube.com/@gauravdeore1915",
+    // Loaded safely from local .env (never committed to git)
+    resumeGoogleDocs: import.meta.env.PUBLIC_RESUME_URL || undefined
   },
 
   // 🎬 FEATURED VIDEO / SHOWREEL
@@ -160,19 +162,19 @@ export const portfolioData: PortfolioData = {
       title: "Interactive Open-Ended VR Simulations",
       company: "Feast Software",
       category: "XR / VR",
-      description: "Custom VR educational simulation pipelines and editor tools built for Meta Quest, accelerating team production speeds by 300% with automated prefab and reference systems.",
-      tags: ["Unity3D", "Meta Quest 2/3", "C#", "Custom Tooling", "VR Simulation"],
+      description: "Architected a vector-driven interactive simulation architecture and open-ended troubleshooting engine powering 16+ production VR modules on Meta Quest. Programmed and deployed 29+ procedural interactive modules from the ground up, with custom automated editor pipelines boosting production speed by 300%.",
+      tags: ["Unity3D", "Meta Quest 2/3", "C#", "Custom Tooling", "VR Simulation", "Troubleshooting", "Procedural Systems"],
       featured: true,
       link: "https://enggonline.com/",
-      metrics: "300% faster asset workflow"
+      metrics: "16+ troubleshooting & 29+ procedural modules"
     },
     {
       id: "skyshowtime",
       title: "SkyShowtime OTT Platform",
       company: "Globant",
       category: "Web & Cloud",
-      description: "High-scale European OTT streaming service backend integration, leveraging AWS cloud infrastructure, microservices, and continuous deployment pipelines.",
-      tags: ["AWS", "Java", "Spring Boot", "CI/CD", "High Availability"],
+      description: "High-scale European OTT streaming service serving millions of active users. Managed high-volume incident resolution, monitored critical production releases, and ensured seamless streaming stability across cloud microservices.",
+      tags: ["AWS", "Java", "Spring Boot", "Incident Management", "Release Ops", "CI/CD"],
       featured: true,
       link: "https://www.skyshowtime.com/",
       metrics: "Millions of European streaming viewers"
@@ -200,22 +202,33 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "hungama-games",
-      title: "Hungama BB Cricket / Sports Titles",
-      company: "GameShastra",
+      title: "Movie Master: Bollywood Games & Cricket",
+      company: "GameShastra / Hungama",
       category: "Games",
-      description: "High-octane mobile sports game with dynamic camera systems, rigorous gameplay profiling, CI automation, and multi-threaded game state logic.",
-      tags: ["Unity3D", "C#", "Google Play", "Android", "Profiling"],
+      description: "High-octane mobile casual & sports gaming experience featuring dynamic camera systems, rigorous gameplay performance profiling, CI build automation, and multi-threaded game state logic.",
+      tags: ["Unity3D", "C#", "Google Play", "Android", "Profiling", "CI/CD"],
       featured: false,
       link: "https://play.google.com/store/apps/details?id=com.hungamagamestudio.bb&hl=en&gl=US",
       metrics: "1M+ downloads on Google Play"
+    },
+    {
+      id: "desibeats",
+      title: "Desibeats: Indian Music Game",
+      company: "GameShastra / Hungama",
+      category: "Games",
+      description: "Fast-paced rhythm-action mobile game featuring chart-topping Indian tracks. Contributed as part of the core engineering team responsible for architecting automated testing frameworks, performance regression suites, and build verification pipelines.",
+      tags: ["Unity3D", "Automated Testing", "CI/CD", "Quality Engineering", "Android", "Google Play"],
+      featured: false,
+      link: "https://play.google.com/store/apps/details?id=com.hungamagamestudio.desibeats&hl=en&gl=US",
+      metrics: "Automated QA & test pipelines"
     },
     {
       id: "photon-multiplayer",
       title: "Real-Time Strategy Multiplayer Game",
       company: "Globant",
       category: "Games",
-      description: "Low-latency multiplayer battle strategy mechanics using Photon Engine, state synchronization, client prediction, and top-down tactical UI.",
-      tags: ["Photon Engine", "Multiplayer", "C#", "Networking"],
+      description: "Internal engineering excellence and training project developed at Globant to master strict enterprise quality standards and architecture. Implemented low-latency multiplayer battle strategy mechanics using Photon Engine, state synchronization, client prediction, and a top-down tactical UI.",
+      tags: ["Photon Engine", "Multiplayer", "C#", "Networking", "Architecture Standards"],
       featured: false
     },
     {
@@ -235,12 +248,14 @@ export const portfolioData: PortfolioData = {
       company: "Feast Software",
       role: "Unity Developer (VR Developer)",
       location: "Mumbai, Maharashtra",
-      period: "01/2025 - 09/2026",
+      period: "01/2025 – Present",
       description: [
-        "Architected scalable, production-ready VR applications and open-ended simulations on Meta Quest 2 and 3.",
-        "Automated asset reference management and prefab assembly workflows, increasing development iteration speeds by 300%.",
-        "Engineered intuitive custom Unity editor tools and designer-friendly pipelines for non-technical team members.",
-        "Mentored developers on VR performance optimization, frame rate budgets, and code standards."
+        "Architected a vector-driven interactive simulation architecture and open-ended troubleshooting engine powering 16+ production VR modules on Meta Quest 2 and 3.",
+        "Programmed and deployed 29+ procedural interactive modules from the ground up, guaranteeing high visual fidelity, seamless state management, and strict frame-budget compliance.",
+        "Automated asset reference management and prefab assembly workflows, boosting development iteration speed by 300% via intuitive, designer-friendly Unity editor tools.",
+        "Upgraded enterprise assessment frameworks by engineering advanced evaluation features and modular test templates for learner skill verification.",
+        "Bridged modern scalable architectures with legacy systems to enhance long-term system stability in a high-velocity production environment.",
+        "Mentored engineering peers on VR performance profiling, frame rate budgets, and clean architectural standards."
       ],
       sampleLink: {
         label: "View Company / Work Context",
@@ -265,13 +280,13 @@ export const portfolioData: PortfolioData = {
       location: "Hyderabad, Telangana",
       period: "01/2023 - 07/2023",
       description: [
-        "Engineered continuous integration (CI) automation tools to streamline builds and accelerate QA deployment cycles.",
-        "Collaborated cross-functionally with designers and QA to refine core mechanics and resolve complex gameplay bugs.",
-        "Co-developed high-profile mobile games published on the Google Play Store with over 1M+ downloads."
+        "Co-developed high-profile mobile games including Movie Master: Bollywood Games & Cricket and Desibeats: Indian Music Game on Google Play.",
+        "Architected automated testing suites and CI build pipelines to streamline release verification and accelerate QA turnaround times.",
+        "Collaborated cross-functionally with designers and QA to refine core mechanics, dynamic camera systems, and resolve complex gameplay bugs."
       ],
       sampleLink: {
-        label: "View Play Store Title",
-        url: "https://play.google.com/store/apps/details?id=com.hungamagamestudio.bb&hl=en&gl=US"
+        label: "View on Google Play",
+        url: "https://play.google.com/store/apps/details?id=com.hungamagamestudio.desibeats&hl=en&gl=US"
       }
     },
     {
@@ -281,8 +296,9 @@ export const portfolioData: PortfolioData = {
       period: "06/2022 - 12/2022",
       description: [
         "Contributed to SkyShowtime, a premier pan-European streaming OTT platform serving millions of subscribers.",
-        "Built and deployed scalable, high-availability microservices using Java, Spring Boot, and AWS cloud services.",
-        "Spearheaded technical proofs-of-concept (PoCs) to validate new architectural patterns and accelerate feature rollout."
+        "Monitored release deployments and swiftly resolved high-volume production incidents to ensure uninterrupted playback smoothness and platform reliability.",
+        "Built and maintained scalable microservices using Java, Spring Boot, and AWS cloud infrastructure with automated CI/CD pipelines.",
+        "Spearheaded technical proofs-of-concept (PoCs) to validate architectural patterns and accelerate feature rollout."
       ],
       sampleLink: {
         label: "View SkyShowtime Platform",
@@ -340,7 +356,9 @@ export const portfolioData: PortfolioData = {
     {
       degree: "Postgraduate Degree, International Business Operations",
       institution: "Indira Gandhi National Open University",
-      location: "India"
+      location: "India",
+      year: "Discontinued / Dropout",
+      details: "Discontinued to pursue software & game engineering full-time"
     },
     {
       degree: "Bachelor of Mechanical Engineering",
