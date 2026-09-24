@@ -11,9 +11,11 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# environment variables
+# environment variables & local secrets
 .env
+.env.*
 .env.production
+ResumeGoogleDocsLink.txt
 
 # macOS
 .DS_Store
