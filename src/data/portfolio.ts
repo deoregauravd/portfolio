@@ -326,10 +326,10 @@ export const portfolioData: PortfolioData = {
       location: "India",
       period: "08/2019 - 10/2021",
       description: [
-        "Conceptualized, designed, and prototyped indie gameplay mechanics, player progression systems, and level designs using Unity and C#.",
-        "Authored custom 3D game assets, environmental models, and interactive props leveraging Blender and texture authoring workflows.",
-        "Implemented responsive character controllers, physics-based interactions, and fluid UI systems.",
-        "Iteratively conducted player playtests, gathered user feedback, and tuned core gameplay balance and mechanics."
+        "Authored comprehensive Game Design Documents (GDDs) from the ground up, notably designing an innovative multi-planetary, open-world space concept with novel systemic progression loops.",
+        "Designed and prototyped a narrative text-based time-travel game featuring branching decision trees and dynamic timeline state management.",
+        "Researched and benchmarked game engines and toolchains (LibGDX, Android Studio, Unreal Engine, Unity) to architect a streamlined independent development pipeline.",
+        "Documented detailed core game mechanics, economy balance formulas, and technical prototypes bridging high-concept game design with production pipelines."
       ]
     }
   ],
