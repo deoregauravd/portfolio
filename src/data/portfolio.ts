@@ -106,7 +106,7 @@ export const portfolioData: PortfolioData = {
     availabilityText: "Open for Opportunities & Collaborations",
     yearsOfExperience: "5.5+",
     completedProjects: "15+",
-    avatar: "/images/profile.jpg",
+    avatar: "/images/profile.webp",
     bio: [
       "Software Developer and XR/Unity specialist with over 5.5 years of experience building cutting-edge VR/AR, WebXR, and interactive 3D applications.",
       "Specialized in architecting scalable solutions for Meta Quest 2/3, HTC Vive, and WebXR, optimizing high-load OTT media pipelines (SkyShowtime Europe), and streamlining development pipelines by building dynamic automated tools to boost team productivity by up to 300%.",
