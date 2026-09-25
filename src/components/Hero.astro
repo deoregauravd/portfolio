@@ -108,33 +108,35 @@ const { personal, socials } = portfolioData;
 
         <!-- Panel 1: Profile Spotlight with LinkedIn Photo -->
         <div id="panel-profile" class="gemini-panel active">
-          <div class="profile-presentation">
-            <div class="avatar-halo-container">
-              <div class="avatar-halo">
-                <img
-                  src={personal.avatar || "/images/profile.jpg"}
-                  alt={personal.name}
-                  class="profile-image"
-                  width="144"
-                  height="144"
-                  loading="eager"
-                />
-              </div>
-              <div class="avatar-sparkle-badge" title="Google Gemini & AI">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="url(#sparkleHeroGrad)">
-                  <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
-                  <defs>
-                    <linearGradient id="sparkleHeroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#1a73e8"/>
-                      <stop offset="50%" stop-color="#9b72cb"/>
-                      <stop offset="100%" stop-color="#d96570"/>
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-            </div>
+          <div class="profile-spotlight-cover">
+            <!-- Background Cover Image Layer: Gaurav's photo positioned with face visible on right -->
+            <picture class="spotlight-cover-media">
+              <source srcset="/images/profile.webp" type="image/webp" />
+              <img
+                src={personal.avatar || "/images/profile.jpg"}
+                alt={personal.name}
+                class="spotlight-cover-img"
+                width="600"
+                height="800"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
 
-            <div class="profile-details">
+            <!-- Directional scrim gradient overlay -->
+            <div class="spotlight-scrim"></div>
+
+            <!-- Content shifted to left side where empty bokeh space is -->
+            <div class="spotlight-content">
+              <div class="spotlight-tag">
+                <span class="sparkle-icon">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="url(#sparkleHeroGrad)">
+                    <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
+                  </svg>
+                </span>
+                <span>Spatial Computing & AI</span>
+              </div>
+
               <h3 class="profile-name">{personal.name}</h3>
               <p class="profile-role">Software Developer & XR/Unity Specialist</p>
 
@@ -431,67 +433,118 @@ const { personal, socials } = portfolioData;
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Profile Spotlight presentation */
-  .profile-presentation {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .avatar-halo-container {
+  /* Profile Spotlight Cover Banner */
+  .profile-spotlight-cover {
     position: relative;
-    flex-shrink: 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    min-height: 235px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-secondary);
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.08);
   }
 
-  .avatar-halo {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    padding: 3.5px;
-    background: linear-gradient(135deg, #1a73e8, #9b72cb, #d96570, #1a73e8);
-    background-size: 300% 300%;
-    animation: haloGradient 6s ease infinite;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 24px -4px rgba(26, 115, 232, 0.35);
+  .spotlight-cover-media {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 58%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
   }
 
-  @keyframes haloGradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  .profile-image {
+  .spotlight-cover-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid var(--bg-secondary);
-    background: var(--bg-tertiary);
+    object-position: 55% 33%;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .avatar-sparkle-badge {
+  .profile-spotlight-cover:hover .spotlight-cover-img {
+    transform: scale(1.04);
+  }
+
+  /* Directional gradient scrim:
+     Clean card color on left where text is, feathered transition into the photo on the right */
+  .spotlight-scrim {
     position: absolute;
-    bottom: -2px;
-    right: -2px;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: var(--bg-secondary);
-    border: 2px solid var(--bg-card);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+      90deg,
+      var(--bg-secondary) 0%,
+      var(--bg-secondary) 42%,
+      color-mix(in srgb, var(--bg-secondary) 80%, transparent) 54%,
+      transparent 72%
+    );
   }
 
-  .profile-details {
+  .spotlight-scrim::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      0deg,
+      color-mix(in srgb, var(--bg-secondary) 30%, transparent) 0%,
+      transparent 35%
+    );
+  }
+
+  .spotlight-content {
+    position: relative;
+    z-index: 2;
+    padding: 1.35rem 1.25rem;
+    max-width: 54%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 0.35rem;
+    min-height: 235px;
+  }
+
+  .spotlight-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    width: fit-content;
+    white-space: nowrap;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent-blue);
+    background: color-mix(in srgb, var(--bg-secondary) 90%, transparent);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .spotlight-content .profile-name {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .spotlight-content .profile-role {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .spotlight-content .profile-badge-row {
+    margin-top: 0.4rem;
   }
 
   .profile-name {
@@ -679,11 +732,39 @@ const { personal, socials } = portfolioData;
   }
 
   @media (max-width: 520px) {
-    .profile-presentation {
-      flex-direction: column;
-      text-align: center;
+    .profile-spotlight-cover {
+      min-height: 290px;
     }
-    .profile-badge-row {
+    .spotlight-cover-media {
+      width: 100%;
+      height: 60%;
+      top: 0;
+      bottom: auto;
+    }
+    .spotlight-cover-img {
+      object-position: 55% 30%;
+    }
+    .spotlight-scrim {
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        color-mix(in srgb, var(--bg-secondary) 65%, transparent) 40%,
+        var(--bg-secondary) 68%,
+        var(--bg-secondary) 100%
+      );
+    }
+    .spotlight-content {
+      max-width: 100%;
+      min-height: 290px;
+      justify-content: flex-end;
+      text-align: center;
+      align-items: center;
+      padding: 1.25rem 1rem;
+    }
+    .spotlight-tag {
+      margin: 0 auto;
+    }
+    .spotlight-content .profile-badge-row {
       justify-content: center;
     }
     .gemini-metrics-grid {
