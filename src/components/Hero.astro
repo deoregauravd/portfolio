@@ -460,7 +460,7 @@ const { personal, socials } = portfolioData;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 55% 33%;
+    object-position: 55% 20%;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -733,29 +733,31 @@ const { personal, socials } = portfolioData;
 
   @media (max-width: 520px) {
     .profile-spotlight-cover {
-      min-height: 290px;
+      min-height: 310px;
     }
     .spotlight-cover-media {
       width: 100%;
-      height: 60%;
+      height: 100%;
       top: 0;
-      bottom: auto;
+      right: 0;
+      bottom: 0;
     }
     .spotlight-cover-img {
-      object-position: 55% 30%;
+      object-position: 55% 15%;
     }
     .spotlight-scrim {
       background: linear-gradient(
         180deg,
         transparent 0%,
-        color-mix(in srgb, var(--bg-secondary) 65%, transparent) 40%,
+        transparent 20%,
+        color-mix(in srgb, var(--bg-secondary) 70%, transparent) 45%,
         var(--bg-secondary) 68%,
         var(--bg-secondary) 100%
       );
     }
     .spotlight-content {
       max-width: 100%;
-      min-height: 290px;
+      min-height: 310px;
       justify-content: flex-end;
       text-align: center;
       align-items: center;
