@@ -102,6 +102,7 @@ export const portfolioData: PortfolioData = {
     headline: "Software Developer & XR / Unity Engineer",
     subheadline: "Crafting immersive XR/VR simulations, high-performance 3D games, scalable cloud systems, and agentic AI workflows.",
     location: "Mumbai, India",
+    email: "devphotonsupport@gmail.com",
     availableForHire: true,
     availabilityText: "Open for Opportunities & Collaborations",
     yearsOfExperience: "5.5+",
