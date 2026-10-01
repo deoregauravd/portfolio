@@ -3,7 +3,6 @@ import { portfolioData } from '../data/portfolio';
 
 const showreel = portfolioData.featuredShowreel;
 
-// Helper to extract YouTube embed URL from various YouTube formats
 function getEmbedUrl(url: string): string | null {
   if (!url) return null;
   const ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
@@ -19,60 +18,56 @@ const isDirectVideo = showreel?.videoUrl && !isYouTube;
 ---
 
 {showreel && showreel.enabled && showreel.videoUrl && (
-  <section id="showreel" class="section showreel-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">🎬 Demo Reel</span>
-        <h2 class="section-title">{showreel.title}</h2>
-        <p class="section-subtitle">{showreel.subtitle}</p>
-      </div>
+  <div class="video-showcase-box">
+    <div class="video-wrapper glass-card">
+      {isYouTube ? (
+        <div class="iframe-container">
+          <iframe
+            src={isYouTube}
+            title="Cosmos Eye 3D Interactive Demo Reel"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="eager"
+          ></iframe>
+        </div>
+      ) : isDirectVideo ? (
+        <div class="video-player-container">
+          <video controls autoplay muted loop playsinline preload="auto" class="native-video">
+            <source src={showreel.videoUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      ) : null}
 
-      <div class="video-wrapper glass-card">
-        {isYouTube ? (
-          <div class="iframe-container">
-            <iframe
-              src={isYouTube}
-              title={showreel.title}
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-              loading="eager"
-            ></iframe>
-          </div>
-        ) : isDirectVideo ? (
-          <div class="video-player-container">
-            <video controls autoplay muted loop playsinline preload="auto" class="native-video">
-              <source src={showreel.videoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        ) : null}
-
-        <div class="sound-hint">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <div class="video-footer-bar">
+        <span class="footer-caption">Cosmos Eye 3D — Real-Time Shaders & Physics Simulation</span>
+        <span class="sound-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
             <line x1="23" y1="9" x2="17" y2="15"></line>
             <line x1="17" y1="9" x2="23" y2="15"></line>
           </svg>
-          <span>Autoplaying on mute (browser policy). Unmute on the video player anytime for full sound.</span>
-        </div>
+          <span>Unmute for sound</span>
+        </span>
       </div>
     </div>
-  </section>
+  </div>
 )}
 
 <style>
-  .showreel-section {
-    padding-top: 2rem;
+  .video-showcase-box {
+    padding: 0.25rem 0 1rem 0;
   }
 
   .video-wrapper {
-    max-width: 900px;
+    max-width: 840px;
     margin: 0 auto;
-    padding: 0.75rem;
-    border-radius: var(--radius-lg);
+    padding: 0.5rem;
+    border-radius: var(--radius-md);
     background: var(--bg-card);
-    box-shadow: var(--shadow-lg), 0 0 50px -10px rgba(99, 102, 241, 0.25);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-md), 0 0 35px -8px rgba(99, 102, 241, 0.18);
   }
 
   .iframe-container {
@@ -80,7 +75,8 @@ const isDirectVideo = showreel?.videoUrl && !isYouTube;
     padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
     height: 0;
     overflow: hidden;
-    border-radius: var(--radius-md);
+    border-radius: calc(var(--radius-md) - 4px);
+    background: #000000;
   }
 
   .iframe-container iframe {
@@ -90,37 +86,54 @@ const isDirectVideo = showreel?.videoUrl && !isYouTube;
     width: 100%;
     height: 100%;
     border: 0;
-    border-radius: var(--radius-md);
+    border-radius: calc(var(--radius-md) - 4px);
   }
 
   .video-player-container {
     position: relative;
     width: 100%;
-    border-radius: var(--radius-md);
+    border-radius: calc(var(--radius-md) - 4px);
     overflow: hidden;
+    background: #000000;
   }
 
   .native-video {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: var(--radius-md);
+    border-radius: calc(var(--radius-md) - 4px);
   }
 
-  .sound-hint {
+  .video-footer-bar {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
-    padding: 0.4rem 0.75rem;
-    font-size: 0.8rem;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem 0.5rem 0.25rem 0.5rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
-    text-align: center;
+    flex-wrap: wrap;
   }
 
-  .sound-hint svg {
-    flex-shrink: 0;
-    color: var(--color-primary);
+  .footer-caption {
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .sound-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--accent-blue);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .video-footer-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.35rem;
+    }
   }
 </style>

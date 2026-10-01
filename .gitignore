@@ -16,6 +16,7 @@ pnpm-debug.log*
 .env.*
 .env.production
 ResumeGoogleDocsLink.txt
+website modification promt.txt
 
 # macOS
 .DS_Store

@@ -1,0 +1,619 @@
+---
+import { portfolioData } from '../data/portfolio';
+
+const { languageExperience, domainRadar } = portfolioData;
+---
+
+<div class="tech-dashboard-wrapper">
+  <!-- Dual Dashboard Grid: Bar Chart + Radar Chart with Compact Interactive Inspectors -->
+  <div class="charts-grid">
+      <!-- Card 1: Language Stack Experience (Bar Chart) -->
+      <div class="chart-card glass-card">
+        <div class="chart-card-header">
+          <div>
+            <span class="sub-badge">Runtime Stack</span>
+            <h3 class="chart-card-title">Language Stack Experience</h3>
+            <p class="chart-card-desc">Years of verified production tenure across client, server, and engine layers.</p>
+          </div>
+          <span class="chart-badge">Chart.js Visual</span>
+        </div>
+
+        <!-- Chart Canvas -->
+        <div class="chart-canvas-container">
+          <canvas id="langChart" aria-label="Language Stack Experience Bar Chart" role="img"></canvas>
+        </div>
+
+        <!-- Interactive Language Selector Tabs (Drastically reduces vertical height) -->
+        <div class="lang-selector-tabs" role="tablist" aria-label="Select language to view details">
+          {languageExperience.map((lang, idx) => (
+            <button
+              class={`lang-tab-btn ${idx === 0 ? 'active' : ''}`}
+              data-lang-idx={idx}
+              type="button"
+              role="tab"
+              aria-selected={idx === 0 ? 'true' : 'false'}
+            >
+              <span class="tab-dot" style={`background-color: ${lang.color};`}></span>
+              <span>{lang.name}</span>
+              <span class="tab-yrs">{lang.years}y</span>
+            </button>
+          ))}
+        </div>
+
+        <!-- Active Language Detail View -->
+        <div class="lang-active-panel">
+          {languageExperience.map((lang, idx) => (
+            <div
+              class={`lang-panel-content ${idx === 0 ? 'active' : ''}`}
+              id={`lang-panel-${idx}`}
+            >
+              <div class="lang-panel-header">
+                <div class="lang-panel-title-row">
+                  <span class="panel-dot" style={`background-color: ${lang.color};`}></span>
+                  <h4 class="lang-panel-name">{lang.name}</h4>
+                  <span class="lang-panel-badge">{lang.years} {lang.years === 1 ? 'Year Tenure' : 'Years Tenure'}</span>
+                </div>
+                <span class="lang-panel-level">{lang.level}</span>
+              </div>
+              <p class="lang-panel-summary">{lang.summary}</p>
+              <div class="lang-panel-tags">
+                {lang.tags.map((tag) => (
+                  <span class="lang-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Card 2: Domain Expertise (Radar Chart) -->
+      <div class="chart-card glass-card">
+        <div class="chart-card-header">
+          <div>
+            <span class="sub-badge">Specialization Breakdown</span>
+            <h3 class="chart-card-title">Domain Expertise Radar</h3>
+            <p class="chart-card-desc">Multidimensional proficiency evaluation across key software verticals.</p>
+          </div>
+          <span class="chart-badge">Multivariate Radar</span>
+        </div>
+
+        <!-- Radar Canvas -->
+        <div class="chart-canvas-container radar-container">
+          <canvas id="domainRadarChart" aria-label="Domain Expertise Radar Chart" role="img"></canvas>
+        </div>
+
+        <!-- Domain Selector Tabs (Drastically reduces vertical height) -->
+        <div class="domain-selector-tabs" role="tablist" aria-label="Select domain to view details">
+          {domainRadar.map((domain, idx) => (
+            <button
+              class={`domain-tab-btn ${idx === 0 ? 'active' : ''}`}
+              data-domain-idx={idx}
+              type="button"
+              role="tab"
+              aria-selected={idx === 0 ? 'true' : 'false'}
+            >
+              <span>{domain.icon}</span>
+              <span>{domain.domain}</span>
+              <span class="tab-score">{domain.score}%</span>
+            </button>
+          ))}
+        </div>
+
+        <!-- Active Domain Detail View -->
+        <div class="domain-active-panel">
+          {domainRadar.map((domain, idx) => (
+            <div
+              class={`domain-panel-content ${idx === 0 ? 'active' : ''}`}
+              id={`domain-panel-${idx}`}
+            >
+              <div class="domain-panel-header">
+                <div class="domain-panel-title-row">
+                  <span class="panel-icon">{domain.icon}</span>
+                  <h4 class="domain-panel-name">{domain.label}</h4>
+                </div>
+                <div class="domain-score-badge">
+                  <span class="score-val">{domain.score}</span>
+                  <span class="score-denom">/100</span>
+                </div>
+              </div>
+              <p class="domain-panel-desc">{domain.description}</p>
+              <ul class="domain-panel-competencies">
+                {domain.competencies.map((comp) => (
+                  <li>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="3">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span>{comp}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+<style>
+  .tech-dashboard-wrapper {
+    padding: 0.5rem 0 1.25rem 0;
+  }
+
+  .charts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin-top: 0.25rem;
+  }
+
+  .chart-card {
+    padding: 1.75rem 1.6rem;
+    border-radius: var(--radius-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chart-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-gemini);
+    opacity: 0.9;
+  }
+
+  .chart-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 0.75rem;
+  }
+
+  .sub-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-blue);
+    display: inline-block;
+    margin-bottom: 0.25rem;
+  }
+
+  .chart-card-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+  }
+
+  .chart-card-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  .chart-badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+    white-space: nowrap;
+  }
+
+  .chart-canvas-container {
+    position: relative;
+    width: 100%;
+    height: 230px;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .radar-container {
+    height: 240px;
+  }
+
+  /* Compact Interactive Tabs */
+  .lang-selector-tabs, .domain-selector-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 0.85rem;
+  }
+
+  .lang-tab-btn, .domain-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .lang-tab-btn:hover, .domain-tab-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-focus);
+    background: var(--bg-secondary);
+  }
+
+  .lang-tab-btn.active, .domain-tab-btn.active {
+    background: var(--accent-blue);
+    color: #ffffff;
+    border-color: var(--accent-blue);
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.25);
+  }
+
+  .tab-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .tab-yrs, .tab-score {
+    opacity: 0.85;
+    font-size: 0.7rem;
+  }
+
+  /* Active Panel */
+  .lang-active-panel, .domain-active-panel {
+    min-height: 140px;
+  }
+
+  .lang-panel-content, .domain-panel-content {
+    display: none;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .lang-panel-content.active, .domain-panel-content.active {
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .lang-panel-header, .domain-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+  }
+
+  .lang-panel-title-row, .domain-panel-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .panel-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+
+  .panel-icon {
+    font-size: 1.1rem;
+  }
+
+  .lang-panel-name, .domain-panel-name {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .lang-panel-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-full);
+    background: rgba(26, 115, 232, 0.1);
+    color: var(--accent-blue);
+  }
+
+  .lang-panel-level {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .domain-score-badge {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.15rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: var(--radius-full);
+    background: rgba(15, 157, 88, 0.1);
+    color: var(--accent-emerald);
+  }
+
+  .score-val {
+    font-size: 0.9rem;
+    font-weight: 800;
+  }
+
+  .score-denom {
+    font-size: 0.68rem;
+    font-weight: 600;
+    opacity: 0.8;
+  }
+
+  .lang-panel-summary, .domain-panel-desc {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 0.65rem;
+  }
+
+  .lang-panel-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .lang-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.15rem 0.45rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-primary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+  }
+
+  .domain-panel-competencies {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.35rem;
+  }
+
+  .domain-panel-competencies li {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.74rem;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 980px) {
+    .charts-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .domain-panel-competencies {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .chart-card {
+      padding: 1.25rem 1rem;
+    }
+
+    .chart-card-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<script>
+  import Chart from 'chart.js/auto';
+
+  function initCharts() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const textColor = isDark ? '#e3e3e3' : '#1f1f1f';
+    const mutedColor = isDark ? '#8e918f' : '#747775';
+    const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)';
+
+    // 1. Language Stack Bar Chart
+    const langCanvas = document.getElementById('langChart') as HTMLCanvasElement | null;
+    let langChartInstance: Chart | null = null;
+
+    if (langCanvas) {
+      const labels = ['C#', 'Python', 'Java', 'C++', 'REST/JS'];
+      const data = [6, 1, 1, 1, 1];
+      const backgroundColors = ['#1a73e8', '#9b72cb', '#d96570', '#0284c7', '#0f9d58'];
+
+      langChartInstance = new Chart(langCanvas, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Tenure (Years)',
+            data: data,
+            backgroundColor: backgroundColors,
+            borderRadius: 6,
+            borderSkipped: false,
+            barThickness: 28,
+            maxBarThickness: 36
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: { duration: 1000, easing: 'easeOutQuart' },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: isDark ? 'rgba(30, 31, 32, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+              titleColor: textColor,
+              bodyColor: textColor,
+              borderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)',
+              borderWidth: 1,
+              padding: 10,
+              callbacks: {
+                label: function(context) {
+                  const val = context.parsed.y;
+                  return ` Verified Tenure: ${val} ${val === 1 ? 'Year' : 'Years'}`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: {
+                color: textColor,
+                font: { family: "'Outfit', sans-serif", size: 11, weight: 'bold' }
+              }
+            },
+            y: {
+              beginAtZero: true,
+              max: 7,
+              grid: { color: gridColor },
+              ticks: {
+                stepSize: 1,
+                color: mutedColor,
+                font: { family: "'Outfit', sans-serif", size: 10 },
+                callback: (val) => val + 'y'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    // 2. Domain Radar Chart
+    const radarCanvas = document.getElementById('domainRadarChart') as HTMLCanvasElement | null;
+    let radarChartInstance: Chart | null = null;
+
+    if (radarCanvas) {
+      const radarLabels = ['Mobile Gaming', 'Computer Apps', 'EdTech & Sims', 'VR (XR)'];
+      const radarScores = [92, 88, 98, 96];
+
+      radarChartInstance = new Chart(radarCanvas, {
+        type: 'radar',
+        data: {
+          labels: radarLabels,
+          datasets: [{
+            label: 'Engineering Proficiency',
+            data: radarScores,
+            fill: true,
+            backgroundColor: isDark ? 'rgba(138, 180, 248, 0.22)' : 'rgba(26, 115, 232, 0.18)',
+            borderColor: isDark ? '#8ab4f8' : '#1a73e8',
+            pointBackgroundColor: isDark ? '#c58af9' : '#7c3aed',
+            pointBorderColor: '#ffffff',
+            pointRadius: 4,
+            pointHoverRadius: 6,
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: { duration: 1200, easing: 'easeOutQuart' },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              backgroundColor: isDark ? 'rgba(30, 31, 32, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+              titleColor: textColor,
+              bodyColor: textColor,
+              borderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)',
+              borderWidth: 1,
+              padding: 10,
+              callbacks: {
+                label: (context) => ` Score: ${context.parsed.r} / 100`
+              }
+            }
+          },
+          scales: {
+            r: {
+              beginAtZero: true,
+              min: 50,
+              max: 100,
+              grid: { color: gridColor },
+              angleLines: { color: gridColor },
+              pointLabels: {
+                color: textColor,
+                font: { family: "'Outfit', sans-serif", size: 10, weight: 'bold' }
+              },
+              ticks: { display: false, stepSize: 20 }
+            }
+          }
+        }
+      });
+    }
+
+    // Re-render when theme changes
+    const observer = new MutationObserver(() => {
+      langChartInstance?.destroy();
+      radarChartInstance?.destroy();
+      initCharts();
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+  }
+
+  // Interactive Language Tabs
+  const langTabs = document.querySelectorAll<HTMLButtonElement>('.lang-tab-btn');
+  const langPanels = document.querySelectorAll<HTMLElement>('.lang-panel-content');
+
+  langTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const idx = tab.dataset.langIdx;
+      langTabs.forEach((t) => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      langPanels.forEach((p) => p.classList.remove('active'));
+      const activePanel = document.getElementById(`lang-panel-${idx}`);
+      activePanel?.classList.add('active');
+    });
+  });
+
+  // Interactive Domain Tabs
+  const domainTabs = document.querySelectorAll<HTMLButtonElement>('.domain-tab-btn');
+  const domainPanels = document.querySelectorAll<HTMLElement>('.domain-panel-content');
+
+  domainTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const idx = tab.dataset.domainIdx;
+      domainTabs.forEach((t) => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      domainPanels.forEach((p) => p.classList.remove('active'));
+      const activePanel = document.getElementById(`domain-panel-${idx}`);
+      activePanel?.classList.add('active');
+    });
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCharts);
+  } else {
+    initCharts();
+  }
+</script>

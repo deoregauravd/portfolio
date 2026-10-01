@@ -4,37 +4,27 @@ import { portfolioData } from '../data/portfolio';
 const { skills } = portfolioData;
 ---
 
-<section id="skills" class="section">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-eyebrow">Technical Arsenal</span>
-      <h2 class="section-title">Skills & <span class="gradient-text">Technologies</span></h2>
-      <p class="section-subtitle">
-        A deep toolkit spanning spatial computing runtimes, engine internals, game programming, and cloud backends.
-      </p>
-    </div>
-
-    <div class="skills-grid">
-      {skills.map((category) => (
-        <div class="skill-category-card glass-card">
-          <div class="category-header">
-            <span class="category-icon">{category.icon}</span>
-            <h3 class="category-title">{category.name}</h3>
-          </div>
-
-          <div class="skills-pills">
-            {category.skills.map((skill) => (
-              <span class="skill-pill">
-                <span class="pill-dot"></span>
-                <span>{skill}</span>
-              </span>
-            ))}
-          </div>
+<div class="skills-wrapper">
+  <div class="skills-grid">
+    {skills.map((category) => (
+      <div class="skill-category-card glass-card">
+        <div class="category-header">
+          <span class="category-icon">{category.icon}</span>
+          <h3 class="category-title">{category.name}</h3>
         </div>
-      ))}
-    </div>
+
+        <div class="skills-pills">
+          {category.skills.map((skill) => (
+            <span class="skill-pill">
+              <span class="pill-dot"></span>
+              <span>{skill}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
   </div>
-</section>
+</div>
 
 <style>
   .skills-grid {

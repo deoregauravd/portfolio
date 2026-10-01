@@ -4,9 +4,8 @@ import { portfolioData } from '../data/portfolio';
 const { personal, socials } = portfolioData;
 ---
 
-<section id="contact" class="section">
-  <div class="container">
-    <div class="contact-box glass-card">
+<div class="contact-wrapper">
+  <div class="contact-box glass-card">
       <div class="contact-content">
         <span class="section-eyebrow">Get In Touch</span>
         <h2 class="contact-title">Let's Build Something <span class="gradient-text">Exceptional</span></h2>
@@ -103,10 +102,57 @@ const { personal, socials } = portfolioData;
             </div>
           )}
         </div>
+
+        <!-- Verified Web & Social Presence Grid -->
+        <div class="contact-links-grid">
+          <a href={socials.website || "https://devphoton.com"} target="_blank" rel="noopener noreferrer" class="contact-link-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span>devphoton.com</span>
+            <span class="pill-arrow">↗</span>
+          </a>
+
+          <a href={socials.github} target="_blank" rel="noopener noreferrer" class="contact-link-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            <span>GitHub Profile</span>
+            <span class="pill-arrow">↗</span>
+          </a>
+
+          <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" class="contact-link-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            <span>LinkedIn Network</span>
+            <span class="pill-arrow">↗</span>
+          </a>
+
+          <a href={socials.medium} target="_blank" rel="noopener noreferrer" class="contact-link-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+            </svg>
+            <span>Medium Technical Articles</span>
+            <span class="pill-arrow">↗</span>
+          </a>
+
+          <a href={socials.youtube} target="_blank" rel="noopener noreferrer" class="contact-link-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+            </svg>
+            <span>YouTube Showcase</span>
+            <span class="pill-arrow">↗</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
 <style>
   .contact-box {
@@ -201,6 +247,51 @@ const { personal, socials } = portfolioData;
 
   .resume-direct-link:hover {
     color: var(--accent-cyan);
+  }
+
+  /* Verified Web & Social Presence Grid */
+  .contact-links-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .contact-link-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.15rem;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+  }
+
+  .contact-link-pill:hover {
+    background: var(--bg-secondary);
+    border-color: var(--border-focus);
+    color: var(--accent-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .pill-arrow {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    transition: transform var(--transition-fast);
+  }
+
+  .contact-link-pill:hover .pill-arrow {
+    transform: translate(2px, -2px);
+    opacity: 1;
   }
 
   @media (max-width: 768px) {

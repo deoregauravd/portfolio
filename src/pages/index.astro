@@ -2,10 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
-import Stats from '../components/Stats.astro';
+import CollapsibleSection from '../components/CollapsibleSection.astro';
 import Showreel from '../components/Showreel.astro';
 import Projects from '../components/Projects.astro';
 import Experience from '../components/Experience.astro';
+import TechDashboard from '../components/TechDashboard.astro';
+import PlatformMatrix from '../components/PlatformMatrix.astro';
 import Skills from '../components/Skills.astro';
 import EducationCertifications from '../components/EducationCertifications.astro';
 import Contact from '../components/Contact.astro';
@@ -16,13 +18,298 @@ import Footer from '../components/Footer.astro';
   <Navbar />
   <main id="main-content">
     <Hero />
-    <Showreel />
-    <Stats />
-    <Projects />
-    <Experience />
-    <Skills />
-    <EducationCertifications />
-    <Contact />
+
+    <!-- Executive Directory Controls Bar -->
+    <div class="container master-controls-container">
+      <div class="master-accordion-controls glass-card">
+        <div class="controls-status">
+          <span class="status-indicator-dot"></span>
+          <span class="status-text">Executive Summary View — All Sections Collapsed by Default</span>
+        </div>
+        <div class="controls-actions">
+          <button id="master-expand-all" class="btn-ctrl" type="button" aria-label="Expand all sections">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+            <span>Expand All</span>
+          </button>
+          <button id="master-collapse-all" class="btn-ctrl" type="button" aria-label="Collapse all sections">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+            <span>Collapse All</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 1: Interactive Demo Reel -->
+    <CollapsibleSection
+      id="showreel"
+      icon="🎬"
+      eyebrow="Interactive Simulation"
+      title="Interactive Demo Reel"
+      defaultExpanded={false}
+    >
+      <Showreel />
+    </CollapsibleSection>
+
+    <!-- Section 2: Featured Projects & Systems -->
+    <CollapsibleSection
+      id="projects"
+      icon="🚀"
+      eyebrow="Production Portfolio"
+      title="Featured Projects & Systems"
+      badge="11 Shipped Works"
+      defaultExpanded={false}
+    >
+      <Projects />
+    </CollapsibleSection>
+
+    <!-- Section 3: Work Experience Timeline -->
+    <CollapsibleSection
+      id="experience"
+      icon="💼"
+      eyebrow="Career Progression"
+      title="Work Experience Timeline"
+      badge="5 Years • 5 Firms"
+      defaultExpanded={false}
+    >
+      <Experience />
+    </CollapsibleSection>
+
+    <!-- Section 4: Engineering Stack & Domain Intelligence -->
+    <CollapsibleSection
+      id="tech-stack"
+      icon="⚡"
+      eyebrow="Interactive Analytics"
+      title="Language Stack & Domain Intelligence"
+      badge="C# • Python • C++ • Java"
+      defaultExpanded={false}
+    >
+      <TechDashboard />
+    </CollapsibleSection>
+
+    <!-- Section 5: Hardware & Deployment Matrix -->
+    <CollapsibleSection
+      id="platforms"
+      icon="🎮"
+      eyebrow="Cross-Platform Delivery"
+      title="Hardware & Deployment Matrix"
+      badge="9 Shipped Targets"
+      defaultExpanded={false}
+    >
+      <PlatformMatrix />
+    </CollapsibleSection>
+
+    <!-- Section 6: Technical Arsenal & Credentials -->
+    <CollapsibleSection
+      id="skills"
+      icon="🛠️"
+      eyebrow="Engine Toolkits & Education"
+      title="Technical Arsenal & Credentials"
+      badge="Certified Unity & Spatial Tech"
+      defaultExpanded={false}
+    >
+      <Skills />
+      <div class="credentials-divider-wrap">
+        <EducationCertifications />
+      </div>
+    </CollapsibleSection>
+
+    <!-- Section 7: Get In Touch & Connect -->
+    <CollapsibleSection
+      id="contact"
+      icon="📬"
+      eyebrow="Direct Inquiries"
+      title="Get In Touch & Connect"
+      badge="Open to Roles"
+      defaultExpanded={false}
+    >
+      <Contact />
+    </CollapsibleSection>
   </main>
   <Footer />
 </BaseLayout>
+
+<style>
+  .master-controls-container {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .master-accordion-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .controls-status {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .status-indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-blue);
+    box-shadow: 0 0 8px var(--accent-blue);
+    display: inline-block;
+  }
+
+  .controls-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .btn-ctrl {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .btn-ctrl:hover {
+    color: var(--accent-blue);
+    border-color: var(--border-focus);
+    background: var(--bg-card);
+    transform: translateY(-1px);
+  }
+
+  .credentials-divider-wrap {
+    margin-top: 2.25rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--border-subtle);
+  }
+
+  @media (max-width: 640px) {
+    .master-accordion-controls {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.75rem 1rem;
+    }
+  }
+</style>
+
+<script>
+  function setupAccordionInteractivity() {
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('.collapsible-section'));
+    const expandAllBtn = document.getElementById('master-expand-all');
+    const collapseAllBtn = document.getElementById('master-collapse-all');
+
+    function toggleSection(sec: HTMLElement, shouldExpand?: boolean) {
+      const isCurrentlyExpanded = sec.classList.contains('expanded');
+      const expand = shouldExpand !== undefined ? shouldExpand : !isCurrentlyExpanded;
+
+      if (expand) {
+        sec.classList.add('expanded');
+      } else {
+        sec.classList.remove('expanded');
+      }
+
+      const header = sec.querySelector<HTMLElement>('.section-accordion-header');
+      if (header) {
+        header.setAttribute('aria-expanded', expand ? 'true' : 'false');
+      }
+
+      const label = sec.querySelector<HTMLElement>('.toggle-label');
+      if (label) {
+        label.textContent = expand ? 'Collapse' : 'Explore';
+      }
+
+      // If tech-stack was expanded, resize Chart.js canvas to ensure crisp rendering
+      if (expand && sec.id === 'tech-stack') {
+        setTimeout(() => {
+          window.dispatchEvent(new Event('resize'));
+        }, 150);
+      }
+    }
+
+    // Attach click and keydown handlers to each accordion header
+    sections.forEach((sec) => {
+      const header = sec.querySelector<HTMLElement>('.section-accordion-header');
+      if (!header) return;
+
+      header.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleSection(sec);
+      });
+
+      header.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleSection(sec);
+        }
+      });
+    });
+
+    // Master Expand All
+    expandAllBtn?.addEventListener('click', () => {
+      sections.forEach((sec) => toggleSection(sec, true));
+    });
+
+    // Master Collapse All
+    collapseAllBtn?.addEventListener('click', () => {
+      sections.forEach((sec) => toggleSection(sec, false));
+    });
+
+    // Deep link auto-expansion for Navbar & Hero buttons
+    function handleAnchorLink(targetId: string) {
+      if (!targetId) return;
+      const cleanId = targetId.replace('#', '');
+      const targetSec = document.getElementById(cleanId);
+      if (targetSec && targetSec.classList.contains('collapsible-section')) {
+        toggleSection(targetSec, true);
+        setTimeout(() => {
+          targetSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+
+    document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && href.length > 1) {
+          const targetSec = document.querySelector<HTMLElement>(href);
+          if (targetSec && targetSec.classList.contains('collapsible-section')) {
+            toggleSection(targetSec, true);
+          }
+        }
+      });
+    });
+
+    // Check on initial page load if URL has a hash
+    if (window.location.hash) {
+      handleAnchorLink(window.location.hash);
+    }
+  }
+
+  // Initialize on load and Astro page transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupAccordionInteractivity);
+  } else {
+    setupAccordionInteractivity();
+  }
+  document.addEventListener('astro:page-load', setupAccordionInteractivity);
+</script>

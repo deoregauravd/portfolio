@@ -177,42 +177,44 @@ p {
 }
 
 .section {
-  padding: 5.5rem 0;
+  padding: 3.25rem 0;
   position: relative;
 }
 
 .section-header {
   text-align: center;
-  max-width: 680px;
-  margin: 0 auto 3.5rem auto;
+  max-width: 640px;
+  margin: 0 auto 1.85rem auto;
 }
 
 .section-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--badge-text);
   background: var(--badge-bg);
   border: 1px solid var(--badge-border);
-  padding: 0.35rem 0.95rem;
+  padding: 0.25rem 0.8rem;
   border-radius: var(--radius-full);
-  margin-bottom: 1rem;
+  margin-bottom: 0.65rem;
 }
 
 .section-title {
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(1.65rem, 3vw, 2.2rem);
   font-weight: 800;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
 }
 
 .section-subtitle {
-  font-size: 1.05rem;
+  font-size: 0.92rem;
   color: var(--text-secondary);
+  line-height: 1.55;
 }
 
 .gradient-text {

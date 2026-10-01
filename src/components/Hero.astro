@@ -138,7 +138,7 @@ const { personal, socials } = portfolioData;
               </div>
 
               <h3 class="profile-name">{personal.name}</h3>
-              <p class="profile-role">Software Developer & XR/Unity Specialist</p>
+              <p class="profile-role">{personal.headline}</p>
 
               <div class="profile-badge-row">
                 <span class="location-badge">
@@ -156,23 +156,23 @@ const { personal, socials } = portfolioData;
             </div>
           </div>
 
-          <!-- Feature Metric Highlights -->
+          <!-- Feature Metric Highlights with Animated Counters -->
           <div class="gemini-metrics-grid">
             <div class="gemini-metric-box">
-              <span class="metric-num gradient-text">{personal.yearsOfExperience}</span>
-              <span class="metric-desc">Years in XR/Games</span>
-            </div>
-            <div class="gemini-metric-box">
-              <span class="metric-num gradient-text">300%</span>
-              <span class="metric-desc">Pipeline Speedup</span>
-            </div>
-            <div class="gemini-metric-box">
-              <span class="metric-num gradient-text">1M+</span>
+              <span class="metric-num gradient-text hero-count" data-target="10" data-suffix="M+">10M+</span>
               <span class="metric-desc">Users & OTT Reach</span>
             </div>
             <div class="gemini-metric-box">
-              <span class="metric-num gradient-text">15+</span>
-              <span class="metric-desc">Interactive Projects</span>
+              <span class="metric-num gradient-text hero-count" data-target="4" data-suffix="M+">4M+</span>
+              <span class="metric-desc">Rendered Objects</span>
+            </div>
+            <div class="gemini-metric-box">
+              <span class="metric-num gradient-text hero-count" data-target="300" data-prefix="+" data-suffix="%">+300%</span>
+              <span class="metric-desc">Efficiency Gain</span>
+            </div>
+            <div class="gemini-metric-box">
+              <span class="metric-num gradient-text hero-count" data-target="29" data-suffix="+">29+</span>
+              <span class="metric-desc">VR Simulations</span>
             </div>
           </div>
 
@@ -849,4 +849,41 @@ const { personal, socials } = portfolioData;
     panelCode?.classList.add('active');
     panelProfile?.classList.remove('active');
   });
+
+  // Hero Animated Stat Counters
+  const heroCounters = document.querySelectorAll<HTMLElement>('.hero-count');
+  if (heroCounters.length > 0) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          heroCounters.forEach((counter) => {
+            const target = parseInt(counter.dataset.target || '0', 10);
+            const prefix = counter.dataset.prefix || '';
+            const suffix = counter.dataset.suffix || '';
+            const duration = 1200; // ms
+            const startTime = performance.now();
+
+            const update = (now: number) => {
+              const elapsed = now - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              // ease-out cubic
+              const ease = 1 - Math.pow(1 - progress, 3);
+              const current = Math.floor(ease * target);
+              counter.textContent = `${prefix}${current}${suffix}`;
+              if (progress < 1) {
+                requestAnimationFrame(update);
+              } else {
+                counter.textContent = `${prefix}${target}${suffix}`;
+              }
+            };
+            requestAnimationFrame(update);
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+
+    const firstCounter = heroCounters[0];
+    if (firstCounter) observer.observe(firstCounter);
+  }
 </script>

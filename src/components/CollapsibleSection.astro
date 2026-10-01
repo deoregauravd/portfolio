@@ -1,0 +1,251 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  eyebrow?: string;
+  badge?: string;
+  icon?: string;
+  defaultExpanded?: boolean;
+}
+
+const {
+  id,
+  title,
+  eyebrow,
+  badge,
+  icon,
+  defaultExpanded = false
+} = Astro.props;
+---
+
+<section id={id} class={`collapsible-section ${defaultExpanded ? 'expanded' : ''}`} data-section-id={id}>
+  <div class="container">
+    <!-- Collapsible Master Header Bar -->
+    <div
+      class="section-accordion-header glass-card"
+      role="button"
+      tabindex="0"
+      aria-expanded={defaultExpanded ? "true" : "false"}
+      aria-controls={`${id}-content`}
+    >
+      <div class="header-left">
+        {icon && <span class="section-icon" aria-hidden="true">{icon}</span>}
+        <div class="header-titles">
+          {eyebrow && <span class="section-eyebrow-mini">{eyebrow}</span>}
+          <h2 class="section-accordion-title">{title}</h2>
+        </div>
+      </div>
+
+      <div class="header-right">
+        {badge && (
+          <span class="section-badge-pill">{badge}</span>
+        )}
+        <div class="section-toggle-btn">
+          <span class="toggle-label">{defaultExpanded ? "Collapse" : "Explore"}</span>
+          <span class="toggle-chevron" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collapsible Body with GPU Grid Transition -->
+    <div id={`${id}-content`} class="section-accordion-body">
+      <div class="section-accordion-inner">
+        <slot />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .collapsible-section {
+    padding: 0.65rem 0;
+    transition: padding 0.25s ease;
+  }
+
+  .collapsible-section.expanded {
+    padding: 1.5rem 0 2rem 0;
+  }
+
+  /* Accordion Header Bar */
+  .section-accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.15rem 1.6rem;
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    transition: all var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .section-accordion-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--gradient-gemini);
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+  }
+
+  .section-accordion-header:hover {
+    border-color: var(--border-focus);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .section-accordion-header:hover::before {
+    opacity: 1;
+  }
+
+  .collapsible-section.expanded .section-accordion-header {
+    border-color: var(--border-focus);
+    box-shadow: var(--shadow-md);
+    border-bottom-left-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
+  }
+
+  .collapsible-section.expanded .section-accordion-header::before {
+    opacity: 1;
+  }
+
+  .section-accordion-header:focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 3px;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.95rem;
+  }
+
+  .section-icon {
+    font-size: 1.45rem;
+    line-height: 1;
+  }
+
+  .header-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .section-eyebrow-mini {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-blue);
+  }
+
+  .section-accordion-title {
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .section-badge-pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+  }
+
+  .section-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.76rem;
+    font-weight: 700;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+  }
+
+  .section-accordion-header:hover .section-toggle-btn {
+    background: var(--accent-blue);
+    color: #ffffff;
+    border-color: var(--accent-blue);
+  }
+
+  .collapsible-section.expanded .section-toggle-btn {
+    background: var(--accent-blue);
+    color: #ffffff;
+    border-color: var(--accent-blue);
+  }
+
+  .toggle-chevron {
+    display: flex;
+    align-items: center;
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .collapsible-section.expanded .toggle-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* GPU-Accelerated Smooth Grid Expand/Collapse */
+  .section-accordion-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+    opacity: 0;
+  }
+
+  .collapsible-section.expanded .section-accordion-body {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .section-accordion-inner {
+    overflow: hidden;
+    padding-top: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .section-accordion-header {
+      padding: 0.95rem 1.15rem;
+    }
+
+    .section-badge-pill {
+      display: none;
+    }
+
+    .header-left {
+      gap: 0.65rem;
+    }
+
+    .section-icon {
+      font-size: 1.25rem;
+    }
+  }
+</style>
