@@ -8,9 +8,9 @@ const { personal, socials } = portfolioData;
   <!-- Subtle Gemini Glow in Background -->
   <div class="gemini-ambient-halo" aria-hidden="true"></div>
 
-  <div class="container hero-container">
-    <div class="hero-content hero-panel glass-card">
-      <!-- Gemini Prompt / Status Pill -->
+  <div class="container hero-shell">
+    <!-- Top Center Aligned Header Bar: Status Pill, CTA Actions, Social Links -->
+    <div class="hero-top-bar">
       {personal.availableForHire && (
         <div class="status-pill">
           <svg class="gemini-sparkle-svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
@@ -21,73 +21,110 @@ const { personal, socials } = portfolioData;
         </div>
       )}
 
-      <!-- Main Headline -->
-      <h1 class="hero-title">
-        Hello, I'm <span class="gradient-text">{personal.name}</span>
-      </h1>
-      <p class="hero-role">{personal.headline}</p>
+      <!-- Center Aligned Action Buttons & Socials -->
+      <div class="hero-top-controls">
+        <div class="hero-actions">
+          {portfolioData.featuredShowreel?.enabled && (
+            <a href="#showreel" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 4 19 12 6 20 6 4"></polygon>
+              </svg>
+              <span>Watch Demo Reel</span>
+            </a>
+          )}
 
-      <!-- Subheadline / Bio -->
-      <div class="hero-bio">
-        {personal.bio.map((paragraph) => (
-          <p>{paragraph}</p>
-        ))}
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="hero-actions">
-        {portfolioData.featuredShowreel?.enabled && (
-          <a href="#showreel" class="btn btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <polygon points="6 4 19 12 6 20 6 4"></polygon>
+          <a href="#projects" class={portfolioData.featuredShowreel?.enabled ? "btn btn-secondary" : "btn btn-primary"}>
+            <svg class="gemini-sparkle-svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
             </svg>
-            <span>Watch Demo Reel</span>
+            <span>Explore Work</span>
           </a>
-        )}
 
-        <a href="#projects" class={portfolioData.featuredShowreel?.enabled ? "btn btn-secondary" : "btn btn-primary"}>
-          <svg class="gemini-sparkle-svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-            <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
-          </svg>
-          <span>Explore Work</span>
-        </a>
+          <a href="#contact" class="btn btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>Get In Touch</span>
+          </a>
+        </div>
 
-        <a href="#contact" class="btn btn-outline">
-          <span>Get In Touch</span>
-        </a>
-      </div>
-
-      <!-- Social Links Row -->
-      <div class="social-links">
-        <span class="social-label">Connect:</span>
-        <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="social-btn" title="LinkedIn Profile">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-            <rect x="2" y="9" width="4" height="12"></rect>
-            <circle cx="4" cy="4" r="2"></circle>
-          </svg>
-        </a>
-        <a href={socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="social-btn" title="GitHub Profile">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
-        </a>
-        <a href={socials.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube Channel" class="social-btn" title="YouTube Channel">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
-            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
-          </svg>
-        </a>
-        <a href={socials.medium} target="_blank" rel="noopener noreferrer" aria-label="Medium Blog" class="social-btn" title="Medium Blog">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
-          </svg>
-        </a>
+        <!-- Social Links Row -->
+        <div class="social-links">
+          <span class="social-label">Connect:</span>
+          <a href={socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="social-btn" title="LinkedIn Profile">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+          <a href={socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="social-btn" title="GitHub Profile">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </a>
+          <a href={socials.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube Channel" class="social-btn" title="YouTube Channel">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0-.46-5.25 29 29 0 0 0-.46-5.33z"></path>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+            </svg>
+          </a>
+          <a href={socials.medium} target="_blank" rel="noopener noreferrer" aria-label="Medium Blog" class="social-btn" title="Medium Blog">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
 
-    <!-- Gemini Profile Showcase & Interactive Engine Card -->
-    <div class="hero-visual">
+    <!-- Dual Equal-Length Panels: Intro Panel + Profile Spotlight -->
+    <div class="hero-container">
+      <div class="hero-content hero-panel glass-card">
+        <div class="intro-header">
+          <div class="intro-tag">
+            <span class="sparkle-icon">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+                <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
+              </svg>
+            </span>
+            <span>Engineering Architecture</span>
+          </div>
+
+          <h1 class="hero-title">
+            Software Developer &amp; <span class="gradient-text">XR Unity Developer</span>
+          </h1>
+          <p class="hero-role">{personal.subheadline}</p>
+        </div>
+
+        <!-- Subheadline / Bio -->
+        <div class="hero-bio">
+          {personal.bio.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+
+        <div class="intro-footer-badges">
+          <span class="intro-badge-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span>5 Years Enterprise Experience</span>
+          </span>
+          <span class="intro-badge-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <span>16+ Shipped Targets</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Gemini Profile Showcase & Interactive Engine Card -->
+      <div class="hero-visual">
       <div class="gemini-card-wrapper glass-card">
         <!-- Tab Switcher -->
         <div class="gemini-card-tabs" role="tablist">
@@ -248,11 +285,115 @@ const { personal, socials } = portfolioData;
     filter: blur(40px);
   }
 
+  .hero-shell {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Top Center Aligned Controls Header */
+  .hero-top-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 2.25rem;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-top-bar .status-pill {
+    margin-bottom: 0;
+  }
+
+  .hero-top-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.95rem;
+    width: 100%;
+  }
+
+  .hero-top-controls .btn-outline {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .hero-top-controls .btn-outline:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-focus);
+    transform: translateY(-2px);
+  }
+
+  :global([data-theme="light"]) .hero-top-controls .btn-outline {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.28);
+    color: #ffffff;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  :global([data-theme="light"]) .hero-top-controls .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.22);
+    border-color: #ffffff;
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.18);
+  }
+
+  :global([data-theme="dark"]) .hero-top-controls .btn-outline {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.16);
+    color: #1f1f1f;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  :global([data-theme="dark"]) .hero-top-controls .btn-outline:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+  }
+
+  .hero-top-controls .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    margin-bottom: 0;
+  }
+
+  .hero-top-controls .social-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  @media (min-width: 961px) {
+    .hero-top-controls {
+      flex-direction: row;
+      gap: 1.5rem;
+    }
+    .hero-top-controls .social-links {
+      padding-left: 1.5rem;
+      border-left: 1px solid var(--border-subtle);
+    }
+  }
+
+  /* Dual Equal-Length Panels */
   .hero-container {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 3.5rem;
-    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.25rem;
+    align-items: stretch;
     position: relative;
     z-index: 1;
   }
@@ -263,11 +404,15 @@ const { personal, socials } = portfolioData;
     -webkit-backdrop-filter: blur(24px) saturate(190%);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
-    padding: 2.5rem 2.25rem;
+    padding: 2.25rem 2.25rem;
     box-shadow: var(--shadow-lg), 0 0 35px -5px rgba(26, 115, 232, 0.12);
     position: relative;
     overflow: hidden;
     transition: all var(--transition-smooth);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .hero-content > * {
@@ -285,6 +430,25 @@ const { personal, socials } = portfolioData;
     background: var(--gradient-brand);
     opacity: 0.9;
     z-index: 2;
+  }
+
+  .intro-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: fit-content;
+    white-space: nowrap;
+    font-family: var(--font-sans);
+    font-size: 0.725rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-blue);
+    background: var(--bg-tertiary);
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    margin-bottom: 0.85rem;
   }
 
   .gemini-sparkle-svg {
@@ -331,29 +495,52 @@ const { personal, socials } = portfolioData;
   }
 
   .hero-title {
-    font-size: clamp(2.1rem, 6vw, 3.85rem);
+    font-size: clamp(1.65rem, 2.5vw, 2.35rem);
     font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.16;
-    margin-bottom: 0.75rem;
+    letter-spacing: -0.025em;
+    line-height: 1.22;
+    margin-bottom: 0.65rem;
   }
 
   .hero-role {
-    font-size: clamp(1.15rem, 2vw, 1.45rem);
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-    opacity: 0.92;
+    font-size: 0.925rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 1.15rem;
   }
 
   .hero-bio {
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
-    margin-bottom: 2.25rem;
-    font-size: 1.025rem;
-    line-height: 1.7;
+    gap: 0.75rem;
+    margin-bottom: 1.15rem;
+    font-size: 0.925rem;
+    line-height: 1.65;
     color: var(--text-secondary);
+    flex: 1;
+  }
+
+  .intro-footer-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.15rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .intro-badge-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    color: var(--text-secondary);
+  }
+
+  .intro-badge-item svg {
+    color: var(--accent-blue);
   }
 
   .hero-actions {
@@ -381,6 +568,14 @@ const { personal, socials } = portfolioData;
     margin-right: 0.25rem;
   }
 
+  :global([data-theme="light"]) .social-label {
+    color: #c4c7c5;
+  }
+
+  :global([data-theme="dark"]) .social-label {
+    color: #444746;
+  }
+
   .social-btn {
     display: inline-flex;
     align-items: center;
@@ -404,6 +599,10 @@ const { personal, socials } = portfolioData;
   }
 
   /* Gemini Profile Showcase Card */
+  .hero-visual {
+    height: 100%;
+  }
+
   .gemini-card-wrapper {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
@@ -412,6 +611,9 @@ const { personal, socials } = portfolioData;
     overflow: hidden;
     position: relative;
     transition: all var(--transition-smooth);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   .gemini-card-tabs {
@@ -453,10 +655,14 @@ const { personal, socials } = portfolioData;
   .gemini-panel {
     display: none;
     padding: 1.5rem;
+    height: 100%;
   }
 
   .gemini-panel.active {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
     animation: fadeIn 0.25s ease-in-out;
   }
 
@@ -669,6 +875,16 @@ const { personal, socials } = portfolioData;
   /* Terminal Card Panel */
   #panel-code {
     padding: 0;
+  }
+
+  #panel-code.active {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  #panel-code .terminal-body {
+    flex: 1;
   }
 
   .terminal-header {

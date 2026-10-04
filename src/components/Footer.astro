@@ -6,54 +6,74 @@ const { personal, socials } = portfolioData;
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="footer">
-  <div class="container footer-container">
-    <div class="footer-brand">
-      <div class="brand-title">{personal.name}</div>
-      <p class="brand-sub">{personal.headline}</p>
-    </div>
-
-    <div class="footer-links">
-      <a href={socials.website || "https://devphoton.com"} target="_blank" rel="noopener noreferrer">Website (devphoton.com)</a>
-      <a href={socials.github} target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href={socials.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href={socials.medium} target="_blank" rel="noopener noreferrer">Medium</a>
-      <a href={socials.youtube} target="_blank" rel="noopener noreferrer">YouTube</a>
-      {socials.resumeGoogleDocs && (
-        <a href={socials.resumeGoogleDocs} target="_blank" rel="noopener noreferrer">Resume</a>
-      )}
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/support">Support</a>
-    </div>
-
-    <div class="footer-bottom">
-      <p class="copyright">
-        © {currentYear} {personal.name} • <a href="/privacy" class="footer-privacy-link">Privacy Policy</a> • <a href="/support" class="footer-privacy-link">Support</a>
-      </p>
-      <div class="footer-counter-container">
-        <VisitorCounter />
+<footer class="footer-section">
+  <div class="container">
+    <div class="footer-panel glass-card">
+      <div class="footer-brand">
+        <div class="brand-title">{personal.name}</div>
+        <p class="brand-sub">{personal.headline}</p>
       </div>
-      <a href="#" class="back-to-top" aria-label="Back to top">
-        <span>Back to Top</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-      </a>
+
+      <div class="footer-links">
+        <a href={socials.website || "https://devphoton.com"} target="_blank" rel="noopener noreferrer">Website (devphoton.com)</a>
+        <a href={socials.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href={socials.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href={socials.medium} target="_blank" rel="noopener noreferrer">Medium</a>
+        <a href={socials.youtube} target="_blank" rel="noopener noreferrer">YouTube</a>
+        {socials.resumeGoogleDocs && (
+          <a href={socials.resumeGoogleDocs} target="_blank" rel="noopener noreferrer">Resume</a>
+        )}
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/support">Support</a>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">
+          © {currentYear} {personal.name} • <a href="/privacy" class="footer-privacy-link">Privacy Policy</a> • <a href="/support" class="footer-privacy-link">Support</a>
+        </p>
+        <div class="footer-counter-container">
+          <VisitorCounter />
+        </div>
+        <a href="#" class="back-to-top" aria-label="Back to top">
+          <span>Back to Top</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+        </a>
+      </div>
     </div>
   </div>
 </footer>
 
 <style>
-  .footer {
-    padding: 4rem 0 2.5rem 0;
-    border-top: 1px solid var(--border-subtle);
-    background: var(--bg-secondary);
+  .footer-section {
+    padding: 1.5rem 0 3.5rem 0;
+    position: relative;
+    z-index: 1;
   }
 
-  .footer-container {
+  .footer-panel {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 2.25rem;
+    padding: 3rem 2.5rem 2.25rem 2.5rem;
+    border-radius: var(--radius-lg);
+    background: var(--bg-card-plasma, var(--bg-card));
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-brand);
+    opacity: 0.85;
   }
 
   .footer-brand {

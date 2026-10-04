@@ -4,14 +4,14 @@
    ========================================================================== */
 
 :root, [data-theme="light"] {
-  /* Google Gemini Light Mode Palette (Default) */
-  --bg-primary: #f0f4f9;
+  /* Google Gemini Light Mode: Panels stay light, background is dark */
+  --bg-primary: #131314;
   --bg-secondary: #ffffff;
   --bg-tertiary: #e9eef6;
-  --bg-card: rgba(255, 255, 255, 0.65);
-  --bg-card-plasma: linear-gradient(135deg, rgba(255, 255, 255, 0.72) 0%, rgba(238, 245, 255, 0.52) 50%, rgba(248, 238, 255, 0.6) 100%);
-  --bg-card-hover: rgba(255, 255, 255, 0.85);
-  --bg-glass: rgba(240, 244, 249, 0.75);
+  --bg-card: rgba(255, 255, 255, 0.72);
+  --bg-card-plasma: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(238, 245, 255, 0.65) 50%, rgba(248, 238, 255, 0.7) 100%);
+  --bg-card-hover: rgba(255, 255, 255, 0.92);
+  --bg-glass: rgba(19, 19, 20, 0.82);
   
   --border-subtle: rgba(0, 0, 0, 0.08);
   --border-focus: rgba(26, 115, 232, 0.45);
@@ -34,7 +34,7 @@
   /* Gemini Gradients */
   --gradient-brand: linear-gradient(135deg, #1a73e8 0%, #8ab4f8 25%, #9b72cb 65%, #d96570 100%);
   --gradient-gemini: linear-gradient(90deg, #1a73e8 0%, #9b72cb 50%, #d96570 100%);
-  --gradient-glow: radial-gradient(ellipse at 50% 0%, rgba(66, 133, 244, 0.12), rgba(155, 114, 203, 0.07) 35%, transparent 70%);
+  --gradient-glow: radial-gradient(ellipse at 50% 0%, rgba(66, 133, 244, 0.22), rgba(155, 114, 203, 0.16) 40%, transparent 70%);
   --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 244, 249, 0.8) 100%);
   --gradient-halo: linear-gradient(135deg, #1a73e8, #9b72cb, #d96570, #1a73e8);
 
@@ -64,15 +64,15 @@
   --badge-text: #1a73e8;
 }
 
-/* Google Gemini Dark Mode */
+/* Google Gemini Dark Mode: Panels stay dark, background is light */
 [data-theme="dark"] {
-  --bg-primary: #131314;
+  --bg-primary: #f0f4f9;
   --bg-secondary: #1e1f20;
   --bg-tertiary: #282a2c;
   --bg-card: rgba(16, 18, 24, 0.6);
   --bg-card-plasma: linear-gradient(135deg, rgba(18, 22, 34, 0.72) 0%, rgba(26, 20, 48, 0.55) 50%, rgba(35, 16, 42, 0.62) 100%);
   --bg-card-hover: rgba(28, 32, 44, 0.85);
-  --bg-glass: rgba(19, 19, 20, 0.75);
+  --bg-glass: rgba(240, 244, 249, 0.82);
 
   --border-subtle: rgba(255, 255, 255, 0.1);
   --border-focus: rgba(138, 180, 248, 0.45);
@@ -93,7 +93,7 @@
 
   --gradient-brand: linear-gradient(135deg, #4285f4 0%, #8ab4f8 25%, #c58af9 65%, #f28b82 100%);
   --gradient-gemini: linear-gradient(90deg, #8ab4f8 0%, #c58af9 50%, #f28b82 100%);
-  --gradient-glow: radial-gradient(ellipse at 50% 0%, rgba(66, 133, 244, 0.22), rgba(155, 114, 203, 0.16) 40%, transparent 70%);
+  --gradient-glow: radial-gradient(ellipse at 50% 0%, rgba(66, 133, 244, 0.12), rgba(155, 114, 203, 0.07) 35%, transparent 70%);
   --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
   --gradient-halo: linear-gradient(135deg, #4285f4, #c58af9, #f28b82, #4285f4);
 

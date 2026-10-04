@@ -27,87 +27,87 @@ import Footer from '../components/Footer.astro';
           <span class="status-text">Executive Summary View — All Sections Collapsed by Default</span>
         </div>
         <div class="controls-actions">
-          <button id="master-expand-all" class="btn-ctrl" type="button" aria-label="Expand all sections">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-            <span>Expand All</span>
-          </button>
           <button id="master-collapse-all" class="btn-ctrl" type="button" aria-label="Collapse all sections">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <polyline points="18 15 12 9 6 15"></polyline>
             </svg>
             <span>Collapse All</span>
           </button>
+          <button id="master-expand-all" class="btn-ctrl" type="button" aria-label="Expand all sections">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+            <span>Expand All</span>
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- Section 1: Interactive Demo Reel -->
+    <!-- Section 1: SOLAR SYSTEM -->
     <CollapsibleSection
       id="showreel"
-      icon="🎬"
+      icon="🪐"
       eyebrow="Interactive Simulation"
-      title="Interactive Demo Reel"
+      title="SOLAR SYSTEM"
       defaultExpanded={false}
     >
       <Showreel />
     </CollapsibleSection>
 
-    <!-- Section 2: Featured Projects & Systems -->
+    <!-- Section 2: PROJECTS -->
     <CollapsibleSection
       id="projects"
       icon="🚀"
       eyebrow="Production Portfolio"
-      title="Featured Projects & Systems"
+      title="PROJECTS"
       badge="11 Shipped Works"
       defaultExpanded={false}
     >
       <Projects />
     </CollapsibleSection>
 
-    <!-- Section 3: Work Experience Timeline -->
+    <!-- Section 3: EXPERIENCE -->
     <CollapsibleSection
       id="experience"
       icon="💼"
       eyebrow="Career Progression"
-      title="Work Experience Timeline"
+      title="EXPERIENCE"
       badge="5 Years • 5 Firms"
       defaultExpanded={false}
     >
       <Experience />
     </CollapsibleSection>
 
-    <!-- Section 4: Engineering Stack & Domain Intelligence -->
+    <!-- Section 4: LANGUAGES -->
     <CollapsibleSection
       id="tech-stack"
       icon="⚡"
       eyebrow="Interactive Analytics"
-      title="Language Stack & Domain Intelligence"
+      title="LANGUAGES"
       badge="C# • Python • C++ • Java"
       defaultExpanded={false}
     >
       <TechDashboard />
     </CollapsibleSection>
 
-    <!-- Section 5: Hardware & Deployment Matrix -->
+    <!-- Section 5: PLATFORMS -->
     <CollapsibleSection
       id="platforms"
       icon="🎮"
       eyebrow="Cross-Platform Delivery"
-      title="Hardware & Deployment Matrix"
+      title="PLATFORMS"
       badge="9 Shipped Targets"
       defaultExpanded={false}
     >
       <PlatformMatrix />
     </CollapsibleSection>
 
-    <!-- Section 6: Technical Arsenal & Credentials -->
+    <!-- Section 6: TOOLS -->
     <CollapsibleSection
       id="skills"
       icon="🛠️"
       eyebrow="Engine Toolkits & Education"
-      title="Technical Arsenal & Credentials"
+      title="TOOLS"
       badge="Certified Unity & Spatial Tech"
       defaultExpanded={false}
     >
@@ -117,12 +117,12 @@ import Footer from '../components/Footer.astro';
       </div>
     </CollapsibleSection>
 
-    <!-- Section 7: Get In Touch & Connect -->
+    <!-- Section 7: CONTACT -->
     <CollapsibleSection
       id="contact"
       icon="📬"
       eyebrow="Direct Inquiries"
-      title="Get In Touch & Connect"
+      title="CONTACT"
       badge="Open to Roles"
       defaultExpanded={false}
     >
@@ -253,7 +253,7 @@ import Footer from '../components/Footer.astro';
 
       const label = sec.querySelector<HTMLElement>('.toggle-label');
       if (label) {
-        label.textContent = expand ? 'Collapse' : 'Explore';
+        label.textContent = expand ? 'Collapse' : 'Expand';
       }
 
       // If tech-stack was expanded, resize Chart.js canvas to ensure crisp rendering

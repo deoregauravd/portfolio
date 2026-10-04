@@ -37,22 +37,22 @@
     transition: background 0.5s ease;
   }
 
-  /* Light Theme Blueprint Aesthetic */
+  /* Light Theme (has dark background) */
   [data-theme="light"] .tech-matrix-container {
-    opacity: 0.92;
-  }
-
-  [data-theme="light"] .tech-matrix-vignette {
-    background: radial-gradient(circle at 50% 40%, transparent 45%, rgba(240, 244, 249, 0.4) 100%);
-  }
-
-  /* Dark Theme Cyber Electronic Matrix */
-  [data-theme="dark"] .tech-matrix-container {
     opacity: 0.95;
   }
 
-  [data-theme="dark"] .tech-matrix-vignette {
+  [data-theme="light"] .tech-matrix-vignette {
     background: radial-gradient(circle at 50% 40%, transparent 50%, rgba(10, 12, 16, 0.6) 100%);
+  }
+
+  /* Dark Theme (has light background) */
+  [data-theme="dark"] .tech-matrix-container {
+    opacity: 0.92;
+  }
+
+  [data-theme="dark"] .tech-matrix-vignette {
+    background: radial-gradient(circle at 50% 40%, transparent 45%, rgba(240, 244, 249, 0.4) 100%);
   }
 </style>
 
@@ -64,8 +64,9 @@
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
-    function isDarkMode(): boolean {
-      return document.documentElement.getAttribute('data-theme') === 'dark';
+    function isDarkBackground(): boolean {
+      // In light mode, background is dark. In dark mode, background is light.
+      return document.documentElement.getAttribute('data-theme') !== 'dark';
     }
 
     // =========================================================================
@@ -422,7 +423,7 @@
       canvas.height = Math.floor(height * dpr);
       ctx.scale(dpr, dpr);
 
-      const isDark = isDarkMode();
+      const isDark = isDarkBackground();
       ctx.clearRect(0, 0, width, height);
 
       const gridColor = isDark ? 'rgba(255, 255, 255, 0.035)' : 'rgba(0, 0, 0, 0.04)';

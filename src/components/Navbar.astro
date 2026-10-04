@@ -16,13 +16,13 @@ import { portfolioData } from '../data/portfolio';
     <nav class="nav-desktop" aria-label="Main Navigation">
       <a href="#about" class="nav-link">About</a>
       {portfolioData.featuredShowreel?.enabled && (
-        <a href="#showreel" class="nav-link">Demo Reel</a>
+        <a href="#showreel" class="nav-link">Solar System</a>
       )}
       <a href="#projects" class="nav-link">Projects</a>
       <a href="#experience" class="nav-link">Experience</a>
-      <a href="#tech-stack" class="nav-link">Tech & Domains</a>
+      <a href="#tech-stack" class="nav-link">Languages</a>
       <a href="#platforms" class="nav-link">Platforms</a>
-      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#skills" class="nav-link">Tools</a>
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
 
@@ -82,13 +82,13 @@ import { portfolioData } from '../data/portfolio';
     <nav class="mobile-nav">
       <a href="#about" class="mobile-link">About</a>
       {portfolioData.featuredShowreel?.enabled && (
-        <a href="#showreel" class="mobile-link">Demo Reel</a>
+        <a href="#showreel" class="mobile-link">Solar System</a>
       )}
       <a href="#projects" class="mobile-link">Projects</a>
       <a href="#experience" class="mobile-link">Experience</a>
-      <a href="#tech-stack" class="mobile-link">Tech & Domains</a>
+      <a href="#tech-stack" class="mobile-link">Languages</a>
       <a href="#platforms" class="mobile-link">Platforms</a>
-      <a href="#skills" class="mobile-link">Skills</a>
+      <a href="#skills" class="mobile-link">Tools</a>
       <a href="#contact" class="mobile-link">Contact</a>
       {portfolioData.socials.resumeGoogleDocs && (
         <a
@@ -281,6 +281,51 @@ import { portfolioData } from '../data/portfolio';
     .mobile-btn {
       display: inline-flex;
     }
+  }
+
+  /* High-contrast header styling matching inverted background */
+  :global([data-theme="light"]) .brand {
+    color: #f1f3f4;
+  }
+  :global([data-theme="light"]) .nav-link {
+    color: #c4c7c5;
+  }
+  :global([data-theme="light"]) .nav-link:hover {
+    color: #ffffff;
+  }
+  :global([data-theme="light"]) .mobile-link {
+    color: #c4c7c5;
+  }
+  :global([data-theme="light"]) .theme-btn,
+  :global([data-theme="light"]) .mobile-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: #e3e3e3;
+  }
+  :global([data-theme="light"]) .mobile-menu {
+    background: #18191c;
+  }
+
+  :global([data-theme="dark"]) .brand {
+    color: #1f1f1f;
+  }
+  :global([data-theme="dark"]) .nav-link {
+    color: #444746;
+  }
+  :global([data-theme="dark"]) .nav-link:hover {
+    color: var(--accent-blue);
+  }
+  :global([data-theme="dark"]) .mobile-link {
+    color: #444746;
+  }
+  :global([data-theme="dark"]) .theme-btn,
+  :global([data-theme="dark"]) .mobile-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #444746;
+  }
+  :global([data-theme="dark"]) .mobile-menu {
+    background: #ffffff;
   }
 </style>
 
