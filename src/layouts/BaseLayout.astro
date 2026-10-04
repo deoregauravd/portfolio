@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { portfolioData } from '../data/portfolio';
+import TechMatrixBackground from '../components/TechMatrixBackground.astro';
 
 interface Props {
   title?: string;
@@ -62,6 +63,9 @@ const canonicalURL = Astro.url;
     </script>
   </head>
   <body>
+    <!-- Full-Site Robotics, Electronics & Game Dev Tech Matrix Background -->
+    <TechMatrixBackground />
+
     <slot />
 
     <!-- Toast Notification Element -->

@@ -1,0 +1,602 @@
+---
+// TechMatrixBackground.astro - Zero-Overhead Static Blueprint: Electronics, Robotics, Mechanical Gears & Mario
+---
+
+<div id="tech-matrix-wrap" class="tech-matrix-container" aria-hidden="true">
+  <canvas id="tech-matrix-canvas" class="tech-canvas"></canvas>
+  <div class="tech-matrix-vignette"></div>
+</div>
+
+<style>
+  .tech-matrix-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+    user-select: none;
+    transition: opacity 0.5s ease;
+  }
+
+  .tech-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .tech-matrix-vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transition: background 0.5s ease;
+  }
+
+  /* Light Theme Blueprint Aesthetic */
+  [data-theme="light"] .tech-matrix-container {
+    opacity: 0.92;
+  }
+
+  [data-theme="light"] .tech-matrix-vignette {
+    background: radial-gradient(circle at 50% 40%, transparent 45%, rgba(240, 244, 249, 0.4) 100%);
+  }
+
+  /* Dark Theme Cyber Electronic Matrix */
+  [data-theme="dark"] .tech-matrix-container {
+    opacity: 0.95;
+  }
+
+  [data-theme="dark"] .tech-matrix-vignette {
+    background: radial-gradient(circle at 50% 40%, transparent 50%, rgba(10, 12, 16, 0.6) 100%);
+  }
+</style>
+
+<script>
+  function initStaticTechMatrix() {
+    const canvas = document.getElementById('tech-matrix-canvas') as HTMLCanvasElement | null;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d', { alpha: true });
+    if (!ctx) return;
+
+    function isDarkMode(): boolean {
+      return document.documentElement.getAttribute('data-theme') === 'dark';
+    }
+
+    // =========================================================================
+    // STATIC DRAWING PRIMITIVES (Drawn Once - 0% Idle CPU/GPU Usage)
+    // =========================================================================
+
+    // 1. Mechanical Involute Gear
+    function drawGear(
+      ctx: CanvasRenderingContext2D,
+      cx: number,
+      cy: number,
+      outerR: number,
+      innerR: number,
+      teeth: number,
+      toothDepth: number,
+      color: string,
+      isDark: boolean,
+      rotation: number = 0
+    ) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(rotation);
+
+      ctx.strokeStyle = color;
+      ctx.fillStyle = isDark ? 'rgba(0, 240, 255, 0.06)' : 'rgba(26, 115, 232, 0.05)';
+      ctx.lineWidth = 1.8;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      const rootR = outerR - toothDepth;
+
+      // Draw gear teeth perimeter
+      ctx.beginPath();
+      const step = (Math.PI * 2) / teeth;
+      for (let i = 0; i < teeth; i++) {
+        const a0 = i * step;
+        const a1 = a0 + step * 0.25;
+        const a2 = a0 + step * 0.45;
+        const a3 = a0 + step * 0.70;
+        const a4 = a0 + step * 0.90;
+
+        const x0 = Math.cos(a0) * rootR;
+        const y0 = Math.sin(a0) * rootR;
+        const x1 = Math.cos(a1) * outerR;
+        const y1 = Math.sin(a1) * outerR;
+        const x2 = Math.cos(a2) * outerR;
+        const y2 = Math.sin(a2) * outerR;
+        const x3 = Math.cos(a3) * rootR;
+        const y3 = Math.sin(a3) * rootR;
+        const x4 = Math.cos(a4) * rootR;
+        const y4 = Math.sin(a4) * rootR;
+
+        if (i === 0) ctx.moveTo(x0, y0);
+        else ctx.lineTo(x0, y0);
+
+        ctx.lineTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.lineTo(x3, y3);
+        ctx.lineTo(x4, y4);
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Pitch circle (dashed technical line)
+      ctx.save();
+      ctx.setLineDash([3, 4]);
+      ctx.strokeStyle = isDark ? 'rgba(0, 255, 136, 0.4)' : 'rgba(26, 115, 232, 0.35)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(0, 0, outerR - toothDepth * 0.5, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+
+      // Inner hub rim
+      ctx.beginPath();
+      ctx.arc(0, 0, innerR, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Center axle shaft & keyway
+      const axleR = innerR * 0.35;
+      ctx.beginPath();
+      ctx.arc(0, 0, axleR, 0, Math.PI * 2);
+      ctx.stroke();
+
+      // Keyway notch on axle
+      ctx.fillStyle = color;
+      ctx.fillRect(-axleR * 0.25, -axleR - 2, axleR * 0.5, 4);
+
+      // Lightening cut-out holes / spokes (machinist blueprint style)
+      const holes = 5;
+      const holeDist = (rootR + innerR) * 0.5;
+      const holeR = (rootR - innerR) * 0.22;
+      for (let h = 0; h < holes; h++) {
+        const ha = (h * Math.PI * 2) / holes;
+        ctx.beginPath();
+        ctx.arc(Math.cos(ha) * holeDist, Math.sin(ha) * holeDist, holeR, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      ctx.restore();
+    }
+
+    // 2. Diode Symbol
+    function drawDiode(ctx: CanvasRenderingContext2D, size: number, color: string, isDark: boolean) {
+      ctx.strokeStyle = color;
+      ctx.fillStyle = isDark ? 'rgba(0, 240, 255, 0.15)' : 'rgba(26, 115, 232, 0.12)';
+      ctx.lineWidth = 2.2;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      // Connecting lead wires
+      ctx.beginPath();
+      ctx.moveTo(-size * 1.3, 0);
+      ctx.lineTo(-size * 0.45, 0);
+      ctx.moveTo(size * 0.45, 0);
+      ctx.lineTo(size * 1.3, 0);
+      ctx.stroke();
+
+      // Triangle (Anode)
+      ctx.beginPath();
+      ctx.moveTo(-size * 0.45, -size * 0.55);
+      ctx.lineTo(size * 0.45, 0);
+      ctx.lineTo(-size * 0.45, size * 0.55);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      // Cathode line
+      ctx.beginPath();
+      ctx.moveTo(size * 0.45, -size * 0.6);
+      ctx.lineTo(size * 0.45, size * 0.6);
+      ctx.stroke();
+    }
+
+    // 3. Transistor Symbol (BJT NPN)
+    function drawTransistor(ctx: CanvasRenderingContext2D, size: number, color: string, isDark: boolean) {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2.2;
+      ctx.lineCap = 'round';
+
+      // Base lead
+      ctx.beginPath();
+      ctx.moveTo(-size * 1.1, 0);
+      ctx.lineTo(-size * 0.25, 0);
+      ctx.stroke();
+
+      // Base bar
+      ctx.lineWidth = 3.5;
+      ctx.beginPath();
+      ctx.moveTo(-size * 0.25, -size * 0.6);
+      ctx.lineTo(-size * 0.25, size * 0.6);
+      ctx.stroke();
+
+      // Collector lead
+      ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      ctx.moveTo(-size * 0.25, -size * 0.35);
+      ctx.lineTo(size * 0.6, -size * 0.75);
+      ctx.lineTo(size * 1.1, -size * 0.75);
+      ctx.stroke();
+
+      // Emitter lead with directional arrow
+      ctx.beginPath();
+      ctx.moveTo(-size * 0.25, size * 0.35);
+      ctx.lineTo(size * 0.6, size * 0.75);
+      ctx.lineTo(size * 1.1, size * 0.75);
+      ctx.stroke();
+
+      // Emitter arrow
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(size * 0.38, size * 0.55);
+      ctx.lineTo(size * 0.62, size * 0.76);
+      ctx.lineTo(size * 0.32, size * 0.82);
+      ctx.closePath();
+      ctx.fill();
+
+      // Outer circle casing
+      ctx.strokeStyle = isDark ? 'rgba(0, 240, 255, 0.3)' : 'rgba(26, 115, 232, 0.25)';
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.arc(0, 0, size * 0.95, 0, Math.PI * 2);
+      ctx.stroke();
+    }
+
+    // 4. Microchip IC Package
+    function drawICChip(ctx: CanvasRenderingContext2D, size: number, label: string, color: string, isDark: boolean) {
+      const w = size * 1.6;
+      const h = size * 1.2;
+
+      ctx.fillStyle = isDark ? 'rgba(20, 24, 32, 0.85)' : 'rgba(245, 248, 252, 0.9)';
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(-w * 0.5, -h * 0.5, w, h, 6);
+      ctx.fill();
+      ctx.stroke();
+
+      // Pin 1 notch
+      ctx.beginPath();
+      ctx.arc(-w * 0.5, 0, 5, -Math.PI * 0.5, Math.PI * 0.5);
+      ctx.stroke();
+
+      // Pins on top and bottom
+      ctx.strokeStyle = isDark ? 'rgba(0, 255, 136, 0.7)' : 'rgba(26, 115, 232, 0.6)';
+      ctx.lineWidth = 2;
+      const pinCount = 4;
+      for (let i = 0; i < pinCount; i++) {
+        const px = -w * 0.35 + (i * w * 0.7) / (pinCount - 1);
+        ctx.beginPath();
+        ctx.moveTo(px, -h * 0.5);
+        ctx.lineTo(px, -h * 0.5 - 6);
+        ctx.moveTo(px, h * 0.5);
+        ctx.lineTo(px, h * 0.5 + 6);
+        ctx.stroke();
+      }
+
+      ctx.fillStyle = color;
+      ctx.font = `600 ${Math.floor(size * 0.28)}px 'JetBrains Mono', monospace`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(label, 0, 0);
+    }
+
+    // 5. Retro 8-Bit Mario Super Star
+    function drawMarioStar(ctx: CanvasRenderingContext2D, size: number, isDark: boolean) {
+      const p = size * 0.085;
+
+      ctx.save();
+      ctx.fillStyle = isDark ? '#ffd600' : '#e6a800';
+      ctx.shadowColor = isDark ? 'rgba(255, 214, 0, 0.5)' : 'transparent';
+      ctx.shadowBlur = 10;
+
+      const points = 5;
+      const outerR = size * 0.8;
+      const innerR = size * 0.38;
+      ctx.beginPath();
+      for (let i = 0; i < points * 2; i++) {
+        const r = i % 2 === 0 ? outerR : innerR;
+        const angle = (i * Math.PI) / points - Math.PI * 0.5;
+        const x = Math.cos(angle) * r;
+        const y = Math.sin(angle) * r;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.fill();
+
+      // Vertical pixel eyes
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = isDark ? '#1a1a1a' : '#222222';
+      ctx.fillRect(-p * 2, -p * 2, p * 1.5, p * 4.5);
+      ctx.fillRect(p * 0.5, -p * 2, p * 1.5, p * 4.5);
+
+      ctx.restore();
+    }
+
+    // 6. Unity 3D Spatial Coordinate Gizmo (X, Y, Z Axis)
+    function drawUnityGizmo(ctx: CanvasRenderingContext2D, size: number) {
+      ctx.save();
+      const len = size * 0.9;
+
+      // Red X-Axis
+      ctx.strokeStyle = '#ea4335';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(len * 0.85, len * 0.42);
+      ctx.stroke();
+
+      // Green Y-Axis (Up)
+      ctx.strokeStyle = '#34a853';
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(0, -len);
+      ctx.stroke();
+
+      // Blue Z-Axis
+      ctx.strokeStyle = '#4285f4';
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(-len * 0.85, len * 0.42);
+      ctx.stroke();
+
+      // Center pivot point
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(0, 0, 3.5, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    // 7. Logic Gate (AND Gate)
+    function drawLogicGate(ctx: CanvasRenderingContext2D, size: number, color: string, isDark: boolean) {
+      ctx.strokeStyle = color;
+      ctx.fillStyle = isDark ? 'rgba(0, 240, 255, 0.12)' : 'rgba(26, 115, 232, 0.08)';
+      ctx.lineWidth = 2;
+
+      ctx.beginPath();
+      ctx.moveTo(-size * 1.2, -size * 0.35);
+      ctx.lineTo(-size * 0.4, -size * 0.35);
+      ctx.moveTo(-size * 1.2, size * 0.35);
+      ctx.lineTo(-size * 0.4, size * 0.35);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(-size * 0.4, -size * 0.65);
+      ctx.lineTo(0, -size * 0.65);
+      ctx.arc(0, 0, size * 0.65, -Math.PI * 0.5, Math.PI * 0.5);
+      ctx.lineTo(-size * 0.4, size * 0.65);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(size * 0.65, 0);
+      ctx.lineTo(size * 1.2, 0);
+      ctx.stroke();
+    }
+
+    // 8. Resistor (Standard Schematic Zigzag)
+    function drawResistor(ctx: CanvasRenderingContext2D, size: number, color: string) {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2.2;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      ctx.beginPath();
+      ctx.moveTo(-size * 1.2, 0);
+      ctx.lineTo(-size * 0.6, 0);
+      ctx.lineTo(-size * 0.4, -size * 0.35);
+      ctx.lineTo(-size * 0.2, size * 0.35);
+      ctx.lineTo(0, -size * 0.35);
+      ctx.lineTo(size * 0.2, size * 0.35);
+      ctx.lineTo(size * 0.4, -size * 0.35);
+      ctx.lineTo(size * 0.6, 0);
+      ctx.lineTo(size * 1.2, 0);
+      ctx.stroke();
+    }
+
+    // =========================================================================
+    // STATIC SCENE RENDERER (Called only on resize/theme switch)
+    // =========================================================================
+
+    function drawStaticScene() {
+      if (!canvas || !ctx) return;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.scale(dpr, dpr);
+
+      const isDark = isDarkMode();
+      ctx.clearRect(0, 0, width, height);
+
+      const gridColor = isDark ? 'rgba(255, 255, 255, 0.035)' : 'rgba(0, 0, 0, 0.04)';
+      const traceColor = isDark ? 'rgba(0, 240, 255, 0.16)' : 'rgba(26, 115, 232, 0.14)';
+      const compColor = isDark ? '#00f0ff' : '#1a73e8';
+      const accentGreen = isDark ? '#00ff88' : '#0f9d58';
+
+      // 1. Orthogonal PCB Circuit Grid Lines
+      const gridSize = 64;
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = gridColor;
+      ctx.beginPath();
+      for (let x = 0; x < width; x += gridSize) {
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+      }
+      for (let y = 0; y < height; y += gridSize) {
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+      }
+      ctx.stroke();
+
+      // 2. Fixed Deterministic Circuit Trace Network (90° Manhattan lines)
+      const staticNodes = [
+        { x: width * 0.08, y: height * 0.12 },
+        { x: width * 0.18, y: height * 0.22 },
+        { x: width * 0.10, y: height * 0.32 },
+        { x: width * 0.06, y: height * 0.52 },
+        { x: width * 0.14, y: height * 0.68 },
+        { x: width * 0.10, y: height * 0.84 },
+        { x: width * 0.84, y: height * 0.12 },
+        { x: width * 0.92, y: height * 0.26 },
+        { x: width * 0.82, y: height * 0.44 },
+        { x: width * 0.94, y: height * 0.60 },
+        { x: width * 0.86, y: height * 0.78 },
+        { x: width * 0.90, y: height * 0.90 },
+      ];
+
+      ctx.lineWidth = 1.4;
+      ctx.strokeStyle = traceColor;
+      for (let i = 0; i < staticNodes.length - 1; i++) {
+        const n1 = staticNodes[i];
+        const n2 = staticNodes[i + 1];
+        if (Math.abs(n1.x - n2.x) < width * 0.25) {
+          const midX = n1.x + (n2.x - n1.x) * 0.5;
+          ctx.beginPath();
+          ctx.moveTo(n1.x, n1.y);
+          ctx.lineTo(midX, n1.y);
+          ctx.lineTo(midX, n2.y);
+          ctx.lineTo(n2.x, n2.y);
+          ctx.stroke();
+        }
+      }
+
+      // Draw Static PCB Via Pads & Connection Points (No moving dots!)
+      staticNodes.forEach((node, idx) => {
+        ctx.fillStyle = idx % 2 === 0 ? compColor : accentGreen;
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, idx % 3 === 0 ? 4 : 2.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        if (idx % 2 === 0) {
+          ctx.strokeStyle = isDark ? 'rgba(0, 255, 136, 0.6)' : 'rgba(26, 115, 232, 0.5)';
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+        }
+      });
+
+      // 3. Interlocking Mechanical Gears (CAD Blueprint Engineering Style)
+      // Gear Set 1: Lower-Left Gutter (Meshing Pair: 18-tooth Gear + 10-tooth Pinion)
+      const gear1X = width * 0.12;
+      const gear1Y = height * 0.48;
+      const g1Radius = Math.min(width * 0.055, 52);
+      drawGear(ctx, gear1X, gear1Y, g1Radius, g1Radius * 0.45, 18, 10, compColor, isDark, 0.2);
+
+      // Meshed secondary gear
+      const g2Radius = g1Radius * 0.6;
+      const meshAngle = 0.58;
+      const meshDist = g1Radius + g2Radius - 6;
+      const gear2X = gear1X + Math.cos(meshAngle) * meshDist;
+      const gear2Y = gear1Y + Math.sin(meshAngle) * meshDist;
+      drawGear(ctx, gear2X, gear2Y, g2Radius, g2Radius * 0.42, 11, 7, accentGreen, isDark, 0.85);
+
+      // Gear Set 2: Upper-Right Gutter (Single Heavy Industrial Cogwheel)
+      const gear3X = width * 0.88;
+      const gear3Y = height * 0.56;
+      const g3Radius = Math.min(width * 0.06, 58);
+      drawGear(ctx, gear3X, gear3Y, g3Radius, g3Radius * 0.48, 20, 11, compColor, isDark, -0.4);
+
+      // 4. Static Electronics, Robotics & Game Dev Components
+      interface StaticComponent {
+        x: number;
+        y: number;
+        size: number;
+        type: 'diode' | 'transistor' | 'ic_chip' | 'mario_star' | 'unity_gizmo' | 'logic_gate' | 'resistor';
+        label?: string;
+        rotation?: number;
+      }
+
+      const components: StaticComponent[] = [
+        // Upper-Right Empty Gutter
+        { x: width * 0.90, y: height * 0.18, size: 36, type: 'diode', label: '1N4148' },
+        { x: width * 0.84, y: height * 0.36, size: 38, type: 'ic_chip', label: 'XR-CORE' },
+        { x: width * 0.91, y: height * 0.74, size: 40, type: 'mario_star', label: '1-UP' },
+        { x: width * 0.83, y: height * 0.88, size: 34, type: 'logic_gate', label: 'AND' },
+
+        // Upper-Left Empty Gutter
+        { x: width * 0.10, y: height * 0.16, size: 38, type: 'transistor', label: '2N2222' },
+        { x: width * 0.15, y: height * 0.32, size: 36, type: 'resistor', label: '10kΩ' },
+        { x: width * 0.09, y: height * 0.68, size: 42, type: 'unity_gizmo', label: 'UNITY_3D' },
+        { x: width * 0.14, y: height * 0.88, size: 38, type: 'ic_chip', label: 'QUEST-3' }
+      ];
+
+      components.forEach((c) => {
+        ctx.save();
+        ctx.translate(c.x, c.y);
+        if (c.rotation) ctx.rotate(c.rotation);
+
+        switch (c.type) {
+          case 'diode':
+            drawDiode(ctx, c.size, compColor, isDark);
+            break;
+          case 'transistor':
+            drawTransistor(ctx, c.size, compColor, isDark);
+            break;
+          case 'ic_chip':
+            drawICChip(ctx, c.size, c.label || 'IC', compColor, isDark);
+            break;
+          case 'mario_star':
+            drawMarioStar(ctx, c.size, isDark);
+            break;
+          case 'unity_gizmo':
+            drawUnityGizmo(ctx, c.size);
+            break;
+          case 'logic_gate':
+            drawLogicGate(ctx, c.size, compColor, isDark);
+            break;
+          case 'resistor':
+            drawResistor(ctx, c.size, compColor);
+            break;
+        }
+
+        if (c.label && c.type !== 'ic_chip') {
+          ctx.fillStyle = isDark ? 'rgba(0, 240, 255, 0.7)' : 'rgba(26, 115, 232, 0.75)';
+          ctx.font = `600 10px 'JetBrains Mono', monospace`;
+          ctx.textAlign = 'center';
+          ctx.fillText(c.label, 0, c.size * 1.15);
+        }
+
+        ctx.restore();
+      });
+    }
+
+    // Render once upon mount
+    drawStaticScene();
+
+    // Re-render only on window resize (passive, debounced)
+    let resizeTimer: number;
+    window.addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(drawStaticScene, 100);
+    }, { passive: true });
+
+    // Re-render when theme toggles (light/dark mode)
+    const observer = new MutationObserver(() => {
+      drawStaticScene();
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStaticTechMatrix);
+  } else {
+    initStaticTechMatrix();
+  }
+  document.addEventListener('astro:page-load', initStaticTechMatrix);
+</script>
