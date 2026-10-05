@@ -43,99 +43,109 @@ import Footer from '../components/Footer.astro';
       </div>
     </div>
 
-    <!-- Section 1: SOLAR SYSTEM -->
-    <CollapsibleSection
-      id="showreel"
-      icon="🪐"
-      eyebrow="Interactive Simulation"
-      title="SOLAR SYSTEM"
-      defaultExpanded={false}
-    >
-      <Showreel />
-    </CollapsibleSection>
+    <!-- All Collapsible Section Panels Stacked Closely -->
+    <div class="collapsible-sections-group">
+      <!-- Section 1: SOLAR SYSTEM -->
+      <CollapsibleSection
+        id="showreel"
+        icon="🪐"
+        eyebrow="Interactive Simulation"
+        title="SOLAR SYSTEM"
+        defaultExpanded={false}
+      >
+        <Showreel />
+      </CollapsibleSection>
 
-    <!-- Section 2: PROJECTS -->
-    <CollapsibleSection
-      id="projects"
-      icon="🚀"
-      eyebrow="Production Portfolio"
-      title="PROJECTS"
-      badge="11 Shipped Works"
-      defaultExpanded={false}
-    >
-      <Projects />
-    </CollapsibleSection>
+      <!-- Section 2: PROJECTS -->
+      <CollapsibleSection
+        id="projects"
+        icon="🚀"
+        eyebrow="Production Portfolio"
+        title="PROJECTS"
+        badge="11 Shipped Works"
+        defaultExpanded={false}
+      >
+        <Projects />
+      </CollapsibleSection>
 
-    <!-- Section 3: EXPERIENCE -->
-    <CollapsibleSection
-      id="experience"
-      icon="💼"
-      eyebrow="Career Progression"
-      title="EXPERIENCE"
-      badge="5 Years • 5 Firms"
-      defaultExpanded={false}
-    >
-      <Experience />
-    </CollapsibleSection>
+      <!-- Section 3: EXPERIENCE -->
+      <CollapsibleSection
+        id="experience"
+        icon="💼"
+        eyebrow="Career Progression"
+        title="EXPERIENCE"
+        badge="5 Years • 5 Firms"
+        defaultExpanded={false}
+      >
+        <Experience />
+      </CollapsibleSection>
 
-    <!-- Section 4: LANGUAGES -->
-    <CollapsibleSection
-      id="tech-stack"
-      icon="⚡"
-      eyebrow="Interactive Analytics"
-      title="LANGUAGES"
-      badge="C# • Python • C++ • Java"
-      defaultExpanded={false}
-    >
-      <TechDashboard />
-    </CollapsibleSection>
+      <!-- Section 4: LANGUAGES -->
+      <CollapsibleSection
+        id="tech-stack"
+        icon="⚡"
+        eyebrow="Interactive Analytics"
+        title="LANGUAGES"
+        badge="C# • Python • C++ • Java"
+        defaultExpanded={false}
+      >
+        <TechDashboard />
+      </CollapsibleSection>
 
-    <!-- Section 5: PLATFORMS -->
-    <CollapsibleSection
-      id="platforms"
-      icon="🎮"
-      eyebrow="Cross-Platform Delivery"
-      title="PLATFORMS"
-      badge="9 Shipped Targets"
-      defaultExpanded={false}
-    >
-      <PlatformMatrix />
-    </CollapsibleSection>
+      <!-- Section 5: PLATFORMS -->
+      <CollapsibleSection
+        id="platforms"
+        icon="🎮"
+        eyebrow="Cross-Platform Delivery"
+        title="PLATFORMS"
+        badge="9 Shipped Targets"
+        defaultExpanded={false}
+      >
+        <PlatformMatrix />
+      </CollapsibleSection>
 
-    <!-- Section 6: TOOLS -->
-    <CollapsibleSection
-      id="skills"
-      icon="🛠️"
-      eyebrow="Engine Toolkits & Education"
-      title="TOOLS"
-      badge="Certified Unity & Spatial Tech"
-      defaultExpanded={false}
-    >
-      <Skills />
-      <div class="credentials-divider-wrap">
-        <EducationCertifications />
-      </div>
-    </CollapsibleSection>
+      <!-- Section 6: TOOLS -->
+      <CollapsibleSection
+        id="skills"
+        icon="🛠️"
+        eyebrow="Engine Toolkits & Education"
+        title="TOOLS"
+        badge="Certified Unity & Spatial Tech"
+        defaultExpanded={false}
+      >
+        <Skills />
+        <div class="credentials-divider-wrap">
+          <EducationCertifications />
+        </div>
+      </CollapsibleSection>
 
-    <!-- Section 7: CONTACT -->
-    <CollapsibleSection
-      id="contact"
-      icon="📬"
-      eyebrow="Direct Inquiries"
-      title="CONTACT"
-      badge="Open to Roles"
-      defaultExpanded={false}
-    >
-      <Contact />
-    </CollapsibleSection>
+      <!-- Section 7: CONTACT -->
+      <CollapsibleSection
+        id="contact"
+        icon="📬"
+        eyebrow="Direct Inquiries"
+        title="CONTACT"
+        badge="Open to Roles"
+        defaultExpanded={false}
+      >
+        <Contact />
+      </CollapsibleSection>
+    </div>
   </main>
   <Footer />
 </BaseLayout>
 
 <style>
+  .collapsible-sections-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-bottom: 2rem;
+  }
+
   .master-controls-container {
     padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.15rem;
   }
 
   .master-accordion-controls {

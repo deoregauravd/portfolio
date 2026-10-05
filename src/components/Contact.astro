@@ -156,12 +156,17 @@ const { personal, socials } = portfolioData;
 
 <style>
   .contact-box {
-    padding: 3.5rem;
-    border-radius: var(--radius-lg);
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    box-shadow: var(--shadow-lg), 0 0 35px -5px rgba(26, 115, 232, 0.12);
+    padding: 1.25rem 0.5rem;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     text-align: center;
+  }
+
+  .contact-box::before {
+    display: none;
   }
 
   .contact-content {
