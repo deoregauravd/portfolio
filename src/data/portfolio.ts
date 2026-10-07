@@ -152,7 +152,7 @@ export interface PortfolioData {
 export const portfolioData: PortfolioData = {
   personal: {
     name: "Gaurav Deore",
-    headline: "Software Developer & XR Unity Developer",
+    headline: "XR Unity Developer",
     subheadline: "Quantitative engineering across high-scale distributed systems, spatial computing & XR simulations, and real-time interactive 3D engines.",
     location: "Mumbai, India",
     email: "devphotonsupport@gmail.com",
@@ -162,7 +162,7 @@ export const portfolioData: PortfolioData = {
     completedProjects: "16+ Shipped",
     avatar: "/images/profile.webp",
     bio: [
-      "Senior Software Developer & XR Unity Developer with 5 years of verified engineering experience building cutting-edge VR/AR simulations, high-load European cloud systems, and cross-platform interactive applications.",
+      "Senior XR Unity Developer with 5 years of verified engineering experience building cutting-edge VR/AR simulations, high-load European cloud systems, and cross-platform interactive applications.",
       "Engineered vector-driven interactive VR architectures powering 16+ enterprise production modules and 29+ procedural simulations on Meta Quest 3, deployed automated custom editor tooling delivering a 300% workflow speedup, and scaled high-volume media delivery across 22 European markets for SkyShowtime.",
       "Passionate about quantitative system optimization, low-latency client state synchronization, spatial computing, and agentic AI runtime integration."
     ],
@@ -499,7 +499,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "hexagon-map",
       title: "Real-Time Hexagon Map Engine",
-      company: "Interactive 3D Engine",
+      company: "Cyber Infrastructure (CIS)",
       category: "XR / VR",
       description: "High-performance interactive 3D Hexagon Map rendering engine capable of displaying 4M+ real-time rendered objects simultaneously with dynamic backend streaming, spatial chunking, and GPU instancing.",
       tags: ["Unity 3D", "C#", "GPU Instancing", "Spatial Partitioning", "Data Streaming", "Performance Profiling"],
@@ -520,7 +520,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "htc-vive-car",
       title: "HTC Vive Car Showcase & Spatial VR Experience",
-      company: "XR Spatial R&D",
+      company: "Cyber Infrastructure (CIS)",
       category: "XR / VR",
       description: "High-fidelity spatial vehicle configurator and interior inspection simulation built for HTC Vive. Features physically based lighting shaders, 6DoF tracked controller interactions, real-time material swapping, and strict zero-latency framerate budgeting.",
       tags: ["HTC Vive", "SteamVR", "Unity 3D", "Custom Shaders", "6DoF Interaction", "Zero-Latency"],
@@ -573,13 +573,13 @@ export const portfolioData: PortfolioData = {
     {
       id: "cosmos-eye",
       title: "Cosmos Eye 3D Interactive Wallpaper",
-      company: "Proprietary Desktop",
+      company: "Independently Developed",
       category: "XR / VR",
-      description: "Proprietary Windows desktop product featuring real-time interactive 3D graphics, dynamic shader effects, and high-performance local rendering logic.",
+      description: "Independently designed and developed proprietary Windows desktop product featuring real-time interactive 3D graphics, dynamic shader effects, and high-performance local rendering logic.",
       tags: ["Windows Desktop", "Unity 3D", "Custom Shaders", "3D Simulation"],
       featured: false,
       videoUrl: "https://youtu.be/EWxAQ0wtgw8",
-      metrics: "Native Windows Desktop Product"
+      metrics: "Independently Developed Desktop Product"
     },
     {
       id: "photon-multiplayer",
@@ -625,11 +625,13 @@ export const portfolioData: PortfolioData = {
       }
     },
     {
-      company: "Cyber Infrastructure",
+      company: "Cyber Infrastructure (CIS)",
       role: "Junior Software Developer",
       location: "Indore, Madhya Pradesh",
       period: "08/2023 - 11/2024",
       description: [
+        "Engineered the Real-Time Hexagon Map 3D engine capable of rendering 4M+ objects with dynamic backend streaming and GPU instancing.",
+        "Developed HTC Vive Car Showcase spatial VR experience with sub-millisecond 90 FPS 6DoF tracking, PBR lighting, and custom shaders.",
         "Pioneered Google Cardboard compatibility for mobile web applications via Unity WebXR integration.",
         "Authored custom shaders and lighting profiles achieving high visual fidelity without compromising frame rates.",
         "Optimized core codebase architecture, systematically profiling bottlenecks to deliver stable 60+ FPS game builds.",

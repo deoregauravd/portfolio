@@ -374,13 +374,35 @@ const { languageExperience, domainRadar } = portfolioData;
   }
 
   .lang-tag {
-    font-size: 0.7rem;
-    font-weight: 500;
-    padding: 0.15rem 0.45rem;
-    border-radius: var(--radius-sm);
-    background: var(--bg-primary);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    background: rgba(26, 115, 232, 0.09);
+    border: 1px solid rgba(26, 115, 232, 0.28);
+    color: #1a73e8;
+    font-family: var(--font-mono);
+    letter-spacing: 0.01em;
+    display: inline-flex;
+    align-items: center;
+    transition: all var(--transition-fast);
+  }
+
+  .lang-tag:hover {
+    background: rgba(26, 115, 232, 0.16);
+    border-color: rgba(26, 115, 232, 0.45);
+    transform: translateY(-1px);
+  }
+
+  :global([data-theme="dark"]) .lang-tag {
+    background: rgba(138, 180, 248, 0.14);
+    border: 1px solid rgba(138, 180, 248, 0.32);
+    color: #8ab4f8;
+  }
+
+  :global([data-theme="dark"]) .lang-tag:hover {
+    background: rgba(138, 180, 248, 0.22);
+    border-color: rgba(138, 180, 248, 0.5);
   }
 
   .domain-panel-competencies {

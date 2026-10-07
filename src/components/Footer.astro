@@ -15,7 +15,6 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <div class="footer-links">
-        <a href={socials.website || "https://devphoton.com"} target="_blank" rel="noopener noreferrer">Website (devphoton.com)</a>
         <a href={socials.github} target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href={socials.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href={socials.medium} target="_blank" rel="noopener noreferrer">Medium</a>
@@ -23,18 +22,21 @@ const currentYear = new Date().getFullYear();
         {socials.resumeGoogleDocs && (
           <a href={socials.resumeGoogleDocs} target="_blank" rel="noopener noreferrer">Resume</a>
         )}
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/support">Support</a>
+        <a href="https://www.devphoton.com/privacy">Privacy Policy</a>
+        <a href="https://www.devphoton.com/support">Support</a>
       </div>
 
       <div class="footer-bottom">
-        <p class="copyright">
-          © {currentYear} {personal.name} • <a href="/privacy" class="footer-privacy-link">Privacy Policy</a> • <a href="/support" class="footer-privacy-link">Support</a>
-        </p>
+        <a href="#about" class="back-to-top back-to-top-left" aria-label="Back to top" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+          </svg>
+          <span>Back to Top</span>
+        </a>
         <div class="footer-counter-container">
           <VisitorCounter />
         </div>
-        <a href="#" class="back-to-top" aria-label="Back to top">
+        <a href="#about" class="back-to-top back-to-top-right" aria-label="Back to top" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">
           <span>Back to Top</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="18 15 12 9 6 15"></polyline>
@@ -111,21 +113,47 @@ const currentYear = new Date().getFullYear();
   }
 
   .footer-bottom {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
+    width: 100%;
     padding-top: 2rem;
     border-top: 1px solid var(--border-subtle);
     font-size: 0.85rem;
     color: var(--text-muted);
-    flex-wrap: wrap;
-    gap: 1.25rem;
+    gap: 1rem;
+    box-sizing: border-box;
   }
 
   .footer-counter-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    justify-self: center;
+    text-align: center;
+  }
+
+  .back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+    cursor: pointer;
+  }
+
+  .back-to-top:hover {
+    color: var(--text-primary);
+  }
+
+  .back-to-top-left {
+    justify-self: start;
+    margin-right: auto;
+  }
+
+  .back-to-top-right {
+    justify-self: end;
+    margin-left: auto;
   }
 
   .footer-privacy-link {
@@ -144,27 +172,32 @@ const currentYear = new Date().getFullYear();
     font-weight: 700;
   }
 
-  .back-to-top {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    color: var(--text-secondary);
-    transition: color var(--transition-fast);
-  }
-
-  .back-to-top:hover {
-    color: var(--text-primary);
-  }
-
-  @media (max-width: 800px) {
+  @media (max-width: 680px) {
     .footer-bottom {
-      flex-direction: column;
-      text-align: center;
-      gap: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "counter counter"
+        "left right";
+      gap: 1.25rem;
+      width: 100%;
     }
 
     .footer-counter-container {
-      order: -1;
+      grid-area: counter;
+      justify-self: center;
+    }
+
+    .back-to-top-left {
+      grid-area: left;
+      justify-self: start;
+      display: inline-flex;
+    }
+
+    .back-to-top-right {
+      grid-area: right;
+      justify-self: end;
+      display: inline-flex;
     }
   }
 </style>
