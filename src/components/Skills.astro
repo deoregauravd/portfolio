@@ -2,94 +2,671 @@
 import { portfolioData } from '../data/portfolio';
 
 const { skills } = portfolioData;
+
+const kpiHighlights = [
+  { metric: "6+ Yrs", label: "Primary Engine", sub: "Unity 3D Architecture" },
+  { metric: "3 Engines", label: "Multi-Engine Depth", sub: "Unity · Unreal 5 · Godot 4" },
+  { metric: "8+ Toolchains", label: "Production Pipelines", sub: "Native, Cloud & 3D DCC" },
+  { metric: "60–90 FPS", label: "Spatial Certified", sub: "Zero-GC Frame Profiling" }
+];
 ---
 
-<div class="skills-wrapper">
-  <div class="skills-grid">
+<div class="tools-kpi-container">
+  <!-- 1. Top Executive KPI Summary Strip -->
+  <div class="tools-kpi-strip glass-card" role="region" aria-label="Tooling & Engine Key Performance Indicators">
+    {kpiHighlights.map((kpi, idx) => (
+      <div class="kpi-stat-item">
+        <span class="kpi-stat-num gradient-text">{kpi.metric}</span>
+        <div class="kpi-stat-meta">
+          <span class="kpi-stat-label">{kpi.label}</span>
+          <span class="kpi-stat-sub">{kpi.sub}</span>
+        </div>
+        {idx < kpiHighlights.length - 1 && <div class="kpi-strip-divider" aria-hidden="true" />}
+      </div>
+    ))}
+  </div>
+
+  <!-- 2. Main Tooling & Engine Categories Grid -->
+  <div class="categories-grid">
     {skills.map((category) => (
-      <div class="skill-category-card glass-card">
-        <div class="category-header">
-          <span class="category-icon">{category.icon}</span>
-          <h3 class="category-title">{category.name}</h3>
+      <section class="category-kpi-card glass-card" aria-label={category.name}>
+        <!-- Category Header -->
+        <div class="category-header-row">
+          <div class="category-title-wrap">
+            <span class="category-icon-bubble" aria-hidden="true">{category.icon}</span>
+            <div>
+              <h3 class="category-title">{category.name}</h3>
+              {category.badge && <span class="category-badge">{category.badge}</span>}
+            </div>
+          </div>
+          {category.kpiStat && (
+            <div class="category-kpi-tag">
+              <span class="kpi-dot" aria-hidden="true"></span>
+              <span>{category.kpiStat}</span>
+            </div>
+          )}
         </div>
 
-        <div class="skills-pills">
-          {category.skills.map((skill) => (
-            <span class="skill-pill">
-              <span class="pill-dot"></span>
-              <span>{skill}</span>
-            </span>
+        <!-- Tool Cards (KPI Tiles) Grid -->
+        <div class="tools-tiles-grid">
+          {category.skills.map((tool) => (
+            <article class={`tool-kpi-tile tool-status-${tool.status}`}>
+              <!-- Top Row: Icon + Name + KPI Status Badge -->
+              <div class="tool-top-row">
+                <div class="tool-identity">
+                  <div class={`tool-icon-box status-icon-${tool.status}`} aria-hidden="true">
+                    {tool.icon === 'unity' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L2 7.77v8.46L12 22l10-5.77V7.77L12 2zm-1 2.3l6.93 4-2.47 1.43L11 7.26V4.3zm2 0v2.96l-4.46 2.47-2.47-1.43L13 4.3zM4 9.2l4.46 2.58v4.94L4 14.15V9.2zm16 4.95l-4.46 2.57v-4.94L20 9.2v4.95zM11 12.38l4.46 2.57L12 16.9l-3.46-1.95 2.46-1.57v-1z"/>
+                      </svg>
+                    )}
+                    {tool.icon === 'unreal' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M8 7v6.5c0 2.2 1.8 4 4 4s4-1.8 4-4V7h-2.5v6.5c0 .8-.7 1.5-1.5 1.5s-1.5-.7-1.5-1.5V7H8z"></path>
+                        <circle cx="12" cy="12" r="1.2" fill="currentColor"></circle>
+                      </svg>
+                    )}
+                    {tool.icon === 'godot' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2a3 3 0 0 0-3 3v1H7a3 3 0 0 0-3 3v2h2v2H4v2a3 3 0 0 0 3 3h1v1a3 3 0 0 0 6 0v-1h1a3 3 0 0 0 3-3v-2h-2v-2h2V9a3 3 0 0 0-3-3h-2V5a3 3 0 0 0-3-3zm-3 8a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm6 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-5.5 5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z"/>
+                      </svg>
+                    )}
+                    {tool.icon === 'webxr' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="7" width="20" height="11" rx="3"></rect>
+                        <circle cx="8" cy="12.5" r="2.5"></circle>
+                        <circle cx="16" cy="12.5" r="2.5"></circle>
+                        <path d="M10.5 12.5h3"></path>
+                        <path d="M7 7l5-4 5 4"></path>
+                      </svg>
+                    )}
+                    {tool.icon === 'meta' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 16c1.5 0 3-1.5 4.5-4s3-4 5-4c2.5 0 4.5 2 4.5 4.5S16 17 13.5 17c-2 0-3.5-1.5-5-4s-3-4-4.5-4C2.5 9 1 10.5 1 12.5S2.5 16 4 16z"></path>
+                      </svg>
+                    )}
+                    {tool.icon === 'csharp' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 21 7 21 17 12 22 3 17 3 7 12 2"></polygon>
+                        <path d="M10 9a3 3 0 1 0 0 6"></path>
+                        <path d="M14 10v4"></path>
+                        <path d="M17 10v4"></path>
+                        <path d="M13 11h5"></path>
+                        <path d="M13 13h5"></path>
+                      </svg>
+                    )}
+                    {tool.icon === 'cpp' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 21 7 21 17 12 22 3 17 3 7 12 2"></polygon>
+                        <path d="M9 10a2.5 2.5 0 1 0 0 4"></path>
+                        <path d="M13 12h2m-1-1v2"></path>
+                        <path d="M17 12h2m-1-1v2"></path>
+                      </svg>
+                    )}
+                    {tool.icon === 'python' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.9 2c-3.1 0-4.9.4-4.9 2.5v1.8h5v.6H5.2C3 6.9 2 8.7 2 11.2c0 2.2 1.2 3.6 3.1 3.9v-2.2c0-2 1.7-3.6 3.7-3.6h4.9v-2c0-2.3-2.1-5.3-5.3-5.3h3.5zm-1.8 1.4a.8.8 0 1 1 0 1.6.8.8 0 0 1 0-1.6zm2 18.6c3.1 0 4.9-.4 4.9-2.5v-1.8h-5v-.6h6.8c2.2 0 3.2-1.8 3.2-4.3 0-2.2-1.2-3.6-3.1-3.9v2.2c0 2-1.7 3.6-3.7 3.6H10.3v2c0 2.3 2.1 5.3 5.3 5.3h-3.5zm1.8-1.4a.8.8 0 1 1 0-1.6.8.8 0 0 1 0 1.6z"/>
+                      </svg>
+                    )}
+                    {tool.icon === 'java' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                        <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                        <line x1="6" y1="1" x2="6" y2="4"></line>
+                        <line x1="10" y1="1" x2="10" y2="4"></line>
+                        <line x1="14" y1="1" x2="14" y2="4"></line>
+                      </svg>
+                    )}
+                    {tool.icon === 'typescript' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                        <path d="M7 8h6m-3 0v8"></path>
+                        <path d="M15 15.5c.5.3 1.2.5 1.8.5 1 0 1.7-.5 1.7-1.3 0-1.7-3.5-.8-3.5-3.2 0-1.3 1-2.5 2.8-2.5.8 0 1.5.2 2 .5"></path>
+                      </svg>
+                    )}
+                    {tool.icon === 'database' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                      </svg>
+                    )}
+                    {tool.icon === 'aws' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+                        <path d="M6 19c3 3 9 3 12 0"></path>
+                        <path d="M16 20l2-1-1-2"></path>
+                      </svg>
+                    )}
+                    {tool.icon === 'photon' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <circle cx="19" cy="5" r="2"></circle>
+                        <circle cx="5" cy="19" r="2"></circle>
+                        <circle cx="19" cy="19" r="2"></circle>
+                        <circle cx="5" cy="5" r="2"></circle>
+                        <path d="M12 9V7m0 8v2m-3-5H7m8 0h2m-6.5-3.5L8 6.5m8 8 1.5 1.5m-9.5 0L9.5 14.5m8-8L16 8"></path>
+                      </svg>
+                    )}
+                    {tool.icon === 'ai' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2l2.4 5.6L20 10l-5.6 2.4L12 18l-2.4-5.6L4 10l5.6-2.4z"></path>
+                        <path d="M19 16l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"></path>
+                      </svg>
+                    )}
+                    {tool.icon === 'cicd' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"></path>
+                        <circle cx="12" cy="12" r="4"></circle>
+                      </svg>
+                    )}
+                    {tool.icon === 'tools' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                      </svg>
+                    )}
+                    {tool.icon === 'blender' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2a10 10 0 0 0-7 17.1"></path>
+                        <path d="M22 12a10 10 0 0 0-14.2-9.2"></path>
+                        <circle cx="12" cy="12" r="1.5" fill="currentColor"></circle>
+                        <path d="M6 18l6-6"></path>
+                      </svg>
+                    )}
+                    {tool.icon === 'mobiledev' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="5" y="2" width="14" height="20" rx="3"></rect>
+                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                      </svg>
+                    )}
+                    {tool.icon === 'git' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18" cy="18" r="3"></circle>
+                        <circle cx="6" cy="6" r="3"></circle>
+                        <circle cx="6" cy="18" r="3"></circle>
+                        <path d="M6 9v6"></path>
+                        <path d="M9 9l9 6"></path>
+                      </svg>
+                    )}
+                    {tool.icon === 'profiler' && (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4"></path>
+                        <path d="M12 12l4-4"></path>
+                        <circle cx="12" cy="12" r="2"></circle>
+                      </svg>
+                    )}
+                  </div>
+                  <div>
+                    <h4 class="tool-name">{tool.name}</h4>
+                    <span class="tool-role">{tool.role}</span>
+                  </div>
+                </div>
+
+                <div class="tool-kpi-badge-wrap">
+                  <span class={`tool-kpi-pill kpi-pill-${tool.status}`}>
+                    {tool.status === 'primary' && <span class="pulse-indicator"></span>}
+                    {tool.level}
+                  </span>
+                </div>
+              </div>
+
+              <!-- Visual KPI Metric Meter Bar -->
+              <div class="tool-meter-wrapper" aria-hidden="true">
+                <div class="meter-label-row">
+                  <span class="meter-title">Capability Depth</span>
+                  <span class="meter-pct">{tool.proficiency}%</span>
+                </div>
+                <div class="meter-track">
+                  <div
+                    class={`meter-fill fill-${tool.status}`}
+                    style={`width: ${tool.proficiency}%;`}
+                  ></div>
+                </div>
+              </div>
+
+              <!-- Bottom Tags -->
+              {tool.tags && tool.tags.length > 0 && (
+                <div class="tool-tags-row">
+                  {tool.tags.map((tag) => (
+                    <span class="tool-tag">{tag}</span>
+                  ))}
+                </div>
+              )}
+            </article>
           ))}
         </div>
-      </div>
+      </section>
     ))}
   </div>
 </div>
 
 <style>
-  .skills-grid {
+  .tools-kpi-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* 1. Top Executive KPI Summary Strip */
+  .tools-kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1.25rem 1.75rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-card);
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kpi-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    position: relative;
+  }
+
+  .kpi-stat-num {
+    font-size: 1.85rem;
+    font-weight: 800;
+    line-height: 1;
+    font-family: var(--font-sans);
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+  }
+
+  .kpi-stat-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .kpi-stat-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  .kpi-stat-sub {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .kpi-strip-divider {
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 38px;
+    background: var(--border-subtle);
+  }
+
+  /* 2. Categories Grid */
+  .categories-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.75rem;
   }
 
-  .skill-category-card {
-    padding: 2rem;
-  }
-
-  .category-header {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .category-icon {
-    font-size: 1.75rem;
-  }
-
-  .category-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-  }
-
-  .skills-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem;
-  }
-
-  .skill-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.45rem 1rem;
-    border-radius: var(--radius-full);
-    background: var(--bg-tertiary);
+  .category-kpi-card {
+    padding: 1.85rem;
+    border-radius: var(--radius-lg);
     border: 1px solid var(--border-subtle);
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    transition: all var(--transition-fast);
+    background: var(--bg-card);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: all var(--transition-smooth);
+    position: relative;
   }
 
-  .skill-pill:hover {
-    border-color: var(--accent-blue);
-    background: var(--badge-bg);
-    color: var(--accent-blue);
+  .category-kpi-card:hover {
+    border-color: var(--border-glow);
+    box-shadow: var(--shadow-md);
     transform: translateY(-2px);
   }
 
-  .pill-dot {
+  /* Category Header */
+  .category-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .category-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .category-icon-bubble {
+    font-size: 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+  }
+
+  .category-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  .category-badge {
+    display: inline-block;
+    margin-top: 0.2rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    color: var(--accent-blue);
+    letter-spacing: 0.02em;
+  }
+
+  .category-kpi-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .kpi-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-emerald);
+  }
+
+  /* Tool Cards (KPI Tiles) */
+  .tools-tiles-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .tool-kpi-tile {
+    padding: 1.15rem 1.25rem;
+    border-radius: var(--radius-md);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    transition: all var(--transition-fast);
+  }
+
+  .tool-kpi-tile:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-focus);
+    transform: translateX(3px);
+  }
+
+  /* Status Specific Tile Highlighting */
+  .tool-kpi-tile.tool-status-primary {
+    border-left: 3px solid var(--accent-blue);
+  }
+
+  .tool-kpi-tile.tool-status-familiar {
+    border-left: 3px solid var(--accent-purple);
+  }
+
+  .tool-kpi-tile.tool-status-advanced {
+    border-left: 3px solid var(--accent-cyan);
+  }
+
+  .tool-kpi-tile.tool-status-proficient {
+    border-left: 3px solid var(--accent-emerald);
+  }
+
+  /* Top Row */
+  .tool-top-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .tool-identity {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .tool-icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+    transition: all var(--transition-fast);
+  }
+
+  .tool-kpi-tile:hover .tool-icon-box {
+    transform: scale(1.05);
+  }
+
+  .tool-icon-box.status-icon-primary {
+    color: var(--accent-blue);
+    border-color: rgba(26, 115, 232, 0.3);
+    background: rgba(26, 115, 232, 0.08);
+  }
+
+  .tool-icon-box.status-icon-familiar {
+    color: var(--accent-purple);
+    border-color: rgba(124, 58, 237, 0.3);
+    background: rgba(124, 58, 237, 0.08);
+  }
+
+  .tool-icon-box.status-icon-advanced {
+    color: var(--accent-cyan);
+    border-color: rgba(2, 132, 199, 0.3);
+    background: rgba(2, 132, 199, 0.08);
+  }
+
+  .tool-icon-box.status-icon-proficient {
+    color: var(--accent-emerald);
+    border-color: rgba(15, 157, 88, 0.3);
+    background: rgba(15, 157, 88, 0.08);
+  }
+
+  .tool-name {
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  .tool-role {
+    display: block;
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+    margin-top: 0.15rem;
+    line-height: 1.3;
+  }
+
+  /* KPI Status Badges */
+  .tool-kpi-badge-wrap {
+    flex-shrink: 0;
+  }
+
+  .tool-kpi-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.73rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+
+  .kpi-pill-primary {
+    background: rgba(26, 115, 232, 0.12);
+    color: var(--accent-blue);
+    border: 1px solid rgba(26, 115, 232, 0.3);
+  }
+
+  .kpi-pill-familiar {
+    background: rgba(124, 58, 237, 0.12);
+    color: var(--accent-purple);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+  }
+
+  .kpi-pill-advanced {
+    background: rgba(2, 132, 199, 0.12);
+    color: var(--accent-cyan);
+    border: 1px solid rgba(2, 132, 199, 0.3);
+  }
+
+  .kpi-pill-proficient {
+    background: rgba(15, 157, 88, 0.12);
+    color: var(--accent-emerald);
+    border: 1px solid rgba(15, 157, 88, 0.3);
+  }
+
+  .pulse-indicator {
     width: 6px;
     height: 6px;
     border-radius: 50%;
     background: var(--accent-blue);
+    box-shadow: 0 0 6px var(--accent-blue);
   }
 
-  @media (max-width: 768px) {
-    .skills-grid {
+  /* Capability Meter Gauge */
+  .tool-meter-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .meter-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+  }
+
+  .meter-title {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .meter-pct {
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+
+  .meter-track {
+    width: 100%;
+    height: 5px;
+    border-radius: var(--radius-full);
+    background: var(--border-subtle);
+    overflow: hidden;
+  }
+
+  .meter-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .meter-fill.fill-primary {
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-gemini));
+  }
+
+  .meter-fill.fill-familiar {
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+  }
+
+  .meter-fill.fill-advanced {
+    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-indigo));
+  }
+
+  .meter-fill.fill-proficient {
+    background: linear-gradient(90deg, var(--accent-emerald), var(--accent-cyan));
+  }
+
+  /* Micro Tags */
+  .tool-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding-top: 0.2rem;
+  }
+
+  .tool-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-full);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+  }
+
+  @media (max-width: 992px) {
+    .tools-kpi-strip {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .kpi-strip-divider {
+      display: none;
+    }
+
+    .categories-grid {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .tools-kpi-strip {
+      grid-template-columns: 1fr;
+    }
+
+    .tool-top-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+
+    .tool-kpi-badge-wrap {
+      align-self: flex-start;
     }
   }
 </style>

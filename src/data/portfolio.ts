@@ -32,10 +32,22 @@ export interface Experience {
   };
 }
 
+export interface SkillItem {
+  name: string;
+  level: string;
+  proficiency: number;
+  status: 'primary' | 'familiar' | 'advanced' | 'proficient';
+  icon: string;
+  role: string;
+  tags?: string[];
+}
+
 export interface SkillCategory {
   name: string;
   icon: string;
-  skills: string[];
+  badge?: string;
+  kpiStat?: string;
+  skills: SkillItem[];
 }
 
 export interface Education {
@@ -462,24 +474,216 @@ export const portfolioData: PortfolioData = {
 
   skills: [
     {
-      name: "XR & Game Engines",
+      name: "Game & Spatial Engines",
       icon: "🥽",
-      skills: ["Unity 3D (6 yrs)", "WebXR", "Meta Quest 3 / Quest 2", "HTC Vive", "SteamVR", "Google Cardboard", "URP / Shaders"]
+      badge: "Core Mastery & Multi-Engine",
+      kpiStat: "3 Engines Fluency",
+      skills: [
+        {
+          name: "Unity 3D",
+          level: "Primary · 6+ Yrs",
+          proficiency: 96,
+          status: "primary",
+          icon: "unity",
+          role: "Core Specialty · Spatial Systems, Physics & URP",
+          tags: ["URP / HDRP", "WebXR", "XR Interaction", "Jobs / Burst"]
+        },
+        {
+          name: "Unreal Engine 5",
+          level: "Familiarity · Working Knowledge",
+          proficiency: 58,
+          status: "familiar",
+          icon: "unreal",
+          role: "Secondary Engine · Blueprints & Nanite Pipelines",
+          tags: ["Blueprints", "C++ Integration", "Lumen & Nanite", "Sequencer"]
+        },
+        {
+          name: "Godot Engine 4",
+          level: "Familiarity · Working Knowledge",
+          proficiency: 52,
+          status: "familiar",
+          icon: "godot",
+          role: "Lightweight Prototyping & Scene Tree Hierarchy",
+          tags: ["GDScript", "C# Nodes", "2D/3D Physics", "Rapid Prototyping"]
+        },
+        {
+          name: "WebXR & OpenXR",
+          level: "Production · 3+ Yrs",
+          proficiency: 88,
+          status: "advanced",
+          icon: "webxr",
+          role: "Cross-Device Zero-Install Browser Spatial Tech",
+          tags: ["Browser Spatial", "Device Tracking", "Hand Gestures"]
+        },
+        {
+          name: "Meta Quest & SteamVR",
+          level: "Production · 4+ Yrs",
+          proficiency: 92,
+          status: "advanced",
+          icon: "meta",
+          role: "6DoF Standalone & PCVR Deployment",
+          tags: ["Quest 2 / 3", "HTC Vive", "OVR SDK", "Spatial Audio"]
+        }
+      ]
     },
     {
-      name: "Programming Languages",
+      name: "Programming & Core Architecture",
       icon: "💻",
-      skills: ["C# (6 yrs)", ".NET", "Python", "Java", "C++", "JavaScript", "HTML/CSS", "SQL"]
+      badge: "Production Systems",
+      kpiStat: "8 Active Languages",
+      skills: [
+        {
+          name: "C#",
+          level: "Primary · 6+ Yrs",
+          proficiency: 95,
+          status: "primary",
+          icon: "csharp",
+          role: "Main Engine Systems & Modular Architecture",
+          tags: [".NET Core", "Async / Await", "Memory Tuning", "SOLID"]
+        },
+        {
+          name: "C++",
+          level: "Familiarity · Native Core",
+          proficiency: 62,
+          status: "familiar",
+          icon: "cpp",
+          role: "Native DLLs, Unreal C++ & Engine Internals",
+          tags: ["Unreal C++", "Pointers & Memory", "Native Plugins"]
+        },
+        {
+          name: "Python",
+          level: "Production · 3+ Yrs",
+          proficiency: 82,
+          status: "advanced",
+          icon: "python",
+          role: "AI Pipelines, Automation & Shaders",
+          tags: ["Build Automation", "Data Processing", "Scripting"]
+        },
+        {
+          name: "Java & Spring Boot",
+          level: "Production · 2+ Yrs",
+          proficiency: 80,
+          status: "advanced",
+          icon: "java",
+          role: "Enterprise Cloud Microservices (SkyShowtime)",
+          tags: ["Spring Cloud", "RESTful APIs", "SkyShowtime 10M+"]
+        },
+        {
+          name: "JavaScript & TypeScript",
+          level: "Advanced · 3+ Yrs",
+          proficiency: 85,
+          status: "advanced",
+          icon: "typescript",
+          role: "WebXR Frontends & Build Tooling",
+          tags: ["Modern ES6+", "Node.js", "Canvas & WebGL"]
+        },
+        {
+          name: "SQL & Relational DBs",
+          level: "Proficient",
+          proficiency: 75,
+          status: "proficient",
+          icon: "database",
+          role: "Relational Schemas & Query Optimization",
+          tags: ["PostgreSQL", "MySQL", "Query Optimization"]
+        }
+      ]
     },
     {
-      name: "Backend, Cloud & AI",
+      name: "Cloud, Multiplayer & AI",
       icon: "⚡",
-      skills: ["AWS Cloud", "Spring Boot", "REST APIs", "Agentic AI", "CI/CD Pipelines", "Photon Multiplayer", "Microservices"]
+      badge: "Scale & Real-Time",
+      kpiStat: "10M+ Scalability",
+      skills: [
+        {
+          name: "AWS Cloud Infrastructure",
+          level: "Production · 2+ Yrs",
+          proficiency: 85,
+          status: "advanced",
+          icon: "aws",
+          role: "Microservices & Incident Management",
+          tags: ["EC2 & S3", "Lambda", "CloudWatch", "Incident Ops"]
+        },
+        {
+          name: "Photon Multiplayer",
+          level: "Production · 3+ Yrs",
+          proficiency: 86,
+          status: "advanced",
+          icon: "photon",
+          role: "Real-Time Room Networking & State Sync",
+          tags: ["PUN2 & Fusion", "RPCs", "Lag Compensation", "State Sync"]
+        },
+        {
+          name: "Agentic AI & LLMs",
+          level: "Applied · Active",
+          proficiency: 88,
+          status: "advanced",
+          icon: "ai",
+          role: "Autonomous Agents & Tool Calling",
+          tags: ["MCP Integration", "Prompt Engineering", "Tool Orchestration"]
+        },
+        {
+          name: "CI/CD & DevOps",
+          level: "Production · 4+ Yrs",
+          proficiency: 88,
+          status: "advanced",
+          icon: "cicd",
+          role: "Automated Build & QA Pipelines",
+          tags: ["GitHub Actions", "Build Automation", "Regression Testing"]
+        }
+      ]
     },
     {
-      name: "Tools & 3D Workflows",
+      name: "Production Tooling & 3D Workflows",
       icon: "🛠️",
-      skills: ["Unity Editor Tooling", "Blender 3D", "Android Studio", "Xcode", "Git / GitHub", "JSON Streaming", "Performance Profiling"]
+      badge: "Pipelines & Verification",
+      kpiStat: "+300% Team Speed",
+      skills: [
+        {
+          name: "Unity Editor Tooling",
+          level: "Primary · 6+ Yrs",
+          proficiency: 95,
+          status: "primary",
+          icon: "tools",
+          role: "Custom Inspectors & Automation (+300% Speed)",
+          tags: ["EditorWindow", "Custom Inspectors", "Asset Pipelines"]
+        },
+        {
+          name: "Blender 3D",
+          level: "Proficient · 4+ Yrs",
+          proficiency: 82,
+          status: "proficient",
+          icon: "blender",
+          role: "3D Asset Modeling, UV & Rigging",
+          tags: ["Low-Poly Modeling", "PBR Texture Baking", "GLTF & FBX"]
+        },
+        {
+          name: "Android Studio & Xcode",
+          level: "Production · 4+ Yrs",
+          proficiency: 85,
+          status: "advanced",
+          icon: "mobiledev",
+          role: "Native Build & Platform Profiling",
+          tags: ["Android NDK", "iOS Provisioning", "Native Crash Logs"]
+        },
+        {
+          name: "Git & Version Control",
+          level: "Production · 6+ Yrs",
+          proficiency: 92,
+          status: "primary",
+          icon: "git",
+          role: "Branching Architecture & Code Reviews",
+          tags: ["Git LFS", "Trunk-Based Flow", "Submodules"]
+        },
+        {
+          name: "Performance & Profiling",
+          level: "Mastery · 6+ Yrs",
+          proficiency: 95,
+          status: "primary",
+          icon: "profiler",
+          role: "Frame Budget Tuning (Fixed 60-90 FPS)",
+          tags: ["Unity Profiler", "Memory Profiler", "Frame Debugger"]
+        }
+      ]
     }
   ],
 
@@ -645,7 +849,7 @@ export const portfolioData: PortfolioData = {
       period: "01/2023 - 07/2023",
       description: [
         "Co-developed high-profile mobile games including Movie Master: Bollywood Games & Cricket and Desibeats: Indian Music Game on Google Play.",
-        "Architected automated testing suites and CI build pipelines to streamline release verification and accelerate QA turnaround times.",
+        "Contributed with the team to automated testing suites and CI build pipelines to streamline release verification and accelerate QA turnaround times.",
         "Collaborated cross-functionally with designers and QA to refine core mechanics, dynamic camera systems, and resolve complex gameplay bugs."
       ],
       sampleLink: {
@@ -676,8 +880,7 @@ export const portfolioData: PortfolioData = {
       period: "10/2021 - 05/2022",
       description: [
         "Engineered robust game logic, rule engines, and AI behaviors using C# for diverse titles including LuvBug on iOS (scaled to 1M+ active users).",
-        "Designed and implemented fluid UI/UX systems leveraging Unity's Universal Render Pipeline (URP).",
-        "Collaborated closely with US-based stakeholders to meet aggressive launch schedules."
+        "Designed and implemented fluid UI/UX systems leveraging Unity's Universal Render Pipeline (URP)."
       ],
       sampleLink: {
         label: "View App Store Title",
