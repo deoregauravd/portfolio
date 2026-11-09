@@ -4,13 +4,17 @@ import { portfolioData } from '../data/portfolio';
 
 <header class="header">
   <div class="container header-container">
-    <a href="#" class="brand" aria-label="Home">
+    <a href="#" class="brand" aria-label="DevPhoton Home">
       <span class="brand-badge">
         <svg class="brand-sparkle" viewBox="0 0 24 24" width="20" height="20" fill="none">
           <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z" fill="currentColor"/>
         </svg>
       </span>
-      <span class="brand-name">{portfolioData.personal.name}</span>
+      <span class="brand-text-group">
+        <span class="brand-name">DevPhoton</span>
+        <span class="brand-sep" aria-hidden="true">·</span>
+        <span class="brand-subname">{portfolioData.personal.name}</span>
+      </span>
     </a>
 
     <nav class="nav-desktop" aria-label="Main Navigation">
@@ -130,9 +134,40 @@ import { portfolioData } from '../data/portfolio';
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    font-weight: 700;
-    font-size: 1.1rem;
     color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .brand-text-group {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+  }
+
+  .brand-name {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .brand-sep {
+    opacity: 0.4;
+    font-weight: 400;
+    color: var(--text-muted);
+  }
+
+  .brand-subname {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 520px) {
+    .brand-sep,
+    .brand-subname {
+      display: none;
+    }
   }
 
   .brand-badge {

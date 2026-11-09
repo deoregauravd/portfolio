@@ -10,8 +10,9 @@ const currentYear = new Date().getFullYear();
   <div class="container">
     <div class="footer-panel glass-card">
       <div class="footer-brand">
-        <div class="brand-title">{personal.name}</div>
+        <div class="brand-title">DevPhoton · {personal.name}</div>
         <p class="brand-sub">{personal.headline}</p>
+        <p class="brand-copyright">© {currentYear} DevPhoton ({personal.name}). All rights reserved.</p>
       </div>
 
       <div class="footer-links">
@@ -92,6 +93,12 @@ const currentYear = new Date().getFullYear();
   .brand-sub {
     font-size: 0.9rem;
     color: var(--text-secondary);
+  }
+
+  .brand-copyright {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.45rem;
   }
 
   .footer-links {

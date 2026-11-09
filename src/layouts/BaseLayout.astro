@@ -9,8 +9,8 @@ interface Props {
 }
 
 const {
-  title = `${portfolioData.personal.name} | ${portfolioData.personal.headline}`,
-  description = portfolioData.personal.subheadline
+  title = `DevPhoton | ${portfolioData.personal.name} — ${portfolioData.personal.headline}`,
+  description = `DevPhoton — Engineering portfolio of ${portfolioData.personal.name}, Senior XR Unity Developer. Specializing in spatial computing, virtual reality simulations, and high-performance interactive 3D systems.`
 } = Astro.props;
 
 const canonicalURL = Astro.url;
@@ -31,10 +31,12 @@ const canonicalURL = Astro.url;
     <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="author" content={portfolioData.personal.name} />
+    <meta name="keywords" content="DevPhoton, devphoton, Gaurav Deore, XR Unity Developer, Unity 3D Developer, Meta Quest 3, Spatial Computing, Virtual Reality, Augmented Reality" />
+    <meta name="author" content={`${portfolioData.personal.name} (DevPhoton)`} />
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph / Facebook -->
+    <meta property="og:site_name" content="DevPhoton" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
@@ -47,6 +49,66 @@ const canonicalURL = Astro.url;
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content="/images/profile.jpg" />
+
+    <!-- JSON-LD Structured Data: Brand & Entity Graph -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://devphoton.com/#website",
+          "url": "https://devphoton.com/",
+          "name": "DevPhoton",
+          "alternateName": ["devphoton", "DevPhoton Studio", "Dev Photon"],
+          "description": "DevPhoton — Spatial computing, XR simulations, and real-time 3D interactive engineering by Gaurav Deore.",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://devphoton.com/#organization"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://devphoton.com/#organization",
+          "name": "DevPhoton",
+          "alternateName": ["devphoton", "DevPhoton Studio", "Dev Photon"],
+          "url": "https://devphoton.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://devphoton.com/icon-512.png"
+          },
+          "founder": {
+            "@id": "https://devphoton.com/#person"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "email": portfolioData.personal.email,
+            "contactType": "customer service"
+          },
+          "sameAs": [
+            portfolioData.socials.github,
+            portfolioData.socials.linkedin,
+            portfolioData.socials.youtube,
+            portfolioData.socials.medium
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://devphoton.com/#person",
+          "name": portfolioData.personal.name,
+          "jobTitle": portfolioData.personal.headline,
+          "url": "https://devphoton.com/",
+          "worksFor": {
+            "@id": "https://devphoton.com/#organization"
+          },
+          "sameAs": [
+            portfolioData.socials.github,
+            portfolioData.socials.linkedin,
+            portfolioData.socials.youtube,
+            portfolioData.socials.medium
+          ]
+        }
+      ]
+    })} />
 
     <!-- Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

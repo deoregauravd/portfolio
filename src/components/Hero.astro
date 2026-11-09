@@ -91,11 +91,13 @@ const { personal, socials } = portfolioData;
                 <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
               </svg>
             </span>
-            <span>Engineering Architecture</span>
+            <span>DevPhoton Engineering Architecture</span>
           </div>
 
           <h1 class="hero-title">
-            <span class="gradient-text">XR Unity Developer</span>
+            <span class="gradient-text">DevPhoton</span>
+            <span class="hero-title-sep"> | </span>
+            <span class="hero-title-role">XR Unity Developer</span>
           </h1>
           <p class="hero-role">{personal.subheadline}</p>
         </div>
@@ -629,6 +631,16 @@ const { personal, socials } = portfolioData;
     letter-spacing: -0.025em;
     line-height: 1.22;
     margin-bottom: 0.65rem;
+  }
+
+  .hero-title-sep {
+    opacity: 0.35;
+    font-weight: 300;
+    margin: 0 0.15rem;
+  }
+
+  .hero-title-role {
+    font-weight: 700;
   }
 
   .hero-role {

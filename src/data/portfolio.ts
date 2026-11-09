@@ -174,7 +174,7 @@ export const portfolioData: PortfolioData = {
     completedProjects: "16+ Shipped",
     avatar: "/images/profile.webp",
     bio: [
-      "Senior XR Unity Developer with 5 years of verified engineering experience building cutting-edge VR/AR simulations, high-load European cloud systems, and cross-platform interactive applications.",
+      "DevPhoton is the spatial computing and interactive 3D engineering studio of Gaurav Deore, Senior XR Unity Developer with 5 years of verified experience building cutting-edge VR/AR simulations, high-load European cloud systems, and cross-platform interactive applications.",
       "Engineered vector-driven interactive VR architectures powering 16+ enterprise production modules and 29+ procedural simulations on Meta Quest 3, deployed automated custom editor tooling delivering a 300% workflow speedup, and scaled high-volume media delivery across 22 European markets for SkyShowtime.",
       "Passionate about quantitative system optimization, low-latency client state synchronization, spatial computing, and agentic AI runtime integration."
     ],
