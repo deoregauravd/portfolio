@@ -14,14 +14,13 @@ const kpiHighlights = [
 <div class="tools-kpi-container">
   <!-- 1. Top Executive KPI Summary Strip -->
   <div class="tools-kpi-strip glass-card" role="region" aria-label="Tooling & Engine Key Performance Indicators">
-    {kpiHighlights.map((kpi, idx) => (
+    {kpiHighlights.map((kpi) => (
       <div class="kpi-stat-item">
         <span class="kpi-stat-num gradient-text">{kpi.metric}</span>
         <div class="kpi-stat-meta">
           <span class="kpi-stat-label">{kpi.label}</span>
           <span class="kpi-stat-sub">{kpi.sub}</span>
         </div>
-        {idx < kpiHighlights.length - 1 && <div class="kpi-strip-divider" aria-hidden="true" />}
       </div>
     ))}
   </div>
@@ -253,58 +252,66 @@ const kpiHighlights = [
   .tools-kpi-strip {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    padding: 1.25rem 1.75rem;
-    border-radius: var(--radius-md);
+    gap: 1.5rem;
+    padding: 1.5rem 1.75rem;
+    border-radius: var(--radius-lg);
     border: 1px solid var(--border-subtle);
     background: var(--bg-card);
-    align-items: center;
+    align-items: stretch;
     position: relative;
-    overflow: hidden;
+    box-shadow: var(--shadow-sm);
   }
 
   .kpi-stat-item {
     display: flex;
-    align-items: center;
-    gap: 1.15rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.35rem;
+    min-width: 0;
     position: relative;
   }
 
+  .kpi-stat-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -0.75rem;
+    top: 8%;
+    bottom: 8%;
+    width: 1px;
+    background: var(--border-subtle);
+  }
+
   .kpi-stat-num {
-    font-size: 1.85rem;
+    font-size: clamp(1.55rem, 2vw, 1.95rem);
     font-weight: 800;
-    line-height: 1;
+    line-height: 1.1;
     font-family: var(--font-sans);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     flex-shrink: 0;
+    white-space: nowrap;
   }
 
   .kpi-stat-meta {
     display: flex;
     flex-direction: column;
     gap: 0.2rem;
+    min-width: 0;
   }
 
   .kpi-stat-label {
-    font-size: 0.85rem;
+    font-size: 0.875rem;
     font-weight: 700;
     color: var(--text-primary);
-    line-height: 1.2;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
   }
 
   .kpi-stat-sub {
     font-size: 0.75rem;
     color: var(--text-muted);
     font-family: var(--font-mono);
-  }
-
-  .kpi-strip-divider {
-    position: absolute;
-    right: 1.25rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 1px;
-    height: 38px;
-    background: var(--border-subtle);
+    line-height: 1.35;
+    word-break: break-word;
   }
 
   /* 2. Categories Grid */
@@ -642,10 +649,11 @@ const kpiHighlights = [
   @media (max-width: 992px) {
     .tools-kpi-strip {
       grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
+      gap: 1.5rem 1.75rem;
+      padding: 1.35rem 1.5rem;
     }
 
-    .kpi-strip-divider {
+    .kpi-stat-item:not(:last-child)::after {
       display: none;
     }
 
@@ -657,6 +665,13 @@ const kpiHighlights = [
   @media (max-width: 580px) {
     .tools-kpi-strip {
       grid-template-columns: 1fr;
+      gap: 1.25rem;
+      padding: 1.25rem 1.15rem;
+    }
+
+    .kpi-stat-item:not(:last-child) {
+      padding-bottom: 1.15rem;
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     .tool-top-row {
