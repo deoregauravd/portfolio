@@ -116,10 +116,10 @@ const email = app.contactEmail || portfolioData.personal.email || "devphotonsupp
         <section class="policy-section">
           <h2>1. Introduction</h2>
           <p>
-            This Privacy Policy sets out the privacy practices of <strong>{publisherName}</strong> (operating as <strong>{publisherBrand}</strong>, "we", "us", or "our") regarding the application <strong>{app.name}</strong> ("the Application"), distributed via {app.stores.join(', ')}.
+            This Privacy Policy sets out the privacy practices of independent sole developer <strong>{publisherName}</strong> (operating under the developer moniker <strong>{publisherBrand}</strong>) regarding the application <strong>{app.name}</strong> ("the Application"), distributed via {app.stores.join(', ')}.
           </p>
           <p>
-            We take user privacy very seriously. Because this application is engineered as a standalone {app.category.toLowerCase()}, we believe that user software should respect personal boundaries by design.
+            As an independent sole developer, user privacy is respected by design. Because this application is engineered as a standalone {app.category.toLowerCase()}, personal data collection is completely unnecessary.
           </p>
         </section>
 
@@ -127,10 +127,10 @@ const email = app.contactEmail || portfolioData.personal.email || "devphotonsupp
         <section class="policy-section">
           <h2>2. Personal Data Collection</h2>
           <p>
-            <strong>We do not collect any personal data.</strong>
+            <strong>No personal data is collected, stored, or transmitted.</strong>
           </p>
           <p>
-            When downloading, installing, or running {app.name}, you are not required to create an account, sign in, or provide any personal details (such as names, phone numbers, email addresses, payment methods, or geographical locations). We do not possess servers that collect or log your personal identities.
+            When downloading, installing, or running {app.name}, you are not required to create an account, sign in, or provide any personal details (such as names, phone numbers, email addresses, payment methods, or geographical locations). The developer does not operate servers that collect or log personal identities.
           </p>
         </section>
 
@@ -138,7 +138,7 @@ const email = app.contactEmail || portfolioData.personal.email || "devphotonsupp
         <section class="policy-section">
           <h2>3. Telemetry, Analytics & System Permissions</h2>
           <p>
-            <strong>No Tracking or Diagnostics:</strong> The Application does not contain hidden telemetry modules, behavioral trackers, or analytics software (e.g., Unity Analytics, Google Analytics, Firebase). We do not record or analyze your usage frequency, system sessions, or background multitasking activities.
+            <strong>No Tracking or Diagnostics:</strong> The Application contains zero hidden telemetry modules, behavioral trackers, or analytics software (e.g., Unity Analytics, Google Analytics, Firebase). Usage frequency, device sessions, and background multitasking activities are never monitored or recorded.
           </p>
           <p>
             <strong>Input & Runtime Behavior:</strong> {app.permissionsDescription}
@@ -149,7 +149,7 @@ const email = app.contactEmail || portfolioData.personal.email || "devphotonsupp
         <section class="policy-section">
           <h2>4. Local Storage & Device Configuration</h2>
           <p>
-            The Application may persist lightweight configuration parameters locally on your storage drive (such as standard Windows LocalAppData or local user registry settings). These settings typically include:
+            The Application may persist lightweight configuration parameters locally on the storage drive (such as standard device sandbox files, PlayerPrefs, or local settings). These settings typically include:
           </p>
           <ul>
             {app.localDataStored.map((item) => (
@@ -157,7 +157,7 @@ const email = app.contactEmail || portfolioData.personal.email || "devphotonsupp
             ))}
           </ul>
           <p>
-            All configuration parameters remain exclusively on your local device and are never uploaded, synced, or shared across external networks.
+            All configuration parameters remain exclusively on the local device and are never uploaded, synced, or shared across external networks.
           </p>
         </section>
 
@@ -176,8 +176,7 @@ const email = app.contactEmail || portfolioData.personal.email || "devphotonsupp
             The download, purchase verification, and initial installation of {app.name} are managed by platform store partners ({app.stores.join(', ')}).
           </p>
           <p>
-            Platform-level diagnostics or payment processing executed by Microsoft or other store platforms are governed by their respective terms and privacy policies (e.g., the 
-            <a href="https://privacy.microsoft.com/en-us/privacystatement" target="_blank" rel="noopener noreferrer">Microsoft Privacy Statement</a>). We never receive or store your billing data or Microsoft account passwords.
+            Platform-level diagnostics or payment processing executed by Google Play, Microsoft, or other store platforms are governed by their respective terms and privacy policies. The developer never receives, accesses, or stores payment credentials, credit cards, or account passwords.
           </p>
         </section>
 
@@ -193,7 +192,7 @@ const email = app.contactEmail || portfolioData.personal.email || "devphotonsupp
         <section class="policy-section">
           <h2>8. Data Retention & Uninstallation</h2>
           <p>
-            Because we do not collect or store user data on remote servers, there is no remote data to retain or erase. To delete all local preference files created by the application, uninstall {app.name} using standard Windows Settings (<em>Settings &gt; Apps &gt; Installed apps</em>).
+            Because user data is never collected or stored on remote servers, no remote personal data exists to retain or erase. To delete all local preference files created by the application, uninstall {app.name} using standard operating system application settings.
           </p>
         </section>
 
@@ -201,7 +200,7 @@ const email = app.contactEmail || portfolioData.personal.email || "devphotonsupp
         <section class="policy-section">
           <h2>9. Changes to This Privacy Policy</h2>
           <p>
-            We may update this Privacy Policy from time to time to maintain compliance with relevant store policies and legal regulations. Any revisions will be published immediately on this page with an updated "Last Updated" timestamp.
+            This Privacy Policy may be updated periodically to maintain compliance with relevant store policies and legal regulations. Any revisions will be published immediately on this page with an updated "Last Updated" timestamp.
           </p>
         </section>
 
