@@ -19,36 +19,61 @@ export interface AppPrivacyData {
 
 export const appsPrivacyList: AppPrivacyData[] = [
   {
-    id: 'cosmic-eye',
+    id: 'cosmos-explorer',
     aliases: [
-      'cosmic-eye-live-interactive-3d-wallpaper',
-      'cosmic-eye-wallpaper',
-      'cosmic-eye-android',
+      'cosmos-explorer-3d',
       'cosmos-android',
-      'com.devephotoncosmosapp'
+      'com.devephotoncosmosapp',
+      'playstore'
     ],
-    name: 'Cosmic Eye Live Interactive 3D Wallpaper',
-    category: 'Interactive 3D Live Wallpaper & Space Simulation',
-    platform: 'Android & Windows (Google Play & Microsoft Store)',
-    stores: ['Google Play Store', 'Microsoft Store'],
+    name: 'Cosmos Explorer',
+    category: 'Interactive 3D Solar System Simulation & Space Exploration',
+    platform: 'Android (Google Play Store)',
+    stores: ['Google Play Store'],
     lastUpdated: 'November 18, 2026',
     summary:
-      'Cosmic Eye Live Interactive 3D Wallpaper operates strictly locally on your device. It does not collect, store, transmit, or sell any personal data, telemetry, or device identifiers.',
+      'Cosmos Explorer is an interactive 3D solar system simulation and space exploration app for Android. It operates strictly locally on your device with zero personal data collection, zero telemetry, and zero tracking.',
     collectsPersonalData: false,
     collectsAnalytics: false,
     hasInAppPurchases: true,
     requiresInternet: false,
     localDataStored: [
-      'Display resolution, orientation preferences & target monitor settings',
-      'Graphics quality, particle density, and shader performance presets',
-      'Simulation speed, camera bookmarks, and parallax sensitivity settings',
-      'Local progress and unlocked celestial bodies (stored in app sandbox via PlayerPrefs/JSON)',
-      'Gyroscope and accelerometer real-time tilt inputs (processed in volatile device RAM only)'
+      'Simulation speed, orbital time scales, and celestial camera bookmarks',
+      'Graphics quality, shader details, and power-saving frame rate limits',
+      'Narrative space stories and expedition progression saves (stored in local device sandbox via PlayerPrefs/JSON)',
+      'Gyroscope and accelerometer real-time parallax tilt data (processed in volatile device RAM only)'
     ],
     permissionsDescription:
-      'The application requests standard permissions strictly for on-device features: SET_WALLPAPER to render the real-time 3D simulation as your home and lock screen wallpaper, Gyroscope/Accelerometer sensors to provide tilt-reactive parallax effects (processed in volatile memory and never recorded or transmitted), and Google Play Billing (BILLING) to facilitate optional in-app feature unlocks securely handled entirely by Google Play.',
+      'Cosmos Explorer requests standard Android permissions strictly for on-device features: Gyroscope and Accelerometer sensors to enable responsive tilt-reactive parallax effects (processed in volatile memory and never recorded or transmitted), SET_WALLPAPER to render the real-time 3D solar system as your live wallpaper if enabled, and Google Play Billing (BILLING) for optional feature and story unlocks securely managed by Google Play.',
     contactEmail: 'devphotonsupport@gmail.com',
     notes: 'Package ID: com.devephotoncosmosapp'
+  },
+  {
+    id: 'cosmic-eye',
+    aliases: [
+      'cosmic-eye-live-interactive-3d-wallpaper',
+      'cosmic-eye-wallpaper'
+    ],
+    name: 'Cosmic Eye Live Interactive 3D Wallpaper',
+    category: 'Interactive 3D Live Wallpaper & Desktop Visualizer',
+    platform: 'Microsoft Windows (Windows 10 / 11)',
+    stores: ['Microsoft Store'],
+    lastUpdated: 'September 21, 2026',
+    summary:
+      'Cosmic Eye Live Interactive 3D Wallpaper operates strictly locally on your Windows PC. It does not collect, store, transmit, or sell any personal data, telemetry, or device identifiers.',
+    collectsPersonalData: false,
+    collectsAnalytics: false,
+    hasInAppPurchases: false,
+    requiresInternet: false,
+    localDataStored: [
+      'Display resolution & target monitor preferences (for multi-display setups)',
+      'Graphics quality, particle density, and shader presets',
+      'Target frame rate limit (FPS cap) and performance power-saving toggles',
+      'Local interaction sensitivity and camera view settings'
+    ],
+    permissionsDescription:
+      'The application runs as an interactive desktop background on Windows. It processes local cursor movement solely in volatile memory (RAM) in real time to render responsive 3D visuals. It never monitors keystrokes, records screens, or tracks user behavior.',
+    contactEmail: 'devphotonsupport@gmail.com'
   }
 ];
 

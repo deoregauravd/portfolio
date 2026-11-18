@@ -1,14 +1,16 @@
-# Privacy Policy for Cosmic Eye Live Interactive 3D Wallpaper
+# Privacy Policy for Cosmos Explorer
 
 **Last Updated:** November 18, 2026  
 **Developer / Publisher:** DevPhoton  
 **Application ID:** `com.devephotoncosmosapp`  
-**Contact Email:** [devphotonsupport@gmail.com](mailto:devphotonsupport@gmail.com)
+**Platform:** Android (Google Play Store)  
+**Contact Email:** [devphotonsupport@gmail.com](mailto:devphotonsupport@gmail.com)  
+**Website:** [https://devphoton.com](https://devphoton.com)  
 
 ---
 
 ### Introduction
-DevPhoton ("we", "our", or "us") respects your privacy. This Privacy Policy describes how **Cosmic Eye Live Interactive 3D Wallpaper** ("the App") handles information on mobile devices running Android and desktop platforms.
+DevPhoton ("we", "our", or "us") respects your privacy. This Privacy Policy describes how **Cosmos Explorer** ("the App"), an interactive 3D solar system simulation and space exploration application on Android, handles information.
 
 By downloading, installing, or using the App, you agree to the terms outlined in this policy.
 
@@ -18,49 +20,56 @@ By downloading, installing, or using the App, you agree to the terms outlined in
 **We do not collect, harvest, store, or transmit any personally identifiable information (PII).**
 
 * **No Account Required:** You do not need to register, create an account, or log in to use the App.
-* **No Personal Data:** We do not collect names, email addresses, phone numbers, contacts, photos, or precise GPS location.
+* **No Personal Data:** We do not collect names, email addresses, phone numbers, contacts, photos, or precise GPS location coordinates.
+* **No Telemetry or Behavioral Tracking:** The App does not contain third-party analytics SDKs, user tracking modules, or diagnostic telemetry.
 
 ---
 
-### 2. Device Permissions and On-Device Data
+### 2. Android Hardware Permissions and On-Device Data
 
-The App may request or use specific device hardware and system permissions strictly for on-device functionality:
+The App requests standard Android device permissions strictly to deliver core interactive simulation features on your device:
 
-* **Wallpaper & Screen Management (`SET_WALLPAPER`, `SET_WALLPAPER_HINTS`):**
-  Used exclusively to apply, render, and update the interactive 3D scene as your home or lock screen live wallpaper.
-* **Sensors (Gyroscope & Accelerometer):**
-  Used exclusively in real time to provide interactive parallax and tilt-reactive camera movements while viewing the solar system. Sensor data is processed in volatile device memory in real time and is never recorded, stored, or transmitted.
-* **Local Storage & Preferences:**
-  The App stores display settings, simulation speeds, audio levels, unlocked items, and story progress locally on your device (using standard Unity PlayerPrefs and local app sandbox files). This data remains entirely on your device and is deleted when you clear app data or uninstall the application.
-* **Billing Permission (`com.android.vending.BILLING`):**
-  Used exclusively to facilitate in-app purchases (such as unlocking additional celestial bodies or features) through the official Google Play Billing API. All payment processing is handled directly by Google Play. We never receive or store your credit card or financial information.
-
----
-
-### 3. Third-Party Services and External Links
-
-* **Google Play Services:** The App uses standard Google Play services for distribution, licensing, and in-app billing. Google may collect certain anonymized device identifiers and diagnostic data according to their own privacy policies: [Google Privacy Policy](https://policies.google.com/privacy).
-* **External Links:** Certain educational or informational sections (such as celestial body descriptions or citations) may provide links to external websites (e.g., NASA, Wikipedia, scientific catalogs). Tapping these links opens your device's default web browser. We do not control and are not responsible for the privacy practices or content of third-party websites.
+* **Motion Sensors (Gyroscope & Accelerometer):**
+  Used exclusively in real-time volatile memory (RAM) to provide responsive tilt-reactive parallax effects and interactive camera movements when viewing celestial bodies. Sensor data is processed in real time and is never recorded, stored, or transmitted off your device.
+* **Wallpaper Service (`SET_WALLPAPER`, `SET_WALLPAPER_HINTS`):**
+  Used exclusively if you choose to activate the live wallpaper feature, allowing the real-time 3D simulation to render as your home and lock screen wallpaper.
+* **Local Storage & Sandbox Saves:**
+  The App stores simulation speed presets, visual scale configurations, celestial bookmarks, unlocked narrative stories (such as space expedition logs), and graphics quality settings locally on your device (using standard Unity PlayerPrefs and local app sandbox JSON files). This data remains 100% on your device and is erased when you clear app data or uninstall the application.
+* **Google Play In-App Billing (`com.android.vending.BILLING`):**
+  Used exclusively to facilitate optional in-app feature and story unlocks through the official Google Play Billing API. All payment processing is handled directly by Google Play. We never receive or store your credit card or financial information.
 
 ---
 
-### 4. Children’s Privacy (COPPA / GDPR Compliance)
-The App does not knowingly collect or solicit any personal information from children under the age of 13 (or under 16 in the European Union). Because the App does not collect any personal data, it complies with child privacy regulations including COPPA and GDPR.
+### 3. Third-Party Services and Scientific Links
+
+* **Google Play Services:** The App uses standard Google Play services for distribution, digital licensing, and in-app billing. Google may collect certain anonymized device identifiers and diagnostic metrics according to their own privacy policy: [Google Privacy Policy](https://policies.google.com/privacy).
+* **Scientific & Educational Links:** Celestial body descriptions, planetary catalogs, and mission logs may provide optional hyperlinks to verified external educational websites (such as NASA, JPL, or public scientific catalogs). Tapping these links opens your device's default web browser. We do not control and are not responsible for the privacy practices of third-party websites.
+
+---
+
+### 4. Children’s Privacy (COPPA & GDPR Compliance)
+Cosmos Explorer is designed for general audiences and space enthusiasts of all ages. The App does not knowingly collect or solicit personal information from children under the age of 13 (or under 16 in the European Union). Because the App collects zero personal data, it fully complies with child privacy regulations including COPPA, GDPR, and Google Play Families policies.
 
 ---
 
 ### 5. Security of Your Information
-Because the App does not transmit or store personal information on remote servers, your personal data is not exposed to external database breaches. All preference data is isolated within the sandboxed storage provided by the operating system.
+Because the App does not transmit or store personal information on remote cloud servers, your personal data is not exposed to external database breaches. All preference data is isolated within the sandboxed storage provided by the Android operating system.
 
 ---
 
-### 6. Changes to This Privacy Policy
+### 6. Data Erasure
+You can permanently delete all locally stored preferences, story saves, and bookmarks at any time by navigating to *Android Settings > Apps > Cosmos Explorer > Storage > Clear Data* or by uninstalling the application.
+
+---
+
+### 7. Changes to This Privacy Policy
 We may update this Privacy Policy from time to time. Any changes will be posted with an updated "Last Updated" date at the top of this document. Continued use of the App following any changes indicates your acceptance of the revised policy.
 
 ---
 
-### 7. Contact Us
-If you have questions, feedback, or concerns regarding this Privacy Policy or the practices of this application, please contact us at:
+### 8. Contact Us
+If you have questions, feedback, or concerns regarding this Privacy Policy or Cosmos Explorer, please contact us at:
 
 * **Developer:** DevPhoton
 * **Support Email:** [devphotonsupport@gmail.com](mailto:devphotonsupport@gmail.com)
+* **Website:** [https://devphoton.com](https://devphoton.com)
