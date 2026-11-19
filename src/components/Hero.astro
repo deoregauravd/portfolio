@@ -274,7 +274,7 @@ const { personal, socials } = portfolioData;
   .hero-section {
     padding: 4.5rem 0 3.5rem 0;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .gemini-ambient-halo {
@@ -404,8 +404,8 @@ const { personal, socials } = portfolioData;
   }
 
   @keyframes coreGlow {
-    0% { transform: scale(0.92); opacity: 0.85; filter: drop-shadow(0 0 2px #ffffff); }
-    100% { transform: scale(1.08); opacity: 1; filter: drop-shadow(0 0 8px #00f0ff); }
+    0% { transform: scale(0.92); opacity: 0.85; }
+    100% { transform: scale(1.08); opacity: 1; }
   }
 
   /* HUD Cyber Brackets */
@@ -531,12 +531,18 @@ const { personal, socials } = portfolioData;
 
   .hero-content {
     background: var(--bg-card-plasma, var(--bg-card));
-    backdrop-filter: blur(24px) saturate(190%);
-    -webkit-backdrop-filter: blur(24px) saturate(190%);
-    border: 1px solid var(--border-subtle);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1.5px solid rgba(82, 191, 205, 0.9);
     border-radius: var(--radius-lg);
     padding: 2.25rem 2.25rem;
-    box-shadow: var(--shadow-lg), 0 0 35px -5px rgba(26, 115, 232, 0.12);
+    box-shadow: 
+      0 0 1px 1px rgba(56, 189, 248, 0.48),
+      0 0 24px 3px rgba(56, 189, 248, 0.65),
+      0 14px 36px 3px rgba(56, 189, 248, 0.52),
+      0 0 48px 6px rgba(14, 165, 233, 0.38),
+      0 26px 72px 10px rgba(14, 165, 233, 0.26),
+      var(--shadow-lg);
     position: relative;
     overflow: hidden;
     transition: all var(--transition-smooth);
@@ -544,6 +550,8 @@ const { personal, socials } = portfolioData;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    will-change: transform;
+    transform: translateZ(0);
   }
 
   .hero-content > * {
@@ -746,15 +754,23 @@ const { personal, socials } = portfolioData;
 
   .gemini-card-wrapper {
     background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
+    border: 1.5px solid rgba(82, 191, 205, 0.9);
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg), 0 0 35px -5px rgba(26, 115, 232, 0.12);
+    box-shadow: 
+      0 0 1px 1px rgba(56, 189, 248, 0.48),
+      0 0 24px 3px rgba(56, 189, 248, 0.65),
+      0 14px 36px 3px rgba(56, 189, 248, 0.52),
+      0 0 48px 6px rgba(14, 165, 233, 0.38),
+      0 26px 72px 10px rgba(14, 165, 233, 0.26),
+      var(--shadow-lg);
     overflow: hidden;
     position: relative;
     transition: all var(--transition-smooth);
     height: 100%;
     display: flex;
     flex-direction: column;
+    will-change: transform;
+    transform: translateZ(0);
   }
 
   .gemini-card-tabs {

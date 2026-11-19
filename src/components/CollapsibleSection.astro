@@ -66,20 +66,34 @@ const {
 <style>
   .collapsible-section {
     padding: 0;
-    transition: padding 0.25s ease;
+    transition: padding 0.25s ease, margin 0.25s ease;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 450px;
+  }
+
+  .collapsible-section.expanded {
+    content-visibility: visible;
+    margin: 0.65rem 0;
   }
 
   /* Single Unified Glass Card for both Header and Expanded Content */
   .collapsible-panel-card {
     border-radius: var(--radius-md);
     background: var(--bg-card-plasma, var(--bg-card));
-    backdrop-filter: blur(28px) saturate(190%);
-    -webkit-backdrop-filter: blur(28px) saturate(190%);
-    border: 1px solid var(--border-subtle);
-    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1.5px solid rgba(56, 189, 248, 0.48);
+    box-shadow: 
+      0 0 1px 1px rgba(56, 189, 248, 0.32),
+      0 0 18px 2px rgba(56, 189, 248, 0.38),
+      0 8px 25px 2px rgba(56, 189, 248, 0.3),
+      0 0 35px 3px rgba(14, 165, 233, 0.16),
+      var(--shadow-sm);
     transition: all var(--transition-fast);
     position: relative;
     overflow: hidden;
+    will-change: transform;
+    transform: translateZ(0);
   }
 
   .collapsible-panel-card::before {
@@ -96,8 +110,13 @@ const {
   }
 
   .collapsible-panel-card:hover {
-    border-color: var(--border-focus);
-    box-shadow: var(--shadow-md);
+    border-color: rgba(82, 191, 205, 0.95);
+    box-shadow: 
+      0 0 2px 1px rgba(56, 189, 248, 0.55),
+      0 0 24px 3px rgba(56, 189, 248, 0.65),
+      0 12px 32px 3px rgba(56, 189, 248, 0.52),
+      0 0 45px 5px rgba(14, 165, 233, 0.35),
+      var(--shadow-md);
   }
 
   .collapsible-panel-card:hover::before {
@@ -105,8 +124,14 @@ const {
   }
 
   .collapsible-section.expanded .collapsible-panel-card {
-    border-color: var(--border-focus);
-    box-shadow: var(--shadow-md), 0 16px 40px -8px rgba(0, 0, 0, 0.16);
+    border: 1.5px solid rgba(82, 191, 205, 1);
+    box-shadow: 
+      0 0 2px 1px rgba(56, 189, 248, 0.6),
+      0 0 26px 4px rgba(56, 189, 248, 0.72),
+      0 14px 40px 3px rgba(56, 189, 248, 0.58),
+      0 0 55px 7px rgba(14, 165, 233, 0.45),
+      0 25px 80px 12px rgba(14, 165, 233, 0.28),
+      0 16px 40px -8px rgba(0, 0, 0, 0.45);
   }
 
   .collapsible-section.expanded .collapsible-panel-card::before {
@@ -115,8 +140,14 @@ const {
 
   [data-theme="dark"] .collapsible-section.expanded .collapsible-panel-card {
     background: linear-gradient(135deg, rgba(16, 18, 24, 0.78) 0%, rgba(24, 20, 42, 0.62) 50%, rgba(32, 16, 38, 0.7) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 16px 48px -8px rgba(0, 0, 0, 0.55), 0 0 24px -4px rgba(138, 180, 248, 0.12);
+    border: 1.5px solid rgba(82, 191, 205, 1);
+    box-shadow: 
+      0 0 2px 1px rgba(56, 189, 248, 0.65),
+      0 0 28px 4px rgba(56, 189, 248, 0.78),
+      0 16px 44px 4px rgba(56, 189, 248, 0.62),
+      0 0 60px 8px rgba(14, 165, 233, 0.5),
+      0 30px 90px 14px rgba(14, 165, 233, 0.32),
+      0 16px 48px -8px rgba(0, 0, 0, 0.65);
   }
 
   /* Accordion Header Bar inside the unified card */
