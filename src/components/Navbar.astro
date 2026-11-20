@@ -179,7 +179,12 @@ import { portfolioData } from '../data/portfolio';
     border-radius: 12px;
     background: var(--gradient-brand);
     color: #ffffff;
-    box-shadow: 0 4px 14px rgba(26, 115, 232, 0.35);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  }
+
+  [data-theme="dark"] .brand-badge {
+    color: #09090b;
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.12);
   }
 
   .brand-sparkle {
@@ -228,7 +233,12 @@ import { portfolioData } from '../data/portfolio';
     background: var(--gradient-brand);
     color: #ffffff;
     border-color: transparent;
-    box-shadow: 0 4px 14px rgba(26, 115, 232, 0.3);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+
+  [data-theme="dark"] .btn-resume:hover {
+    color: #09090b;
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.12);
   }
 
   .theme-btn, .mobile-btn {

@@ -210,21 +210,29 @@ import Footer from '../components/Footer.astro';
   }
 
   #master-expand-all {
-    background: linear-gradient(135deg, #1a73e8 0%, #7c3aed 55%, #d96570 100%);
+    background: var(--gradient-brand);
     color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 4px 16px rgba(26, 115, 232, 0.42), 0 0 14px rgba(124, 58, 237, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
     padding: 0.42rem 1.05rem;
     font-size: 0.8rem;
     font-weight: 800;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  [data-theme="dark"] #master-expand-all {
+    color: #09090b;
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.12);
   }
 
   #master-expand-all:hover {
     transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 6px 22px rgba(26, 115, 232, 0.6), 0 0 20px rgba(124, 58, 237, 0.5);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
     border-color: #ffffff;
-    color: #ffffff;
+  }
+
+  [data-theme="dark"] #master-expand-all:hover {
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.2);
   }
 
   .credentials-divider-wrap {
