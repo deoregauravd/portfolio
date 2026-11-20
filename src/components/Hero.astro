@@ -9,17 +9,8 @@ const { personal, socials } = portfolioData;
   <div class="gemini-ambient-halo" aria-hidden="true"></div>
 
   <div class="container hero-shell">
-    <!-- Top Center Aligned Header Bar: Status Pill, CTA Actions, Social Links -->
+    <!-- Top Center Aligned Header Bar: CTA Actions & Social Links -->
     <div class="hero-top-bar">
-      {personal.availableForHire && (
-        <div class="status-pill">
-          <svg class="gemini-sparkle-svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-            <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
-          </svg>
-          <span class="status-dot"></span>
-          <span>{personal.availabilityText}</span>
-        </div>
-      )}
 
       <!-- Top Controls: Get In Touch (Left), Connect (Between), Explore Work (Right) -->
       <div class="hero-top-controls">
@@ -85,15 +76,6 @@ const { personal, socials } = portfolioData;
     <div class="hero-container">
       <div class="hero-content hero-panel glass-card">
         <div class="intro-header">
-          <div class="intro-tag">
-            <span class="sparkle-icon">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
-                <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
-              </svg>
-            </span>
-            <span>DevPhoton Engineering Architecture</span>
-          </div>
-
           <h1 class="hero-title">
             <span class="gradient-text">DevPhoton</span>
             <span class="hero-title-sep"> | </span>
@@ -558,25 +540,6 @@ const { personal, socials } = portfolioData;
     background: var(--gradient-brand);
     opacity: 0.9;
     z-index: 2;
-  }
-
-  .intro-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    width: fit-content;
-    white-space: nowrap;
-    font-family: var(--font-sans);
-    font-size: 0.725rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--accent-blue);
-    background: var(--bg-tertiary);
-    padding: 0.25rem 0.7rem;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--border-subtle);
-    margin-bottom: 0.85rem;
   }
 
   .gemini-sparkle-svg {

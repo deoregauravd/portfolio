@@ -169,7 +169,7 @@ export const portfolioData: PortfolioData = {
     location: "Mumbai, India",
     email: "devphotonsupport@gmail.com",
     availableForHire: true,
-    availabilityText: "Open for Opportunities & Collaborations",
+    availabilityText: "",
     yearsOfExperience: "5 Years",
     completedProjects: "16+ Shipped",
     avatar: "/images/profile.webp",
