@@ -109,141 +109,89 @@ const { personal, socials } = portfolioData;
         </div>
       </div>
 
-      <!-- Gemini Profile Showcase & Interactive Engine Card -->
+      <!-- Gemini Profile Showcase Card -->
       <div class="hero-visual">
-      <div class="gemini-card-wrapper glass-card">
-        <!-- Tab Switcher -->
-        <div class="gemini-card-tabs" role="tablist">
-          <button id="tab-profile-btn" class="tab-pill active" type="button" role="tab" aria-selected="true" aria-label="Profile Spotlight" title="Profile Spotlight">
-            <svg class="gemini-sparkle-svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-              <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
-            </svg>
-          </button>
-          <button id="tab-code-btn" class="tab-pill" type="button" role="tab" aria-selected="false" aria-label="XR Code Terminal" title="XR Code Terminal">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="16 18 22 12 16 6"></polyline>
-              <polyline points="8 6 2 12 8 18"></polyline>
-            </svg>
-          </button>
-        </div>
+        <div class="gemini-card-wrapper glass-card">
+          <div class="gemini-showcase-content">
+            <div class="profile-spotlight-cover">
+              <!-- Background Cover Image Layer: Gaurav's photo positioned with face visible on right -->
+              <picture class="spotlight-cover-media">
+                <source srcset="/images/profile.webp" type="image/webp" />
+                <img
+                  src={personal.avatar || "/images/profile.jpg"}
+                  alt={personal.name}
+                  class="spotlight-cover-img"
+                  width="600"
+                  height="800"
+                  loading="eager"
+                  decoding="async"
+                />
+              </picture>
 
-        <!-- Panel 1: Profile Spotlight with LinkedIn Photo -->
-        <div id="panel-profile" class="gemini-panel active">
-          <div class="profile-spotlight-cover">
-            <!-- Background Cover Image Layer: Gaurav's photo positioned with face visible on right -->
-            <picture class="spotlight-cover-media">
-              <source srcset="/images/profile.webp" type="image/webp" />
-              <img
-                src={personal.avatar || "/images/profile.jpg"}
-                alt={personal.name}
-                class="spotlight-cover-img"
-                width="600"
-                height="800"
-                loading="eager"
-                decoding="async"
-              />
-            </picture>
+              <!-- Directional scrim gradient overlay -->
+              <div class="spotlight-scrim"></div>
 
-            <!-- Directional scrim gradient overlay -->
-            <div class="spotlight-scrim"></div>
+              <!-- Content shifted to left side where empty bokeh space is -->
+              <div class="spotlight-content">
+                <div class="spotlight-tag">
+                  <span class="sparkle-icon">
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="url(#sparkleHeroGrad)">
+                      <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
+                    </svg>
+                  </span>
+                  <span>Spatial Computing & AI</span>
+                </div>
 
-            <!-- Content shifted to left side where empty bokeh space is -->
-            <div class="spotlight-content">
-              <div class="spotlight-tag">
-                <span class="sparkle-icon">
-                  <svg viewBox="0 0 24 24" width="13" height="13" fill="url(#sparkleHeroGrad)">
-                    <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
-                  </svg>
-                </span>
-                <span>Spatial Computing & AI</span>
-              </div>
+                <h3 class="profile-name">{personal.name}</h3>
+                <p class="profile-role">{personal.headline}</p>
 
-              <h3 class="profile-name">{personal.name}</h3>
-              <p class="profile-role">{personal.headline}</p>
-
-              <div class="profile-badge-row">
-                <span class="location-badge">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                  </svg>
-                  <span>{personal.location}</span>
-                </span>
-                <span class="online-indicator">
-                  <span class="dot-pulse"></span>
-                  <span>Active Now</span>
-                </span>
+                <div class="profile-badge-row">
+                  <span class="location-badge">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span>{personal.location}</span>
+                  </span>
+                  <span class="online-indicator">
+                    <span class="dot-pulse"></span>
+                    <span>Active Now</span>
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Feature Metric Highlights with Animated Counters -->
-          <div class="gemini-metrics-grid">
-            <div class="gemini-metric-box">
-              <span class="metric-num gradient-text hero-count" data-target="10" data-suffix="M+">10M+</span>
-              <span class="metric-desc">Users & OTT Reach</span>
+            <!-- Feature Metric Highlights with Animated Counters -->
+            <div class="gemini-metrics-grid">
+              <div class="gemini-metric-box">
+                <span class="metric-num gradient-text hero-count" data-target="10" data-suffix="M+">10M+</span>
+                <span class="metric-desc">Users & OTT Reach</span>
+              </div>
+              <div class="gemini-metric-box">
+                <span class="metric-num gradient-text hero-count" data-target="4" data-suffix="M+">4M+</span>
+                <span class="metric-desc">Rendered Objects</span>
+              </div>
+              <div class="gemini-metric-box">
+                <span class="metric-num gradient-text hero-count" data-target="300" data-prefix="+" data-suffix="%">+300%</span>
+                <span class="metric-desc">Efficiency Gain</span>
+              </div>
+              <div class="gemini-metric-box">
+                <span class="metric-num gradient-text hero-count" data-target="29" data-suffix="+">29+</span>
+                <span class="metric-desc">VR Simulations</span>
+              </div>
             </div>
-            <div class="gemini-metric-box">
-              <span class="metric-num gradient-text hero-count" data-target="4" data-suffix="M+">4M+</span>
-              <span class="metric-desc">Rendered Objects</span>
-            </div>
-            <div class="gemini-metric-box">
-              <span class="metric-num gradient-text hero-count" data-target="300" data-prefix="+" data-suffix="%">+300%</span>
-              <span class="metric-desc">Efficiency Gain</span>
-            </div>
-            <div class="gemini-metric-box">
-              <span class="metric-num gradient-text hero-count" data-target="29" data-suffix="+">29+</span>
-              <span class="metric-desc">VR Simulations</span>
-            </div>
-          </div>
 
-          <!-- Tech stack tags -->
-          <div class="gemini-chips-footer">
-            <span class="tech-chip">Unity 3D</span>
-            <span class="tech-chip">Meta Quest 3</span>
-            <span class="tech-chip">WebXR</span>
-            <span class="tech-chip">C# / .NET</span>
-            <span class="tech-chip">Agentic AI</span>
+            <!-- Tech stack tags -->
+            <div class="gemini-chips-footer">
+              <span class="tech-chip">Unity 3D</span>
+              <span class="tech-chip">Meta Quest 3</span>
+              <span class="tech-chip">WebXR</span>
+              <span class="tech-chip">C# / .NET</span>
+              <span class="tech-chip">Agentic AI</span>
+            </div>
           </div>
         </div>
-
-        <!-- Panel 2: XR Code Terminal -->
-        <div id="panel-code" class="gemini-panel">
-          <div class="terminal-header">
-            <div class="terminal-dots">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <span class="terminal-badge">Meta Quest 3 / URP</span>
-          </div>
-
-          <div class="terminal-body">
-            <div class="code-line"><span class="token-kw">using</span> UnityEngine;</div>
-            <div class="code-line"><span class="token-kw">using</span> UnityEngine.XR;</div>
-            <div class="code-line"><span class="token-kw">using</span> AgenticAI.Runtime;</div>
-            <div class="code-line">&nbsp;</div>
-            <div class="code-line"><span class="token-comment">// Gaurav Deore - Spatial Engineering</span></div>
-            <div class="code-line"><span class="token-kw">public class</span> <span class="token-cls">SpatialSimController</span> : <span class="token-cls">MonoBehaviour</span> &#123;</div>
-            <div class="code-line indent-1">[SerializeField] <span class="token-kw">private float</span> targetFPS = <span class="token-num">90f</span>;</div>
-            <div class="code-line indent-1">[SerializeField] <span class="token-kw">private bool</span> zeroLatency = <span class="token-bool">true</span>;</div>
-            <div class="code-line">&nbsp;</div>
-            <div class="code-line indent-1"><span class="token-kw">void</span> <span class="token-fn">InitializeExperience</span>() &#123;</div>
-            <div class="code-line indent-2">XRSettings.enabled = <span class="token-bool">true</span>;</div>
-            <div class="code-line indent-2">OptimizeAssetPipeline(<span class="token-str">"MetaQuest3"</span>);</div>
-            <div class="code-line indent-2">Debug.Log(<span class="token-str">"✓ XR Ready: 300% Speedup"</span>);</div>
-            <div class="code-line indent-1">&#125;</div>
-            <div class="code-line">&#125;</div>
-          </div>
-
-          <div class="terminal-footer">
-            <div class="tech-chip">Unity 3D</div>
-            <div class="tech-chip">Meta Quest 3</div>
-            <div class="tech-chip">WebXR</div>
-            <div class="tech-chip">C# / .NET</div>
-            <div class="tech-chip">Agentic AI</div>
-          </div>
-        </div>
+      </div>
       </div>
     </div>
   </div>
@@ -724,71 +672,25 @@ const { personal, socials } = portfolioData;
     flex-direction: column;
   }
 
-  .gemini-card-tabs {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    background: var(--bg-tertiary);
-    border-bottom: 1px solid var(--border-subtle);
+  .gemini-card-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-brand);
+    opacity: 0.9;
+    z-index: 2;
   }
 
-  .tab-pill {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.45rem 0.65rem;
-    min-width: 34px;
-    height: 32px;
-    border-radius: var(--radius-full);
-    background: transparent;
-    border: 1px solid transparent;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-  }
-
-  .tab-pill:hover {
-    color: var(--text-primary);
-  }
-
-  .tab-pill.active {
-    background: var(--bg-secondary);
-    color: var(--accent-blue);
-    border-color: rgba(56, 189, 248, 0.5);
-    box-shadow: 
-      0 0 14px -1px rgba(56, 189, 248, 0.42),
-      0 2px 6px rgba(0, 0, 0, 0.05);
-  }
-
-  [data-theme="dark"] .tab-pill.active {
-    border-color: rgba(120, 217, 236, 0.6);
-    box-shadow: 
-      0 0 16px -1px rgba(120, 217, 236, 0.48),
-      0 2px 8px rgba(0, 0, 0, 0.3);
-  }
-
-  .tab-pill.active .gemini-sparkle-svg {
-    filter: drop-shadow(0 0 5px var(--accent-blue));
-  }
-
-  .gemini-panel {
-    display: none;
-    padding: 1.5rem;
+  .gemini-showcase-content {
+    padding: 1.75rem;
     height: 100%;
-  }
-
-  .gemini-panel.active {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
-    animation: fadeIn 0.25s ease-in-out;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
   }
 
   /* Profile Spotlight Cover Banner */
@@ -992,91 +894,6 @@ const { personal, socials } = portfolioData;
     border-top: 1px solid var(--border-subtle);
   }
 
-  /* Terminal Card Panel */
-  #panel-code {
-    padding: 0;
-  }
-
-  #panel-code.active {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-  }
-
-  #panel-code .terminal-body {
-    flex: 1;
-  }
-
-  .terminal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.85rem 1.25rem;
-    background: var(--bg-tertiary);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .terminal-dots {
-    display: flex;
-    gap: 6px;
-  }
-
-  .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-  }
-
-  .dot-red { background: #ea4335; }
-  .dot-yellow { background: #fbbc04; }
-  .dot-green { background: #34a853; }
-
-  .terminal-title {
-    font-family: var(--font-mono);
-    font-size: 0.775rem;
-    color: var(--text-secondary);
-  }
-
-  .terminal-badge {
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    padding: 0.2rem 0.55rem;
-    background: var(--badge-bg);
-    color: var(--accent-blue);
-    border-radius: var(--radius-full);
-    border: 1px solid var(--badge-border);
-  }
-
-  .terminal-body {
-    padding: 1.25rem;
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    line-height: 1.65;
-    background: #18191c;
-    color: #e3e3e3;
-    overflow-x: auto;
-  }
-
-  .indent-1 { padding-left: 1.25rem; }
-  .indent-2 { padding-left: 2.5rem; }
-
-  .token-kw { color: #f28b82; font-weight: 600; }
-  .token-cls { color: #8ab4f8; }
-  .token-fn { color: #c58af9; }
-  .token-str { color: #81c995; }
-  .token-num { color: #fdd663; }
-  .token-bool { color: #fcad70; }
-  .token-comment { color: #9aa0a6; font-style: italic; }
-
-  .terminal-footer {
-    padding: 0.85rem 1.25rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    background: var(--bg-tertiary);
-    border-top: 1px solid var(--border-subtle);
-  }
-
   .tech-chip {
     font-family: var(--font-mono);
     font-size: 0.75rem;
@@ -1195,32 +1012,6 @@ const { personal, socials } = portfolioData;
 </style>
 
 <script>
-  // Gemini Tab Switcher Logic
-  const profileTab = document.getElementById('tab-profile-btn');
-  const codeTab = document.getElementById('tab-code-btn');
-  const panelProfile = document.getElementById('panel-profile');
-  const panelCode = document.getElementById('panel-code');
-
-  profileTab?.addEventListener('click', () => {
-    profileTab.classList.add('active');
-    profileTab.setAttribute('aria-selected', 'true');
-    codeTab?.classList.remove('active');
-    codeTab?.setAttribute('aria-selected', 'false');
-
-    panelProfile?.classList.add('active');
-    panelCode?.classList.remove('active');
-  });
-
-  codeTab?.addEventListener('click', () => {
-    codeTab.classList.add('active');
-    codeTab.setAttribute('aria-selected', 'true');
-    profileTab?.classList.remove('active');
-    profileTab?.setAttribute('aria-selected', 'false');
-
-    panelCode?.classList.add('active');
-    panelProfile?.classList.remove('active');
-  });
-
   // Hero Animated Stat Counters
   const heroCounters = document.querySelectorAll<HTMLElement>('.hero-count');
   if (heroCounters.length > 0) {
