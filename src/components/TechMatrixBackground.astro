@@ -4,6 +4,7 @@
 
 <div id="tech-matrix-wrap" class="tech-matrix-container" aria-hidden="true">
   <canvas id="tech-matrix-canvas" class="tech-canvas"></canvas>
+  <div class="tech-matrix-glass-tint"></div>
   <div class="tech-matrix-vignette"></div>
 </div>
 
@@ -30,6 +31,15 @@
     display: block;
   }
 
+  .tech-matrix-glass-tint {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+    transition: background 0.5s ease, opacity 0.5s ease;
+  }
+
   .tech-matrix-vignette {
     position: absolute;
     inset: 0;
@@ -37,18 +47,31 @@
     transition: background 0.5s ease;
   }
 
-  /* Light Theme (has dark background) */
+  /* Light Theme (has dark background wallpaper) */
   [data-theme="light"] .tech-matrix-container {
-    opacity: 0.95;
+    opacity: 0.98;
+  }
+
+  [data-theme="light"] .tech-matrix-glass-tint {
+    /* Transparent tint of black with glassy obsidian depth and specular reflection sheen */
+    background: 
+      linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 30%, transparent 65%),
+      linear-gradient(180deg, rgba(8, 10, 14, 0.65) 0%, rgba(12, 15, 20, 0.48) 40%, rgba(6, 8, 12, 0.72) 100%);
   }
 
   [data-theme="light"] .tech-matrix-vignette {
-    background: radial-gradient(circle at 50% 40%, transparent 50%, rgba(10, 12, 16, 0.6) 100%);
+    background: radial-gradient(circle at 50% 35%, rgba(0, 0, 0, 0.12) 0%, rgba(6, 8, 12, 0.8) 100%);
   }
 
-  /* Dark Theme (has light background) */
+  /* Dark Theme (has light background wallpaper) */
   [data-theme="dark"] .tech-matrix-container {
-    opacity: 0.92;
+    opacity: 0.94;
+  }
+
+  [data-theme="dark"] .tech-matrix-glass-tint {
+    background: 
+      linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.05) 35%, transparent 70%),
+      linear-gradient(180deg, rgba(240, 244, 249, 0.45) 0%, rgba(230, 236, 245, 0.35) 50%, rgba(220, 228, 238, 0.55) 100%);
   }
 
   [data-theme="dark"] .tech-matrix-vignette {

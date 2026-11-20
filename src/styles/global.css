@@ -5,13 +5,13 @@
 
 :root, [data-theme="light"] {
   /* Google Gemini Light Mode: Panels stay light, background is dark */
-  --bg-primary: #131314;
+  --bg-primary: #0a0c10;
   --bg-secondary: #ffffff;
   --bg-tertiary: #e9eef6;
   --bg-card: rgba(255, 255, 255, 0.72);
   --bg-card-plasma: rgba(255, 255, 255, 0.76);
   --bg-card-hover: rgba(255, 255, 255, 0.92);
-  --bg-glass: rgba(19, 19, 20, 0.82);
+  --bg-glass: rgba(10, 12, 16, 0.78);
   
   --border-subtle: rgba(56, 189, 248, 0.16);
   --border-focus: rgba(56, 189, 248, 0.45);
