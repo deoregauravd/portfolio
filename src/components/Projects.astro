@@ -175,13 +175,18 @@ const categories = ['All', 'XR / VR', 'Games', 'Web & Cloud', 'AI'];
     background: var(--accent-blue);
     color: #ffffff;
     border-color: var(--accent-blue);
-    box-shadow: 0 4px 14px rgba(26, 115, 232, 0.28);
+    box-shadow: 
+      0 0 14px rgba(26, 115, 232, 0.42),
+      0 4px 12px rgba(26, 115, 232, 0.25);
   }
 
   [data-theme="dark"] .filter-btn.active {
     background: var(--accent-blue);
     color: #131314;
-    box-shadow: 0 4px 16px rgba(138, 180, 248, 0.32);
+    border-color: var(--accent-blue);
+    box-shadow: 
+      0 0 16px rgba(138, 180, 248, 0.48),
+      0 4px 14px rgba(138, 180, 248, 0.28);
   }
 
   .toggle-all-projects-btn {

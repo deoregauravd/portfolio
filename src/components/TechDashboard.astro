@@ -260,7 +260,18 @@ const { languageExperience, domainRadar } = portfolioData;
     background: var(--accent-blue);
     color: #ffffff;
     border-color: var(--accent-blue);
-    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.25);
+    box-shadow: 
+      0 0 12px rgba(26, 115, 232, 0.42),
+      0 2px 8px rgba(26, 115, 232, 0.25);
+  }
+
+  [data-theme="dark"] .lang-tab-btn.active, [data-theme="dark"] .domain-tab-btn.active {
+    background: var(--accent-blue);
+    color: #131314;
+    border-color: var(--accent-blue);
+    box-shadow: 
+      0 0 14px rgba(138, 180, 248, 0.48),
+      0 2px 8px rgba(138, 180, 248, 0.28);
   }
 
   .tab-dot {

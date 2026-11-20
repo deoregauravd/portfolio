@@ -791,8 +791,21 @@ const { personal, socials } = portfolioData;
   .tab-pill.active {
     background: var(--bg-secondary);
     color: var(--accent-blue);
-    border-color: var(--border-subtle);
-    box-shadow: var(--shadow-sm);
+    border-color: rgba(56, 189, 248, 0.5);
+    box-shadow: 
+      0 0 14px -1px rgba(56, 189, 248, 0.42),
+      0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  [data-theme="dark"] .tab-pill.active {
+    border-color: rgba(120, 217, 236, 0.6);
+    box-shadow: 
+      0 0 16px -1px rgba(120, 217, 236, 0.48),
+      0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .tab-pill.active .gemini-sparkle-svg {
+    filter: drop-shadow(0 0 5px var(--accent-blue));
   }
 
   .gemini-panel {
