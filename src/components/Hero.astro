@@ -132,18 +132,16 @@ const { personal, socials } = portfolioData;
       <div class="gemini-card-wrapper glass-card">
         <!-- Tab Switcher -->
         <div class="gemini-card-tabs" role="tablist">
-          <button id="tab-profile-btn" class="tab-pill active" type="button" role="tab" aria-selected="true">
+          <button id="tab-profile-btn" class="tab-pill active" type="button" role="tab" aria-selected="true" aria-label="Profile Spotlight" title="Profile Spotlight">
             <svg class="gemini-sparkle-svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
               <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
             </svg>
-            <span>Profile Spotlight</span>
           </button>
-          <button id="tab-code-btn" class="tab-pill" type="button" role="tab" aria-selected="false">
+          <button id="tab-code-btn" class="tab-pill" type="button" role="tab" aria-selected="false" aria-label="XR Code Terminal" title="XR Code Terminal">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="16 18 22 12 16 6"></polyline>
               <polyline points="8 6 2 12 8 18"></polyline>
             </svg>
-            <span>xr_core_engine.cs</span>
           </button>
         </div>
 
@@ -235,7 +233,6 @@ const { personal, socials } = portfolioData;
               <span class="dot dot-yellow"></span>
               <span class="dot dot-green"></span>
             </div>
-            <span class="terminal-title">xr_core_engine.cs</span>
             <span class="terminal-badge">Meta Quest 3 / URP</span>
           </div>
 
@@ -776,11 +773,10 @@ const { personal, socials } = portfolioData;
   .tab-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    font-family: var(--font-sans);
-    font-size: 0.825rem;
-    font-weight: 600;
-    padding: 0.45rem 0.95rem;
+    justify-content: center;
+    padding: 0.45rem 0.65rem;
+    min-width: 34px;
+    height: 32px;
     border-radius: var(--radius-full);
     background: transparent;
     border: 1px solid transparent;
