@@ -16,10 +16,12 @@ export function getStaticPaths() {
     // Aliases (e.g. full app name, hyphenated name)
     if (app.aliases) {
       for (const alias of app.aliases) {
-        paths.push({
-          params: { app: alias },
-          props: { app }
-        });
+        if (!alias.includes('/')) {
+          paths.push({
+            params: { app: alias },
+            props: { app }
+          });
+        }
       }
     }
   }

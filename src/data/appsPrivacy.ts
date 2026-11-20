@@ -80,8 +80,6 @@ export const appsPrivacyList: AppPrivacyData[] = [
     aliases: [
       'productivityhub',
       'productivity-android',
-      'android/productivity',
-      'android/productivity/privacy',
       'com.ProductivityApp.Productivity'
     ],
     name: 'ProductivityHub',
