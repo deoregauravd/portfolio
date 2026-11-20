@@ -580,11 +580,18 @@
     // Render once upon mount
     drawStaticScene();
 
-    // Re-render only on window resize (passive, debounced)
+    // Re-render only on actual window dimension change (passive, debounced)
+    let lastW = window.innerWidth;
+    let lastH = window.innerHeight;
     let resizeTimer: number;
     window.addEventListener('resize', () => {
+      if (window.innerWidth === lastW && window.innerHeight === lastH) return;
       window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(drawStaticScene, 100);
+      resizeTimer = window.setTimeout(() => {
+        lastW = window.innerWidth;
+        lastH = window.innerHeight;
+        drawStaticScene();
+      }, 150);
     }, { passive: true });
 
     // Re-render when theme toggles (light/dark mode)
