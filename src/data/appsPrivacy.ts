@@ -104,6 +104,36 @@ export const appsPrivacyList: AppPrivacyData[] = [
       'ProductivityHub requests minimal Android permissions solely for on-device utility: USE_BIOMETRIC / USE_FINGERPRINT for authenticating and unlocking your local encrypted vault via Android BiometricPrompt (no biometric data is ever logged or shared), RECORD_AUDIO optionally for user-initiated voice assistant commands and speech logging (audio is never recorded in background), and READ/WRITE_CALENDAR strictly to sync your hourly blocks with your device calendar if explicitly requested.',
     contactEmail: 'devphotonsupport@gmail.com',
     notes: 'Package ID: com.ProductivityApp.Productivity | Direct URL: /android/productivity/privacy'
+  },
+  {
+    id: 'liedetector',
+    aliases: [
+      'neuralvox',
+      'neuralvox-lie-detector',
+      'liedetector-android',
+      'com.devphoton.neuralvox',
+      'voice-stress-analyzer'
+    ],
+    name: 'NeuralVox: Lie Detector Party Game',
+    category: 'Voice Stress Analysis & Social Hot-Seat Interrogation Simulator',
+    platform: 'Android (Google Play Store)',
+    stores: ['Google Play Store'],
+    lastUpdated: 'November 23, 2026',
+    summary:
+      'NeuralVox is a social party interrogation and voice stress analysis game for Android. All vocal frequency and tremor calculations are executed live in volatile memory (RAM) with zero audio storage, zero cloud uploads, and zero personal data collection.',
+    collectsPersonalData: false,
+    collectsAnalytics: false,
+    hasInAppPurchases: false,
+    requiresInternet: false,
+    localDataStored: [
+      'UI display theme preference (Light Mode / Dark Mode state)',
+      'Selected party interrogation question deck',
+      'Non-identifying audio sound effect volume toggles'
+    ],
+    permissionsDescription:
+      'NeuralVox requests RECORD_AUDIO strictly during active 2-4 second baseline and interrogation response windows to compute real-time vocal pitch shifts and 8-14 Hz laryngeal tremor divergence in volatile device memory (RAM). Audio is never saved to files, never recorded in the background, and never transmitted to any external server. VIBRATE is optionally used for tactile haptic feedback during countdowns and verdict reveals.',
+    contactEmail: 'devphotonsupport@gmail.com',
+    notes: 'Package ID: com.devphoton.neuralvox | Direct URL: /android/liedetector/privacy | For entertainment & party game use only.'
   }
 ];
 
