@@ -41,15 +41,31 @@ const isDirectVideo = showreel?.videoUrl && !isYouTube;
       ) : null}
 
       <div class="video-footer-bar">
-        <span class="footer-caption">Cosmos Eye 3D — Real-Time Shaders & Physics Simulation</span>
-        <span class="sound-tag">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <line x1="23" y1="9" x2="17" y2="15"></line>
-            <line x1="17" y1="9" x2="23" y2="15"></line>
-          </svg>
-          <span>Unmute for sound</span>
-        </span>
+        <span class="footer-caption">Cosmic Eye Live 3D — Real-Time Shaders & Physics Simulation</span>
+        <div class="footer-right-actions">
+          {showreel.storeUrl && (
+            <a
+              href={showreel.storeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="showreel-store-btn"
+              title="Get on Microsoft Store"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.4 24H0V12.6h11.4V24zM24 24H12.6V12.6H24V24zM11.4 11.4H0V0h11.4v11.4zm12.6 0H12.6V0H24v11.4z"/>
+              </svg>
+              <span>Microsoft Store</span>
+            </a>
+          )}
+          <span class="sound-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+            <span>Unmute for sound</span>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -127,6 +143,35 @@ const isDirectVideo = showreel?.videoUrl && !isYouTube;
     color: var(--accent-blue);
     font-weight: 600;
     white-space: nowrap;
+  }
+
+  .footer-right-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .showreel-store-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    padding: 0.25rem 0.65rem;
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: var(--radius-sm, 4px);
+    color: var(--accent-blue, #60a5fa);
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .showreel-store-btn:hover {
+    background: rgba(59, 130, 246, 0.22);
+    border-color: rgba(59, 130, 246, 0.6);
+    color: #ffffff;
+    transform: translateY(-1px);
   }
 
   @media (max-width: 640px) {

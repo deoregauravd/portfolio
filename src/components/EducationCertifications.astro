@@ -20,7 +20,25 @@ const { education, certifications } = portfolioData;
                 <h4 class="credential-name">{cert.name}</h4>
                 <span class="credential-date">{cert.date}</span>
               </div>
-              <div class="credential-issuer">{cert.issuer}</div>
+              <div class="credential-issuer-row">
+                <span class="credential-issuer">{cert.issuer}</span>
+                {cert.url && (
+                  <a
+                    href={cert.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="cert-verify-link"
+                    title="Verify Certificate"
+                  >
+                    <span>Verify Credential</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                )}
+              </div>
             </div>
           ))}
         </div>
@@ -110,9 +128,39 @@ const { education, certifications } = portfolioData;
     white-space: nowrap;
   }
 
+  .credential-issuer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
   .credential-issuer, .credential-institution {
     font-size: 0.9rem;
     color: var(--text-secondary);
+  }
+
+  .cert-verify-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-cyan);
+    background: rgba(6, 182, 212, 0.1);
+    border: 1px solid rgba(6, 182, 212, 0.25);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-sm, 4px);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .cert-verify-link:hover {
+    background: rgba(6, 182, 212, 0.2);
+    border-color: rgba(6, 182, 212, 0.5);
+    color: #ffffff;
+    transform: translateY(-1px);
   }
 
   .credential-location {

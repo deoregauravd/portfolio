@@ -5,6 +5,7 @@ export interface AppPrivacyData {
   category: string;
   platform: string;
   stores: string[];
+  storeUrl?: string;
   lastUpdated: string;
   summary: string;
   collectsPersonalData: boolean;
@@ -52,12 +53,15 @@ export const appsPrivacyList: AppPrivacyData[] = [
     id: 'cosmic-eye',
     aliases: [
       'cosmic-eye-live-interactive-3d-wallpaper',
-      'cosmic-eye-wallpaper'
+      'cosmic-eye-wallpaper',
+      'cosmos-eye',
+      '9p21crl12g5s'
     ],
     name: 'Cosmic Eye Live Interactive 3D Wallpaper',
     category: 'Interactive 3D Live Wallpaper & Desktop Visualizer',
     platform: 'Microsoft Windows (Windows 10 / 11)',
     stores: ['Microsoft Store'],
+    storeUrl: 'https://apps.microsoft.com/detail/9p21crl12g5s?hl=en-US&gl=IN',
     lastUpdated: 'September 21, 2026',
     summary:
       'Cosmic Eye Live Interactive 3D Wallpaper operates strictly locally on your Windows PC. It does not collect, store, transmit, or sell any personal data, telemetry, or device identifiers.',
@@ -73,19 +77,23 @@ export const appsPrivacyList: AppPrivacyData[] = [
     ],
     permissionsDescription:
       'The application runs as an interactive desktop background on Windows. It processes local cursor movement solely in volatile memory (RAM) in real time to render responsive 3D visuals. It never monitors keystrokes, records screens, or tracks user behavior.',
-    contactEmail: 'devphotonsupport@gmail.com'
+    contactEmail: 'devphotonsupport@gmail.com',
+    notes: 'Microsoft Store ID: 9p21crl12g5s | Store URL: https://apps.microsoft.com/detail/9p21crl12g5s?hl=en-US&gl=IN'
   },
   {
     id: 'productivity',
     aliases: [
       'productivityhub',
       'productivity-android',
-      'com.ProductivityApp.Productivity'
+      'com.ProductivityApp.Productivity',
+      'com.devphotonproductivityhub',
+      'productivity-hub'
     ],
     name: 'ProductivityHub',
     category: 'Offline-First Hourly Focus, Habit Tracking & Encrypted Vault',
     platform: 'Android (Google Play Store)',
     stores: ['Google Play Store'],
+    storeUrl: 'https://play.google.com/store/apps/details?id=com.devphotonproductivityhub',
     lastUpdated: 'November 20, 2026',
     summary:
       'ProductivityHub is an offline-first hourly time-blocking, habit tracker, and markdown notes application for Android. All activity blocks, distraction records ("minus minutes"), habits, and notes are stored strictly on your local device with zero telemetry and optional local AES encryption.',
@@ -103,7 +111,7 @@ export const appsPrivacyList: AppPrivacyData[] = [
     permissionsDescription:
       'ProductivityHub requests minimal Android permissions solely for on-device utility: USE_BIOMETRIC / USE_FINGERPRINT for authenticating and unlocking your local encrypted vault via Android BiometricPrompt (no biometric data is ever logged or shared), RECORD_AUDIO optionally for user-initiated voice assistant commands and speech logging (audio is never recorded in background), and READ/WRITE_CALENDAR strictly to sync your hourly blocks with your device calendar if explicitly requested.',
     contactEmail: 'devphotonsupport@gmail.com',
-    notes: 'Package ID: com.ProductivityApp.Productivity | Direct URL: /android/productivity/privacy'
+    notes: 'Package ID: com.devphotonproductivityhub | Direct URL: /android/productivity/privacy'
   },
   {
     id: 'liedetector',

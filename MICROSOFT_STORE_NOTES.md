@@ -17,6 +17,7 @@ This document contains all the exact copy-paste information, system requirements
 
 | Field in Partner Center | Live URL |
 | :--- | :--- |
+| **Microsoft Store Live URL** | `https://apps.microsoft.com/detail/9p21crl12g5s?hl=en-US&gl=IN` |
 | **Privacy Policy URL** | `https://devphoton.com/cosmic-eye/privacy` |
 | **Support URL / Contact Info** | `https://devphoton.com/support` |
 | **Support Email** | `devphotonsupport@gmail.com` |

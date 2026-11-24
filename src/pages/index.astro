@@ -12,6 +12,7 @@ import Skills from '../components/Skills.astro';
 import EducationCertifications from '../components/EducationCertifications.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import { portfolioData } from '../data/portfolio';
 ---
 
 <BaseLayout>
@@ -62,7 +63,7 @@ import Footer from '../components/Footer.astro';
         icon="🚀"
         eyebrow="Production Portfolio"
         title="PROJECTS"
-        badge="11 Shipped Works"
+        badge={`${portfolioData.featuredProjects.length} Shipped Works`}
         defaultExpanded={false}
       >
         <Projects />

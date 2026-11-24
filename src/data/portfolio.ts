@@ -9,11 +9,13 @@ export interface Project {
   id: string;
   title: string;
   company?: string;
+  projectType: 'company' | 'personal';
   category: 'XR / VR' | 'Games' | 'Web & Cloud' | 'AI';
   description: string;
   tags: string[];
   featured: boolean;
   link?: string;
+  linkLabel?: string;
   github?: string;
   metrics?: string;
   /** Optional video link: Supports YouTube URL or direct MP4 URL */
@@ -62,6 +64,7 @@ export interface Certification {
   name: string;
   issuer: string;
   date: string;
+  url?: string;
 }
 
 export interface StatHighlight {
@@ -152,6 +155,7 @@ export interface PortfolioData {
     title: string;
     subtitle: string;
     videoUrl: string;
+    storeUrl?: string;
   };
   visitorCounter?: {
     enabled: boolean;
@@ -336,12 +340,12 @@ export const portfolioData: PortfolioData = {
     },
     {
       platform: "Windows",
-      shippedStatus: "Proprietary Desktop",
-      executionDetails: "Shipped native desktop products featuring high-performance local rendering logic.",
+      shippedStatus: "Microsoft Store",
+      executionDetails: "Published Cosmic Eye Live 3D Interactive Wallpaper on Microsoft Store featuring real-time planetary simulation.",
       category: "Desktop",
       badgeType: "primary",
       icon: "🪟",
-      scaleMetric: "Native Local Rendering"
+      scaleMetric: "Live on Microsoft Store"
     },
     {
       platform: "Steam",
@@ -372,12 +376,12 @@ export const portfolioData: PortfolioData = {
     },
     {
       platform: "Android",
-      shippedStatus: "Play Store Apps",
-      executionDetails: "Mobile games, native plugins, and mobile web VR experiences released on Play Store.",
+      shippedStatus: "Google Play Apps",
+      executionDetails: "Shipped ProductivityHub, mobile games, native plugins, and mobile web VR experiences published on Google Play.",
       category: "Mobile",
       badgeType: "success",
       icon: "🤖",
-      scaleMetric: "1M+ Play Store Downloads"
+      scaleMetric: "Live on Google Play"
     },
     {
       platform: "Meta Quest 3",
@@ -467,9 +471,10 @@ export const portfolioData: PortfolioData = {
   // 🎬 FEATURED VIDEO / SHOWREEL
   featuredShowreel: {
     enabled: true,
-    title: "Cosmos Eye 3D Interactive Wallpaper",
+    title: "Cosmic Eye Live 3D Interactive Wallpaper",
     subtitle: "Real-time interactive 3D graphics, dynamic shader effects, and high-performance simulation showcase.",
-    videoUrl: "https://youtu.be/EWxAQ0wtgw8"
+    videoUrl: "https://youtu.be/EWxAQ0wtgw8",
+    storeUrl: "https://apps.microsoft.com/detail/9p21crl12g5s?hl=en-US&gl=IN"
   },
 
   skills: [
@@ -693,6 +698,7 @@ export const portfolioData: PortfolioData = {
       id: "skyshowtime",
       title: "SkyShowtime OTT Platform",
       company: "Globant",
+      projectType: "company",
       category: "Web & Cloud",
       description: "Pan-European high-scale OTT streaming platform serving 10M+ active subscribers across 22 European markets. Managed high-volume incident resolution, monitored critical production releases, and ensured uninterrupted video streaming stability across AWS microservices.",
       tags: ["AWS Cloud", "Java", "Spring Boot", "CI/CD", "Incident Ops", "Microservices"],
@@ -701,19 +707,10 @@ export const portfolioData: PortfolioData = {
       metrics: "10M+ Active Subscribers across 22 Markets"
     },
     {
-      id: "hexagon-map",
-      title: "Real-Time Hexagon Map Engine",
-      company: "Cyber Infrastructure (CIS)",
-      category: "XR / VR",
-      description: "High-performance interactive 3D Hexagon Map rendering engine capable of displaying 4M+ real-time rendered objects simultaneously with dynamic backend streaming, spatial chunking, and GPU instancing.",
-      tags: ["Unity 3D", "C#", "GPU Instancing", "Spatial Partitioning", "Data Streaming", "Performance Profiling"],
-      featured: true,
-      metrics: "4M+ Real-Time Rendered Objects"
-    },
-    {
       id: "feast-vr",
       title: "Interactive Open-Ended VR Simulations",
       company: "Feast Software",
+      projectType: "company",
       category: "XR / VR",
       description: "Architected a vector-driven interactive simulation architecture and open-ended troubleshooting engine powering 16+ production VR modules on Meta Quest 2 and 3. Programmed and deployed 29+ procedural interactive modules from the ground up, with custom editor reference tools boosting workflow iteration speed by 300%.",
       tags: ["Unity 3D", "Meta Quest 3", "C#", "Custom Tooling", "VR Simulation", "Procedural Systems"],
@@ -722,9 +719,21 @@ export const portfolioData: PortfolioData = {
       metrics: "29+ Procedural Simulations · 16+ Modules"
     },
     {
+      id: "hexagon-map",
+      title: "Real-Time Hexagon Map Engine",
+      company: "Cyber Infrastructure (CIS)",
+      projectType: "company",
+      category: "XR / VR",
+      description: "High-performance interactive 3D Hexagon Map rendering engine capable of displaying 4M+ real-time rendered objects simultaneously with dynamic backend streaming, spatial chunking, and GPU instancing.",
+      tags: ["Unity 3D", "C#", "GPU Instancing", "Spatial Partitioning", "Data Streaming", "Performance Profiling"],
+      featured: true,
+      metrics: "4M+ Real-Time Rendered Objects"
+    },
+    {
       id: "htc-vive-car",
       title: "HTC Vive Car Showcase & Spatial VR Experience",
       company: "Cyber Infrastructure (CIS)",
+      projectType: "company",
       category: "XR / VR",
       description: "High-fidelity spatial vehicle configurator and interior inspection simulation built for HTC Vive. Features physically based lighting shaders, 6DoF tracked controller interactions, real-time material swapping, and strict zero-latency framerate budgeting.",
       tags: ["HTC Vive", "SteamVR", "Unity 3D", "Custom Shaders", "6DoF Interaction", "Zero-Latency"],
@@ -735,6 +744,7 @@ export const portfolioData: PortfolioData = {
       id: "luvbug",
       title: "LuvBug: Emotional Growth App",
       company: "Game App Studio",
+      projectType: "company",
       category: "Games",
       description: "Interactive educational title scaled to 1M+ active iOS users in the EdTech domain. Engineered custom AI behavior, complex game rules, and high-fidelity Universal Render Pipeline (URP) visuals on iOS and iPadOS.",
       tags: ["Unity 3D", "C#", "iOS", "iPadOS", "URP", "App Store"],
@@ -746,6 +756,7 @@ export const portfolioData: PortfolioData = {
       id: "webxr-cardboard",
       title: "Cross-Platform WebXR Experience",
       company: "Cyber Infrastructure",
+      projectType: "company",
       category: "XR / VR",
       description: "Pioneered lightweight WebXR deployment running seamlessly inside mobile browsers and Google Cardboard with Meta Quest 3 backward compatibility, eliminating app store barriers.",
       tags: ["WebXR", "Unity 3D", "WebGL", "Mobile Optimization", "JavaScript"],
@@ -756,6 +767,7 @@ export const portfolioData: PortfolioData = {
       id: "hungama-games",
       title: "Movie Master: Bollywood Games & Cricket",
       company: "GameShastra / Hungama",
+      projectType: "company",
       category: "Games",
       description: "High-octane mobile casual & sports gaming experience featuring dynamic camera systems, rigorous gameplay performance profiling, CI build automation, and multi-threaded game state logic on Google Play.",
       tags: ["Unity 3D", "C#", "Google Play", "Android", "Profiling", "CI/CD"],
@@ -767,6 +779,7 @@ export const portfolioData: PortfolioData = {
       id: "desibeats",
       title: "Desibeats: Indian Music Game",
       company: "GameShastra / Hungama",
+      projectType: "company",
       category: "Games",
       description: "Fast-paced rhythm-action mobile game featuring chart-topping Indian tracks. Contributed as part of the core engineering team responsible for architecting automated testing frameworks, performance regression suites, and build verification pipelines.",
       tags: ["Unity 3D", "Automated Testing", "CI/CD", "Quality Engineering", "Android"],
@@ -775,20 +788,10 @@ export const portfolioData: PortfolioData = {
       metrics: "Automated QA & test pipelines"
     },
     {
-      id: "cosmos-eye",
-      title: "Cosmos Eye 3D Interactive Wallpaper",
-      company: "Independently Developed",
-      category: "XR / VR",
-      description: "Independently designed and developed proprietary Windows desktop product featuring real-time interactive 3D graphics, dynamic shader effects, and high-performance local rendering logic.",
-      tags: ["Windows Desktop", "Unity 3D", "Custom Shaders", "3D Simulation"],
-      featured: false,
-      videoUrl: "https://youtu.be/EWxAQ0wtgw8",
-      metrics: "Independently Developed Desktop Product"
-    },
-    {
       id: "photon-multiplayer",
       title: "Real-Time Strategy Multiplayer Game",
       company: "Globant",
+      projectType: "company",
       category: "Games",
       description: "Enterprise engineering excellence project developed at Globant to master strict architecture standards. Implemented low-latency multiplayer battle strategy mechanics using Photon Engine, state synchronization, client prediction, and tactical UI.",
       tags: ["Photon Engine", "Multiplayer", "C#", "Networking", "Architecture Standards"],
@@ -796,9 +799,37 @@ export const portfolioData: PortfolioData = {
       metrics: "Client-side prediction & state sync"
     },
     {
+      id: "cosmos-eye",
+      title: "Cosmic Eye Live 3D Interactive Wallpaper",
+      company: "DevPhoton (Independent)",
+      projectType: "personal",
+      category: "XR / VR",
+      description: "Independently designed, developed, and published proprietary Windows desktop wallpaper and visualizer on Microsoft Store. Features real-time interactive 3D planetary rendering, cursor-reactive camera pan, photorealistic atmospheric shaders, and low CPU/GPU resource overhead on Windows 10/11.",
+      tags: ["Microsoft Store", "Windows Desktop", "Unity 3D", "Interactive 3D", "Custom Shaders"],
+      featured: true,
+      link: "https://apps.microsoft.com/detail/9p21crl12g5s?hl=en-US&gl=IN",
+      linkLabel: "Microsoft Store",
+      videoUrl: "https://youtu.be/EWxAQ0wtgw8",
+      metrics: "Live on Microsoft Store · Interactive 3D"
+    },
+    {
+      id: "productivity-hub",
+      title: "ProductivityHub: Focus, Habits & Vault",
+      company: "DevPhoton (Independent)",
+      projectType: "personal",
+      category: "AI",
+      description: "Offline-first hourly time-blocking, habit tracker, and markdown notes application for Android published on Google Play. Features distraction deduction tracking ('minus minutes'), local AES hardware-backed vault encryption, and Google Gemini AI productivity assistant with zero telemetry and zero cloud lock-in.",
+      tags: ["Android", "Google Play", "AI Assistant", "Offline-First", "AES-256 Vault", "Habit Tracker"],
+      featured: true,
+      link: "https://play.google.com/store/apps/details?id=com.devphotonproductivityhub",
+      linkLabel: "Google Play Store",
+      metrics: "Live on Google Play · Offline-First"
+    },
+    {
       id: "agentic-ai",
       title: "Agentic AI & Spatial Computing Experiments",
       company: "Independent R&D",
+      projectType: "personal",
       category: "AI",
       description: "Explorations combining autonomous LLM agents, spatial reasoning, and dynamic Unity procedural generation for responsive virtual environments.",
       tags: ["Python", "Agentic AI", "LLMs", "Unity 3D", "Prompt Eng"],
@@ -902,6 +933,12 @@ export const portfolioData: PortfolioData = {
   ],
 
   certifications: [
+    {
+      name: "Machine Learning Introduction for Everyone",
+      issuer: "IBM / Coursera",
+      date: "Nov 2026",
+      url: "https://www.coursera.org/account/accomplishments/verify/T5B3ZWT0EOEU"
+    },
     {
       name: "Unity Certified Associate Game Developer (UI and 2D Games)",
       issuer: "Unity / LinkedIn Learning",
