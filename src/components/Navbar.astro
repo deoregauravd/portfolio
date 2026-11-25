@@ -4,7 +4,7 @@ import { portfolioData } from '../data/portfolio';
 
 <header class="header">
   <div class="container header-container">
-    <a href="#" class="brand" aria-label="DevPhoton Home">
+    <a href="#about" class="brand" id="nav-brand-home" aria-label="DevPhoton Home">
       <span class="brand-badge">
         <svg class="brand-sparkle" viewBox="0 0 24 24" width="20" height="20" fill="none">
           <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z" fill="currentColor"/>
@@ -51,7 +51,7 @@ import { portfolioData } from '../data/portfolio';
       )}
 
       <!-- Theme Switcher -->
-      <button id="theme-toggle" class="theme-btn" aria-label="Toggle light and dark mode">
+      <button id="theme-toggle" class="theme-btn" type="button" aria-label="Toggle light and dark mode">
         <!-- Sun icon for dark mode -->
         <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="5"></circle>
@@ -71,7 +71,14 @@ import { portfolioData } from '../data/portfolio';
       </button>
 
       <!-- Mobile Menu Toggle Button -->
-      <button id="mobile-toggle" class="mobile-btn" aria-label="Open navigation menu">
+      <button
+        id="mobile-toggle"
+        class="mobile-btn"
+        type="button"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -163,7 +170,7 @@ import { portfolioData } from '../data/portfolio';
     color: var(--text-secondary);
   }
 
-  @media (max-width: 520px) {
+  @media (max-width: 1080px) {
     .brand-sep,
     .brand-subname {
       display: none;
@@ -194,15 +201,16 @@ import { portfolioData } from '../data/portfolio';
   .nav-desktop {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: clamp(0.9rem, 1.55vw, 1.75rem);
   }
 
   .nav-link {
-    font-size: 0.925rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: var(--text-secondary);
     transition: color var(--transition-fast);
     position: relative;
+    white-space: nowrap;
   }
 
   .nav-link:hover {
@@ -319,7 +327,7 @@ import { portfolioData } from '../data/portfolio';
     border-top: 1px solid var(--border-subtle);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 960px) {
     .nav-desktop {
       display: none;
     }
@@ -375,6 +383,13 @@ import { portfolioData } from '../data/portfolio';
 </style>
 
 <script>
+  // Smooth scroll brand link to very top without leaving hash fragment
+  const brandHome = document.getElementById('nav-brand-home');
+  brandHome?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
   // Theme Switcher Logic
   const themeBtn = document.getElementById('theme-toggle');
   themeBtn?.addEventListener('click', () => {
@@ -382,20 +397,47 @@ import { portfolioData } from '../data/portfolio';
     const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', nextTheme);
     localStorage.setItem('theme', nextTheme);
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeMeta) {
+      themeMeta.setAttribute('content', nextTheme === 'dark' ? '#f0f4f9' : '#0a0c10');
+    }
   });
 
-  // Mobile Menu Logic
+  // Mobile Menu Logic with ARIA & Escape dismissal
   const mobileToggle = document.getElementById('mobile-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
-  
+
+  function setMobileMenu(open: boolean) {
+    if (!mobileMenu || !mobileToggle) return;
+    mobileMenu.classList.toggle('open', open);
+    mobileToggle.setAttribute('aria-expanded', String(open));
+  }
+
   mobileToggle?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('open');
+    const isOpen = mobileMenu?.classList.contains('open') ?? false;
+    setMobileMenu(!isOpen);
   });
 
-  // Close mobile menu on link click
-  document.querySelectorAll('.mobile-link').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu?.classList.remove('open');
-    });
+  document.querySelectorAll('.mobile-link').forEach((link) => {
+    link.addEventListener('click', () => setMobileMenu(false));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) {
+      setMobileMenu(false);
+      mobileToggle?.focus();
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as Node | null;
+    if (
+      mobileMenu?.classList.contains('open') &&
+      target &&
+      !mobileMenu.contains(target) &&
+      !mobileToggle?.contains(target)
+    ) {
+      setMobileMenu(false);
+    }
   });
 </script>

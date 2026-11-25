@@ -41,78 +41,91 @@ const baseCount = config.baseCount || 0;
   function initVisitorCounter() {
     const wrapper = document.getElementById('visitor-counter-card');
     const display = document.getElementById('visitor-count-display');
-    if (!wrapper || !display) return;
+    if (!wrapper || !display || wrapper.dataset.initialized === 'true') return;
+    wrapper.dataset.initialized = 'true';
 
     const counterKey = wrapper.getAttribute('data-counter-key') || 'gaurav-deore-portfolio-visits';
-    const baseCount = parseInt(wrapper.getAttribute('data-base-count') || '0', 10);
+    const rawBase = parseInt(wrapper.getAttribute('data-base-count') || '0', 10);
+    const baseCount = Number.isFinite(rawBase) ? rawBase : 0;
     const storageKey = `portfolio_visit_cache_${counterKey}`;
     const sessionKey = `portfolio_session_${counterKey}`;
 
-    // Instant initial render from local cache if available
-    const cachedCount = localStorage.getItem(storageKey);
-    if (cachedCount) {
-      display.textContent = Number(cachedCount).toLocaleString();
+    // Instant initial render from local cache if available and valid
+    const rawCached = localStorage.getItem(storageKey);
+    const parsedCached = rawCached ? parseInt(rawCached, 10) : NaN;
+    const hasValidCache = Number.isFinite(parsedCached) && parsedCached > 0;
+    if (hasValidCache) {
+      display.textContent = parsedCached.toLocaleString();
     }
 
-    const hasVisitedThisSession = sessionStorage.getItem(sessionKey);
-    const endpoint = hasVisitedThisSession
-      ? `https://countapi.mileshilliard.com/api/v1/get/${encodeURIComponent(counterKey)}`
-      : `https://countapi.mileshilliard.com/api/v1/hit/${encodeURIComponent(counterKey)}`;
+    const fetchCount = () => {
+      const hasVisitedThisSession = sessionStorage.getItem(sessionKey);
+      const endpoint = hasVisitedThisSession
+        ? `https://countapi.mileshilliard.com/api/v1/get/${encodeURIComponent(counterKey)}`
+        : `https://countapi.mileshilliard.com/api/v1/hit/${encodeURIComponent(counterKey)}`;
 
-    // Abort controller with 5 second timeout to handle slow networks gracefully
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-    fetch(endpoint, {
-      method: 'GET',
-      signal: controller.signal,
-      headers: {
-        'Accept': 'application/json'
-      }
-    })
-      .then(async (response) => {
-        clearTimeout(timeoutId);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return response.json();
+      fetch(endpoint, {
+        method: 'GET',
+        signal: controller.signal,
+        headers: { 'Accept': 'application/json' }
       })
-      .then((data) => {
-        if (!hasVisitedThisSession) {
-          sessionStorage.setItem(sessionKey, '1');
+        .then(async (response) => {
+          clearTimeout(timeoutId);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          return response.json();
+        })
+        .then((data) => {
+          if (!hasVisitedThisSession) {
+            sessionStorage.setItem(sessionKey, '1');
+          }
+
+          const rawValue = typeof data.value === 'number' ? data.value : parseInt(data.value, 10);
+          const totalVisits = (Number.isFinite(rawValue) ? rawValue : 1) + baseCount;
+
+          localStorage.setItem(storageKey, totalVisits.toString());
+          animateCount(display, hasValidCache ? parsedCached : 0, totalVisits);
+        })
+        .catch(() => {
+          clearTimeout(timeoutId);
+          if (!hasValidCache) {
+            const fallback = Math.max(1, baseCount + 1);
+            localStorage.setItem(storageKey, fallback.toString());
+            display.textContent = fallback.toLocaleString();
+          }
+        });
+    };
+
+    // Defer external analytics call until footer nears viewport to protect critical initial load
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          io.disconnect();
+          fetchCount();
         }
-
-        const rawValue = typeof data.value === 'number' ? data.value : parseInt(data.value, 10);
-        const totalVisits = (isNaN(rawValue) ? 1 : rawValue) + baseCount;
-
-        // Persist to local cache for subsequent instant loads & fallback
-        localStorage.setItem(storageKey, totalVisits.toString());
-
-        animateCount(display, cachedCount ? parseInt(cachedCount, 10) : 0, totalVisits);
-      })
-      .catch((err) => {
-        clearTimeout(timeoutId);
-        // Fallback: If network failed or blocked by adblocker, keep cached value or fallback baseline
-        if (!cachedCount) {
-          const fallback = Math.max(1, baseCount + 1);
-          localStorage.setItem(storageKey, fallback.toString());
-          display.textContent = fallback.toLocaleString();
-        }
-      });
+      }, { rootMargin: '250px' });
+      io.observe(wrapper);
+    } else {
+      fetchCount();
+    }
   }
 
   function animateCount(element: HTMLElement, start: number, target: number) {
-    if (start === target) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (start === target || prefersReducedMotion) {
       element.textContent = target.toLocaleString();
       return;
     }
 
-    const duration = 1200; // ms
+    const duration = 1200;
     const startTime = performance.now();
     const initial = Math.max(0, start);
 
     function step(currentTime: number) {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
       const easeProgress = 1 - Math.pow(1 - progress, 3);
       const current = Math.floor(initial + (target - initial) * easeProgress);
 
@@ -128,13 +141,11 @@ const baseCount = config.baseCount || 0;
     requestAnimationFrame(step);
   }
 
-  // Support both normal load and view transitions
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initVisitorCounter);
   } else {
     initVisitorCounter();
   }
-  document.addEventListener('astro:page-load', initVisitorCounter);
 </script>
 
 <style>

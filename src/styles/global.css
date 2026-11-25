@@ -54,7 +54,7 @@
   --radius-full: 9999px;
 
   /* Typography */
-  --font-sans: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
@@ -435,5 +435,22 @@ p {
   }
   .section {
     padding: 3.75rem 0;
+  }
+}
+
+/* Global Keyboard Focus & Reduced Motion Accessibility */
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

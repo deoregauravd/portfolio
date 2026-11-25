@@ -2,6 +2,24 @@
 import { portfolioData } from '../data/portfolio';
 
 const { personal, socials } = portfolioData;
+
+function parseMetric(value: string) {
+  const match = value.trim().match(/^([^\d]*)(\d+)(.*)$/);
+  if (!match) return { prefix: '', target: value, suffix: '', display: value };
+  return {
+    prefix: match[1] || '',
+    target: match[2],
+    suffix: match[3] || '',
+    display: value
+  };
+}
+
+const heroMetrics = [
+  { ...parseMetric(personal.heroStats.activeSubscribers), label: 'Users & OTT Reach' },
+  { ...parseMetric(personal.heroStats.renderedObjects), label: 'Rendered Objects' },
+  { ...parseMetric(personal.heroStats.workflowSpeedup), label: 'Efficiency Gain' },
+  { ...parseMetric(personal.heroStats.proceduralSims), label: 'VR Simulations' }
+];
 ---
 
 <section id="about" class="hero-section">
@@ -97,14 +115,14 @@ const { personal, socials } = portfolioData;
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            <span>5 Years Enterprise Experience</span>
+            <span>{personal.yearsOfExperience} Enterprise Experience</span>
           </span>
           <span class="intro-badge-item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
               <polyline points="22 4 12 14.01 9 11.01"></polyline>
             </svg>
-            <span>16+ Shipped Targets</span>
+            <span>{personal.completedProjects} Targets</span>
           </span>
         </div>
       </div>
@@ -124,6 +142,7 @@ const { personal, socials } = portfolioData;
                   width="600"
                   height="800"
                   loading="eager"
+                  fetchpriority="high"
                   decoding="async"
                 />
               </picture>
@@ -134,12 +153,12 @@ const { personal, socials } = portfolioData;
               <!-- Content shifted to left side where empty bokeh space is -->
               <div class="spotlight-content">
                 <div class="spotlight-tag">
-                  <span class="sparkle-icon">
-                    <svg viewBox="0 0 24 24" width="13" height="13" fill="url(#sparkleHeroGrad)">
+                  <span class="sparkle-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
                       <path d="M12 0C12 6.627 6.627 12 0 12C6.627 12 12 17.373 12 24C12 17.373 17.373 12 24 12C17.373 12 12 6.627 12 0Z"/>
                     </svg>
                   </span>
-                  <span>Spatial Computing & AI</span>
+                  <span>Spatial Computing &amp; AI</span>
                 </div>
 
                 <h3 class="profile-name">{personal.name}</h3>
@@ -163,22 +182,19 @@ const { personal, socials } = portfolioData;
 
             <!-- Feature Metric Highlights with Animated Counters -->
             <div class="gemini-metrics-grid">
-              <div class="gemini-metric-box">
-                <span class="metric-num gradient-text hero-count" data-target="10" data-suffix="M+">10M+</span>
-                <span class="metric-desc">Users & OTT Reach</span>
-              </div>
-              <div class="gemini-metric-box">
-                <span class="metric-num gradient-text hero-count" data-target="4" data-suffix="M+">4M+</span>
-                <span class="metric-desc">Rendered Objects</span>
-              </div>
-              <div class="gemini-metric-box">
-                <span class="metric-num gradient-text hero-count" data-target="300" data-prefix="+" data-suffix="%">+300%</span>
-                <span class="metric-desc">Efficiency Gain</span>
-              </div>
-              <div class="gemini-metric-box">
-                <span class="metric-num gradient-text hero-count" data-target="29" data-suffix="+">29+</span>
-                <span class="metric-desc">VR Simulations</span>
-              </div>
+              {heroMetrics.map((m) => (
+                <div class="gemini-metric-box">
+                  <span
+                    class="metric-num gradient-text hero-count"
+                    data-target={m.target}
+                    data-prefix={m.prefix}
+                    data-suffix={m.suffix}
+                  >
+                    {m.display}
+                  </span>
+                  <span class="metric-desc">{m.label}</span>
+                </div>
+              ))}
             </div>
 
             <!-- Tech stack tags -->
@@ -191,7 +207,6 @@ const { personal, socials } = portfolioData;
             </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   </div>
@@ -210,7 +225,7 @@ const { personal, socials } = portfolioData;
     right: 5%;
     width: 550px;
     height: 550px;
-    background: radial-gradient(circle, rgba(66, 133, 244, 0.1) 0%, rgba(155, 114, 203, 0.06) 40%, transparent 70%);
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(148, 163, 184, 0.04) 40%, transparent 70%);
     pointer-events: none;
     z-index: 0;
   }
@@ -233,10 +248,6 @@ const { personal, socials } = portfolioData;
     z-index: 2;
   }
 
-  .hero-top-bar .status-pill {
-    margin-bottom: 0;
-  }
-
   .hero-top-controls {
     display: flex;
     flex-wrap: wrap;
@@ -244,10 +255,6 @@ const { personal, socials } = portfolioData;
     justify-content: center;
     gap: 1.25rem 1.75rem;
     width: 100%;
-  }
-
-  .hero-top-controls .hero-cta-btn {
-    min-width: 160px;
   }
 
   /* ==========================================================================
@@ -490,43 +497,6 @@ const { personal, socials } = portfolioData;
     z-index: 2;
   }
 
-  .gemini-sparkle-svg {
-    display: inline-block;
-    vertical-align: middle;
-    color: var(--accent-gemini);
-    animation: sparkleSpin 8s linear infinite;
-  }
-
-  @keyframes sparkleSpin {
-    0% { transform: scale(1) rotate(0deg); }
-    50% { transform: scale(1.15) rotate(180deg); }
-    100% { transform: scale(1) rotate(360deg); }
-  }
-
-  .status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.45rem 1.1rem;
-    background: var(--badge-bg);
-    border: 1px solid var(--badge-border);
-    border-radius: var(--radius-full);
-    font-size: 0.825rem;
-    font-weight: 600;
-    color: var(--badge-text);
-    margin-bottom: 1.5rem;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .status-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: var(--accent-emerald);
-    box-shadow: 0 0 8px var(--accent-emerald);
-    animation: pulse 2s infinite;
-  }
-
   @keyframes pulse {
     0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(15, 157, 88, 0.6); }
     70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(15, 157, 88, 0); }
@@ -592,37 +562,10 @@ const { personal, socials } = portfolioData;
     color: var(--accent-blue);
   }
 
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-
   .social-links {
     display: flex;
     align-items: center;
     gap: 0.85rem;
-    padding-top: 1.35rem;
-    border-top: 1px solid var(--border-subtle);
-  }
-
-  .social-label {
-    font-size: 0.85rem;
-    font-family: var(--font-mono);
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-right: 0.25rem;
-  }
-
-  :global([data-theme="light"]) .social-label {
-    color: #c4c7c5;
-  }
-
-  :global([data-theme="dark"]) .social-label {
-    color: #444746;
   }
 
   .social-btn {
@@ -758,13 +701,13 @@ const { personal, socials } = portfolioData;
   .spotlight-content {
     position: relative;
     z-index: 2;
-    padding: 1.35rem 1.25rem;
+    padding: 1.25rem;
     max-width: 54%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 0.35rem;
-    min-height: 235px;
+    min-height: 195px;
   }
 
   .spotlight-tag {
@@ -917,10 +860,6 @@ const { personal, socials } = portfolioData;
   }
 
   @media (max-width: 768px) {
-    .gemini-panel {
-      padding: 1rem;
-    }
-
     .profile-spotlight-cover {
       min-height: auto;
       display: flex;
@@ -995,31 +934,26 @@ const { personal, socials } = portfolioData;
     .gemini-metrics-grid {
       grid-template-columns: 1fr;
     }
-    .hero-actions {
-      flex-direction: column;
-      align-items: stretch;
-    }
-    .hero-actions .btn {
-      width: 100%;
-    }
     .social-links {
       flex-wrap: wrap;
     }
     .hero-content {
-      padding: 1.75rem 1.25rem;
+      padding: 1.5rem 1.25rem;
     }
   }
 </style>
 
 <script>
-  // Hero Animated Stat Counters
+  // Hero Animated Stat Counters (respecting prefers-reduced-motion)
   const heroCounters = document.querySelectorAll<HTMLElement>('.hero-count');
-  if (heroCounters.length > 0) {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (heroCounters.length > 0 && !prefersReducedMotion) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           heroCounters.forEach((counter) => {
             const target = parseInt(counter.dataset.target || '0', 10);
+            if (!Number.isFinite(target)) return;
             const prefix = counter.dataset.prefix || '';
             const suffix = counter.dataset.suffix || '';
             const duration = 1200; // ms
@@ -1028,7 +962,6 @@ const { personal, socials } = portfolioData;
             const update = (now: number) => {
               const elapsed = now - startTime;
               const progress = Math.min(elapsed / duration, 1);
-              // ease-out cubic
               const ease = 1 - Math.pow(1 - progress, 3);
               const current = Math.floor(ease * target);
               counter.textContent = `${prefix}${current}${suffix}`;

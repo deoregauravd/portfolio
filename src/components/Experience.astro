@@ -278,7 +278,7 @@ const { experiences } = portfolioData;
 
   .timeline-content.expanded .exp-toggle-pill {
     background: var(--accent-blue);
-    color: #ffffff;
+    color: var(--text-inverse);
     border-color: var(--accent-blue);
   }
 
@@ -424,10 +424,10 @@ const { experiences } = portfolioData;
     if (icon && text) {
       if (allExpanded) {
         icon.textContent = '▾';
-        text.textContent = 'Collapse All Experiences';
+        text.textContent = 'Collapse All Roles';
       } else {
         icon.textContent = '▸';
-        text.textContent = 'Expand All Experiences';
+        text.textContent = 'Expand All Roles';
       }
     }
 

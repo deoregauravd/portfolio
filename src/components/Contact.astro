@@ -319,12 +319,22 @@ const { personal, socials } = portfolioData;
 </style>
 
 <script>
-  // Copy email to clipboard
+  // Copy email to clipboard with button state confirmation
   const copyBtn = document.getElementById('copy-email-btn');
   copyBtn?.addEventListener('click', async () => {
     const email = copyBtn.dataset.email || '';
+    if (!email) return;
+    const labelSpan = copyBtn.querySelector('span');
+    const originalText = labelSpan?.textContent || 'Copy Email';
+
     try {
       await navigator.clipboard.writeText(email);
+      if (labelSpan) {
+        labelSpan.textContent = 'Copied!';
+        setTimeout(() => {
+          labelSpan.textContent = originalText;
+        }, 2000);
+      }
       if ((window as any).showToast) {
         (window as any).showToast('Email copied to clipboard!');
       }

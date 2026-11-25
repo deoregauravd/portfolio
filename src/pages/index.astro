@@ -15,7 +15,7 @@ import Footer from '../components/Footer.astro';
 import { portfolioData } from '../data/portfolio';
 ---
 
-<BaseLayout>
+<BaseLayout preloadHero={true}>
   <Navbar />
   <main id="main-content">
     <Hero />
@@ -253,7 +253,12 @@ import { portfolioData } from '../data/portfolio';
 </style>
 
 <script>
+  let accordionBound = false;
+
   function setupAccordionInteractivity() {
+    if (accordionBound) return;
+    accordionBound = true;
+
     const sections = Array.from(document.querySelectorAll<HTMLElement>('.collapsible-section'));
     const expandAllBtn = document.getElementById('master-expand-all');
     const collapseAllBtn = document.getElementById('master-collapse-all');
@@ -262,11 +267,9 @@ import { portfolioData } from '../data/portfolio';
       const isCurrentlyExpanded = sec.classList.contains('expanded');
       const expand = shouldExpand !== undefined ? shouldExpand : !isCurrentlyExpanded;
 
-      if (expand) {
-        sec.classList.add('expanded');
-      } else {
-        sec.classList.remove('expanded');
-      }
+      if (expand === isCurrentlyExpanded) return;
+
+      sec.classList.toggle('expanded', expand);
 
       const header = sec.querySelector<HTMLElement>('.section-accordion-header');
       if (header) {
@@ -278,11 +281,13 @@ import { portfolioData } from '../data/portfolio';
         label.textContent = expand ? 'Collapse' : 'Expand';
       }
 
-      // If tech-stack was expanded, resize Chart.js canvas to ensure crisp rendering
-      if (expand && sec.id === 'tech-stack') {
-        setTimeout(() => {
-          window.dispatchEvent(new Event('resize'));
-        }, 150);
+      if (expand) {
+        sec.dispatchEvent(new CustomEvent('section:expand', { bubbles: true }));
+        if (sec.id === 'tech-stack') {
+          setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+          }, 180);
+        }
       }
     }
 
@@ -323,7 +328,7 @@ import { portfolioData } from '../data/portfolio';
         toggleSection(targetSec, true);
         setTimeout(() => {
           targetSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
+        }, 120);
       }
     }
 
@@ -333,7 +338,12 @@ import { portfolioData } from '../data/portfolio';
         if (href && href.length > 1) {
           const targetSec = document.querySelector<HTMLElement>(href);
           if (targetSec && targetSec.classList.contains('collapsible-section')) {
+            e.preventDefault();
+            history.replaceState(null, '', href);
             toggleSection(targetSec, true);
+            setTimeout(() => {
+              targetSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 120);
           }
         }
       });
@@ -345,11 +355,10 @@ import { portfolioData } from '../data/portfolio';
     }
   }
 
-  // Initialize on load and Astro page transitions
+  // Initialize on load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', setupAccordionInteractivity);
   } else {
     setupAccordionInteractivity();
   }
-  document.addEventListener('astro:page-load', setupAccordionInteractivity);
 </script>

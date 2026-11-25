@@ -6,14 +6,18 @@ import TechMatrixBackground from '../components/TechMatrixBackground.astro';
 interface Props {
   title?: string;
   description?: string;
+  preloadHero?: boolean;
 }
 
 const {
   title = `DevPhoton | ${portfolioData.personal.name} — ${portfolioData.personal.headline}`,
-  description = `DevPhoton — Engineering portfolio of ${portfolioData.personal.name}, Senior XR Unity Developer. Specializing in spatial computing, virtual reality simulations, and high-performance interactive 3D systems.`
+  description = `DevPhoton — Engineering portfolio of ${portfolioData.personal.name}, Senior XR Unity Developer. Specializing in spatial computing, virtual reality simulations, and high-performance interactive 3D systems.`,
+  preloadHero = false
 } = Astro.props;
 
-const canonicalURL = Astro.url;
+const siteBase = Astro.site ?? new URL('https://devphoton.com');
+const canonicalURL = new URL(Astro.url.pathname, siteBase);
+const ogImageURL = new URL('/images/profile.jpg', siteBase).toString();
 ---
 
 <!doctype html>
@@ -41,14 +45,16 @@ const canonicalURL = Astro.url;
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/images/profile.jpg" />
+    <meta property="og:image" content={ogImageURL} />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="/images/profile.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <meta name="theme-color" content="#0a0c10" />
 
     <!-- JSON-LD Structured Data: Brand & Entity Graph -->
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -110,11 +116,16 @@ const canonicalURL = Astro.url;
       ]
     })} />
 
-    <!-- Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
+    <!-- Preload critical Hero portrait on homepage -->
+    {preloadHero && (
+      <link rel="preload" as="image" href="/images/profile.webp" type="image/webp" />
+    )}
+
+    <!-- Google Fonts: Outfit & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
@@ -122,6 +133,10 @@ const canonicalURL = Astro.url;
     <script is:inline>
       const savedTheme = localStorage.getItem('theme') || 'light';
       document.documentElement.setAttribute('data-theme', savedTheme);
+      const themeMeta = document.querySelector('meta[name="theme-color"]');
+      if (themeMeta) {
+        themeMeta.setAttribute('content', savedTheme === 'dark' ? '#f0f4f9' : '#0a0c10');
+      }
     </script>
   </head>
   <body>

@@ -125,7 +125,7 @@ const filterOptions = [
 
   .platform-filter-btn.active {
     background: var(--accent-blue);
-    color: #ffffff;
+    color: var(--text-inverse);
     border-color: var(--accent-blue);
     box-shadow: 
       0 0 14px rgba(26, 115, 232, 0.42),
@@ -139,6 +139,15 @@ const filterOptions = [
     box-shadow: 
       0 0 16px rgba(138, 180, 248, 0.48),
       0 4px 14px rgba(138, 180, 248, 0.28);
+  }
+
+  @keyframes platformReveal {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .platform-card.revealing {
+    animation: platformReveal 0.22s ease forwards;
   }
 
   .platform-grid {
@@ -369,16 +378,12 @@ const filterOptions = [
         }
 
         if (match) {
-          card.classList.remove('hidden');
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(6px)';
-          setTimeout(() => {
-            card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 10);
+          card.classList.remove('hidden', 'revealing');
+          void card.offsetWidth;
+          card.classList.add('revealing');
         } else {
           card.classList.add('hidden');
+          card.classList.remove('revealing');
         }
       });
     });

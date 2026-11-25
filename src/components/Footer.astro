@@ -23,12 +23,12 @@ const currentYear = new Date().getFullYear();
         {socials.resumeGoogleDocs && (
           <a href={socials.resumeGoogleDocs} target="_blank" rel="noopener noreferrer">Resume</a>
         )}
-        <a href="https://www.devphoton.com/privacy">Privacy Policy</a>
-        <a href="https://www.devphoton.com/support">Support</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/support">Support</a>
       </div>
 
       <div class="footer-bottom">
-        <a href="#about" class="back-to-top back-to-top-left" aria-label="Back to top" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">
+        <a href="#top" class="back-to-top back-to-top-left" aria-label="Back to top">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="18 15 12 9 6 15"></polyline>
           </svg>
@@ -37,7 +37,7 @@ const currentYear = new Date().getFullYear();
         <div class="footer-counter-container">
           <VisitorCounter />
         </div>
-        <a href="#about" class="back-to-top back-to-top-right" aria-label="Back to top" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">
+        <a href="#top" class="back-to-top back-to-top-right" aria-label="Back to top">
           <span>Back to Top</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="18 15 12 9 6 15"></polyline>
@@ -47,6 +47,15 @@ const currentYear = new Date().getFullYear();
     </div>
   </div>
 </footer>
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('.back-to-top').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
 
 <style>
   .footer-section {

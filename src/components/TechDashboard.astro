@@ -2,9 +2,31 @@
 import { portfolioData } from '../data/portfolio';
 
 const { languageExperience, domainRadar } = portfolioData;
+
+const shortLangNames: Record<string, string> = {
+  'REST API + JSON + JS': 'REST/JS'
+};
+
+const shortDomainNames: Record<string, string> = {
+  'Computer Applications': 'Computer Apps',
+  'EdTech & XR Simulations': 'EdTech & Sims',
+  'Virtual Reality': 'VR (XR)'
+};
+
+const chartPayload = {
+  languages: languageExperience.map((l) => ({
+    label: shortLangNames[l.name] ?? l.name,
+    years: l.years,
+    color: l.color
+  })),
+  domains: domainRadar.map((d) => ({
+    label: shortDomainNames[d.domain] ?? d.domain,
+    score: d.score
+  }))
+};
 ---
 
-<div class="tech-dashboard-wrapper">
+<div class="tech-dashboard-wrapper" data-charts={JSON.stringify(chartPayload)}>
   <!-- Dual Dashboard Grid: Bar Chart + Radar Chart with Compact Interactive Inspectors -->
   <div class="charts-grid">
       <!-- Card 1: Language Stack Experience (Bar Chart) -->
@@ -454,31 +476,113 @@ const { languageExperience, domainRadar } = portfolioData;
 </style>
 
 <script>
-  import Chart from 'chart.js/auto';
+  type ChartPayload = {
+    languages: Array<{ label: string; years: number; color: string }>;
+    domains: Array<{ label: string; score: number }>;
+  };
 
-  function initCharts() {
+  function setupDashboardTabs() {
+    const langTabs = document.querySelectorAll<HTMLButtonElement>('.lang-tab-btn');
+    const langPanels = document.querySelectorAll<HTMLElement>('.lang-panel-content');
+
+    langTabs.forEach((tab) => {
+      if (tab.dataset.bound === 'true') return;
+      tab.dataset.bound = 'true';
+      tab.addEventListener('click', () => {
+        const idx = tab.dataset.langIdx;
+        langTabs.forEach((t) => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        langPanels.forEach((p) => p.classList.remove('active'));
+        document.getElementById(`lang-panel-${idx}`)?.classList.add('active');
+      });
+    });
+
+    const domainTabs = document.querySelectorAll<HTMLButtonElement>('.domain-tab-btn');
+    const domainPanels = document.querySelectorAll<HTMLElement>('.domain-panel-content');
+
+    domainTabs.forEach((tab) => {
+      if (tab.dataset.bound === 'true') return;
+      tab.dataset.bound = 'true';
+      tab.addEventListener('click', () => {
+        const idx = tab.dataset.domainIdx;
+        domainTabs.forEach((t) => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        domainPanels.forEach((p) => p.classList.remove('active'));
+        document.getElementById(`domain-panel-${idx}`)?.classList.add('active');
+      });
+    });
+  }
+
+  let langChartInstance: import('chart.js').Chart | null = null;
+  let radarChartInstance: import('chart.js').Chart | null = null;
+  let chartLibPromise: Promise<typeof import('chart.js')> | null = null;
+  let themeObserverAttached = false;
+
+  async function loadChartLib() {
+    if (!chartLibPromise) {
+      chartLibPromise = import('chart.js').then((mod) => {
+        mod.Chart.register(
+          mod.BarController,
+          mod.BarElement,
+          mod.CategoryScale,
+          mod.LinearScale,
+          mod.RadarController,
+          mod.RadialLinearScale,
+          mod.PointElement,
+          mod.LineElement,
+          mod.Filler,
+          mod.Tooltip
+        );
+        return mod;
+      });
+    }
+    return chartLibPromise;
+  }
+
+  async function renderCharts() {
+    const wrapper = document.querySelector<HTMLElement>('.tech-dashboard-wrapper');
+    const langCanvas = document.getElementById('langChart') as HTMLCanvasElement | null;
+    const radarCanvas = document.getElementById('domainRadarChart') as HTMLCanvasElement | null;
+    if (!wrapper || (!langCanvas && !radarCanvas)) return;
+
+    let payload: ChartPayload;
+    try {
+      payload = JSON.parse(wrapper.dataset.charts || '{}') as ChartPayload;
+    } catch {
+      return;
+    }
+
+    const { Chart } = await loadChartLib();
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     const textColor = isDark ? '#e3e3e3' : '#1f1f1f';
     const mutedColor = isDark ? '#8e918f' : '#747775';
     const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.06)';
+    const tooltipBg = isDark ? 'rgba(30, 31, 32, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+    const tooltipBorder = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)';
 
-    // 1. Language Stack Bar Chart
-    const langCanvas = document.getElementById('langChart') as HTMLCanvasElement | null;
-    let langChartInstance: Chart | null = null;
+    langChartInstance?.destroy();
+    radarChartInstance?.destroy();
 
-    if (langCanvas) {
-      const labels = ['C#', 'Python', 'Java', 'C++', 'REST/JS'];
-      const data = [6, 1, 1, 1, 1];
-      const backgroundColors = ['#1a73e8', '#9b72cb', '#d96570', '#0284c7', '#0f9d58'];
-
+    if (langCanvas && payload.languages?.length) {
       langChartInstance = new Chart(langCanvas, {
         type: 'bar',
         data: {
-          labels: labels,
+          labels: payload.languages.map((l) => l.label),
           datasets: [{
             label: 'Tenure (Years)',
-            data: data,
-            backgroundColor: backgroundColors,
+            data: payload.languages.map((l) => l.years),
+            backgroundColor: payload.languages.map((l) => l.color),
             borderRadius: 6,
             borderSkipped: false,
             barThickness: 28,
@@ -488,18 +592,18 @@ const { languageExperience, domainRadar } = portfolioData;
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          animation: { duration: 1000, easing: 'easeOutQuart' },
+          animation: prefersReducedMotion ? false : { duration: 900, easing: 'easeOutQuart' },
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: isDark ? 'rgba(30, 31, 32, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+              backgroundColor: tooltipBg,
               titleColor: textColor,
               bodyColor: textColor,
-              borderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)',
+              borderColor: tooltipBorder,
               borderWidth: 1,
               padding: 10,
               callbacks: {
-                label: function(context) {
+                label: (context) => {
                   const val = context.parsed.y;
                   return ` Verified Tenure: ${val} ${val === 1 ? 'Year' : 'Years'}`;
                 }
@@ -516,13 +620,13 @@ const { languageExperience, domainRadar } = portfolioData;
             },
             y: {
               beginAtZero: true,
-              max: 7,
+              max: Math.max(7, ...payload.languages.map((l) => l.years + 1)),
               grid: { color: gridColor },
               ticks: {
                 stepSize: 1,
                 color: mutedColor,
                 font: { family: "'Outfit', sans-serif", size: 10 },
-                callback: (val) => val + 'y'
+                callback: (val) => `${val}y`
               }
             }
           }
@@ -530,21 +634,14 @@ const { languageExperience, domainRadar } = portfolioData;
       });
     }
 
-    // 2. Domain Radar Chart
-    const radarCanvas = document.getElementById('domainRadarChart') as HTMLCanvasElement | null;
-    let radarChartInstance: Chart | null = null;
-
-    if (radarCanvas) {
-      const radarLabels = ['Mobile Gaming', 'Computer Apps', 'EdTech & Sims', 'VR (XR)'];
-      const radarScores = [92, 88, 98, 96];
-
+    if (radarCanvas && payload.domains?.length) {
       radarChartInstance = new Chart(radarCanvas, {
         type: 'radar',
         data: {
-          labels: radarLabels,
+          labels: payload.domains.map((d) => d.label),
           datasets: [{
             label: 'Engineering Proficiency',
-            data: radarScores,
+            data: payload.domains.map((d) => d.score),
             fill: true,
             backgroundColor: isDark ? 'rgba(138, 180, 248, 0.22)' : 'rgba(26, 115, 232, 0.18)',
             borderColor: isDark ? '#8ab4f8' : '#1a73e8',
@@ -558,14 +655,14 @@ const { languageExperience, domainRadar } = portfolioData;
         options: {
           responsive: true,
           maintainAspectRatio: false,
-          animation: { duration: 1200, easing: 'easeOutQuart' },
+          animation: prefersReducedMotion ? false : { duration: 1000, easing: 'easeOutQuart' },
           plugins: {
             legend: { display: false },
             tooltip: {
-              backgroundColor: isDark ? 'rgba(30, 31, 32, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+              backgroundColor: tooltipBg,
               titleColor: textColor,
               bodyColor: textColor,
-              borderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)',
+              borderColor: tooltipBorder,
               borderWidth: 1,
               padding: 10,
               callbacks: {
@@ -591,62 +688,42 @@ const { languageExperience, domainRadar } = portfolioData;
       });
     }
 
-    // Re-render when theme changes
-    const observer = new MutationObserver(() => {
-      langChartInstance?.destroy();
-      radarChartInstance?.destroy();
-      initCharts();
-    });
+    // Single observer for theme toggles (prevents exponential observer duplication)
+    if (!themeObserverAttached) {
+      themeObserverAttached = true;
+      const themeObserver = new MutationObserver(() => {
+        const sec = document.getElementById('tech-stack');
+        if (!sec || sec.classList.contains('expanded')) {
+          renderCharts();
+        }
+      });
+      themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme']
+      });
+    }
+  }
 
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme']
+  function initTechDashboard() {
+    setupDashboardTabs();
+    const techSection = document.getElementById('tech-stack');
+    if (!techSection || techSection.classList.contains('expanded')) {
+      renderCharts();
+      return;
+    }
+
+    if (techSection.dataset.chartHooked === 'true') return;
+    techSection.dataset.chartHooked = 'true';
+
+    techSection.addEventListener('section:expand', () => {
+      // Defer slightly so CSS grid-template-rows: 1fr layout settles for Chart.js sizing
+      requestAnimationFrame(() => renderCharts());
     });
   }
 
-  // Interactive Language Tabs
-  const langTabs = document.querySelectorAll<HTMLButtonElement>('.lang-tab-btn');
-  const langPanels = document.querySelectorAll<HTMLElement>('.lang-panel-content');
-
-  langTabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const idx = tab.dataset.langIdx;
-      langTabs.forEach((t) => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-
-      langPanels.forEach((p) => p.classList.remove('active'));
-      const activePanel = document.getElementById(`lang-panel-${idx}`);
-      activePanel?.classList.add('active');
-    });
-  });
-
-  // Interactive Domain Tabs
-  const domainTabs = document.querySelectorAll<HTMLButtonElement>('.domain-tab-btn');
-  const domainPanels = document.querySelectorAll<HTMLElement>('.domain-panel-content');
-
-  domainTabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const idx = tab.dataset.domainIdx;
-      domainTabs.forEach((t) => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-
-      domainPanels.forEach((p) => p.classList.remove('active'));
-      const activePanel = document.getElementById(`domain-panel-${idx}`);
-      activePanel?.classList.add('active');
-    });
-  });
-
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initCharts);
+    document.addEventListener('DOMContentLoaded', initTechDashboard);
   } else {
-    initCharts();
+    initTechDashboard();
   }
 </script>

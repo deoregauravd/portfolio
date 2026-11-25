@@ -23,17 +23,17 @@ const isDirectVideo = showreel?.videoUrl && !isYouTube;
       {isYouTube ? (
         <div class="iframe-container">
           <iframe
-            src={isYouTube}
+            data-src={isYouTube}
             title="Cosmos Eye 3D Interactive Demo Reel"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
-            loading="eager"
+            loading="lazy"
           ></iframe>
         </div>
       ) : isDirectVideo ? (
         <div class="video-player-container">
-          <video controls autoplay muted loop playsinline preload="auto" class="native-video">
+          <video controls muted loop playsinline preload="none" class="native-video">
             <source src={showreel.videoUrl} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -168,9 +168,9 @@ const isDirectVideo = showreel?.videoUrl && !isYouTube;
   }
 
   .showreel-store-btn:hover {
-    background: rgba(59, 130, 246, 0.22);
-    border-color: rgba(59, 130, 246, 0.6);
-    color: #ffffff;
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: var(--text-inverse);
     transform: translateY(-1px);
   }
 
@@ -182,3 +182,35 @@ const isDirectVideo = showreel?.videoUrl && !isYouTube;
     }
   }
 </style>
+
+<script>
+  function setupShowreelLazyLoad() {
+    const showreelSec = document.getElementById('showreel');
+    const iframe = showreelSec?.querySelector<HTMLIFrameElement>('iframe[data-src]');
+    const video = showreelSec?.querySelector<HTMLVideoElement>('video.native-video');
+
+    const activateMedia = () => {
+      if (iframe && iframe.dataset.src && !iframe.src) {
+        iframe.src = iframe.dataset.src;
+      }
+      if (video && video.paused) {
+        video.play().catch(() => {});
+      }
+    };
+
+    if (!showreelSec || showreelSec.classList.contains('expanded')) {
+      activateMedia();
+      return;
+    }
+
+    if (showreelSec.dataset.mediaHooked === 'true') return;
+    showreelSec.dataset.mediaHooked = 'true';
+    showreelSec.addEventListener('section:expand', activateMedia);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupShowreelLazyLoad);
+  } else {
+    setupShowreelLazyLoad();
+  }
+</script>
