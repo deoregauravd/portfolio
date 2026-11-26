@@ -87,13 +87,18 @@ const email = portfolioData.personal.email || "devphotonsupport@gmail.com";
             </div>
 
             <div class="app-card-action">
-              <a href={`/${app.id}/privacy`} class="btn-view-policy">
+              <a href={app.policyUrl || `/${app.id}/privacy`} class="btn-view-policy">
                 <span>View {app.name} Policy</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </a>
+              {app.termsUrl && (
+                <a href={app.termsUrl} class="btn-view-terms">
+                  <span>Terms &amp; Conditions</span>
+                </a>
+              )}
             </div>
           </div>
         ))}
@@ -328,6 +333,13 @@ const email = portfolioData.personal.email || "devphotonsupport@gmail.com";
     color: var(--text-secondary);
   }
 
+  .app-card-action {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
   .btn-view-policy {
     display: inline-flex;
     align-items: center;
@@ -345,6 +357,25 @@ const email = portfolioData.personal.email || "devphotonsupport@gmail.com";
     background: var(--accent-indigo);
     transform: translateX(4px);
     box-shadow: 0 4px 14px rgba(26, 115, 232, 0.35);
+  }
+
+  .btn-view-terms {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.72rem 1.35rem;
+    border-radius: var(--radius-full);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+  }
+
+  .btn-view-terms:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    transform: translateY(-1px);
   }
 
   .general-policy-card {

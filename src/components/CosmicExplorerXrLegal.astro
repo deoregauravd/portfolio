@@ -1,0 +1,268 @@
+---
+import LegalDocLayout from '../layouts/LegalDocLayout.astro';
+import { portfolioData } from '../data/portfolio';
+
+interface Props {
+  docType: 'privacy' | 'terms';
+}
+
+const { docType } = Astro.props;
+
+const publisherName = portfolioData.personal.name || 'Gaurav Deore';
+const supportEmail = portfolioData.personal.email || 'devphotonsupport@gmail.com';
+const siteUrl = 'https://devphoton.com';
+const privacyUrl = `${siteUrl}/XR/cosmic-explorer/privacy`;
+const termsUrl = `${siteUrl}/XR/cosmic-explorer/terms`;
+const supportUrl = `${siteUrl}/support`;
+
+const isPrivacy = docType === 'privacy';
+---
+
+<LegalDocLayout
+  title={isPrivacy
+    ? 'Privacy Policy — Cosmic Explorer (Meta Quest XR) | DevPhoton'
+    : 'Terms and Conditions — Cosmic Explorer (Meta Quest XR) | DevPhoton'}
+  description={isPrivacy
+    ? 'Official Privacy Policy and Data Deletion Instructions for Cosmic Explorer on Meta Horizon OS (Meta Quest 2, Quest Pro, Quest 3, and Quest 3S) by DevPhoton.'
+    : 'Official Terms and Conditions, VR Health & Safety Guidelines, and Licensing Notices for Cosmic Explorer on Meta Horizon Store by DevPhoton.'}
+  canonicalUrl={isPrivacy ? privacyUrl : termsUrl}
+  pageTitle={isPrivacy ? 'Privacy Policy' : 'Terms and Conditions'}
+  badgeText="Cosmic Explorer · XR"
+  siblingHref={isPrivacy ? '/XR/cosmic-explorer/terms' : '/XR/cosmic-explorer/privacy'}
+  siblingLabel={isPrivacy ? 'Terms and Conditions' : 'Privacy Policy'}
+>
+  <div class="meta-box">
+    <p><strong>Application:</strong> Cosmic Explorer (<code>com.devphotoncosmicXR</code>)</p>
+    <p><strong>Developer:</strong> {publisherName} (DevPhoton)</p>
+    <p><strong>Platform Scope:</strong> Meta Platforms Technologies / Meta Horizon Store (Meta Horizon OS for Meta Quest 2, Meta Quest Pro, Meta Quest 3, and Meta Quest 3S)</p>
+    <p><strong>Effective Date / Last Updated:</strong> November 26, 2026</p>
+    <p><strong>Policy URL:</strong> <a href={privacyUrl}><code>{privacyUrl}</code></a></p>
+    <p><strong>Terms and Conditions:</strong> <a href={termsUrl}><code>{termsUrl}</code></a></p>
+    <p><strong>Support Contact:</strong> <a href={`mailto:${supportEmail}`}>{supportEmail}</a> · <a href="/support">{supportUrl}</a></p>
+  </div>
+
+  {isPrivacy ? (
+    <>
+      <h2>1. Scope &amp; Public Availability</h2>
+      <p>
+        This Privacy Policy applies to <strong>Cosmic Explorer</strong> ("the App"), developed and published by <strong>DevPhoton</strong> ("we", "us", "our") for <strong>Meta Platforms Technologies</strong> devices and distributed via the <strong>Meta Horizon Store</strong>. This policy is provided publicly without login or registration requirements so any user can review how data is handled before or after installing the App.
+      </p>
+
+      <h2>2. Data We Collect, Process, or Store</h2>
+      <div class="highlight-box">
+        <p>
+          <strong>Cosmic Explorer does not collect, collect via third-party SDKs, transmit, sell, or store personal user data on external servers.</strong>
+        </p>
+      </div>
+      <p>Specifically:</p>
+      <ul>
+        <li>
+          <strong>No Personal or Account Data:</strong> The App does not require sign-in and does not collect your name, email address, Meta user ID, friends list, avatar data, payment information, or location data.
+        </li>
+        <li>
+          <strong>No Analytics, Advertising, or Telemetry SDKs:</strong> The App contains no behavioral analytics, crash-tracking telemetry, or advertising networks.
+        </li>
+        <li>
+          <strong>No Sensitive Device Media Capture:</strong> The App does not request Android microphone, camera, passthrough video, eye tracking, or face tracking permissions, and never records audio or visual streams.
+        </li>
+        <li>
+          <strong>Transient XR Tracking Poses (Processed In-Memory Only):</strong> While the App is running, local OpenXR head, hand, and Touch controller poses (<code>OPENXR</code> / <code>OPENXR_SYSTEM</code>) are processed in real time strictly in device memory. Pose data is never recorded, logged, saved to disk, or transmitted off your headset.
+        </li>
+        <li>
+          <strong>Local On-Device App Settings (<code>PlayerPrefs</code>):</strong> The App stores non-identifying configuration preferences locally on your Meta Quest headset, including UI theme mode, glass opacity, skybox visibility toggle, simulation speed/distance scale units, Earth scale multiplier, background/button audio toggles, onboarding completion flag, and last selected celestial body.
+        </li>
+        <li>
+          <strong>Standard Runtime Permissions Notice:</strong> Although the packaged Android manifest includes the default Unity/OpenXR <code>INTERNET</code> declaration, the App makes <strong>no</strong> automated or background network requests and transmits <strong>no</strong> user or device data over the internet.
+        </li>
+      </ul>
+
+      <h2>3. How Data Is Used</h2>
+      <p>Any local or transient information accessed by the App is used exclusively for the following purposes:</p>
+      <ul>
+        <li>
+          <strong>Real-Time Spatial Rendering &amp; Navigation:</strong> Transient XR headset and controller/hand pose data is used solely on-device to render stereoscopic 3D graphics, enable 6DoF flight navigation, and register pointer interactions with the left-hand spatial tablet and miniature solar system orrery.
+        </li>
+        <li>
+          <strong>Restoring User Comfort &amp; Display Preferences:</strong> Locally stored <code>PlayerPrefs</code> values are used only to remember your visual, audio, scale, and camera focus settings between sessions on your headset.
+        </li>
+        <li>
+          <strong>User-Initiated External Source Links:</strong> Inside encyclopedia detail panels, tapping <strong>"Read source"</strong> opens a public reference URL (such as NASA or Wikipedia) in your headset's system browser. No personal or device identifiers are appended by the App.
+        </li>
+        <li>
+          <strong>No Sale or Third-Party Sharing:</strong> Because DevPhoton does not collect personal user data, we never sell, rent, trade, or share user data with third parties, advertisers, or data brokers.
+        </li>
+      </ul>
+
+      <h2>4. User Data Deletion Instructions</h2>
+      <p>
+        We honor data deletion requests from <strong>all users worldwide, regardless of country or region</strong>, and <strong>we never charge a fee</strong> to submit or process a deletion request.
+      </p>
+
+      <h3>Option A — Immediate Self-Service Deletion (All On-Device App Data)</h3>
+      <p>
+        Because all App preferences are stored strictly locally on your Meta Quest headset, you can permanently delete 100% of App-stored data at any time:
+      </p>
+      <ol>
+        <li>On your Meta Quest headset, open <strong>Settings &rarr; Storage</strong> (or <strong>Library &rarr; App Settings</strong>).</li>
+        <li>Select <strong>Cosmic Explorer</strong> and choose <strong>Clear App Data</strong> (or uninstall <strong>Cosmic Explorer</strong> from your headset).</li>
+      </ol>
+      <p>This immediately erases all locally stored <code>PlayerPrefs</code> configuration data.</p>
+
+      <h3>Option B — Submit a Data Deletion or Privacy Request to DevPhoton</h3>
+      <p>
+        If you have questions, need confirmation regarding stored data, or wish to request deletion of any correspondence you have sent to us (for example, support emails), contact:
+      </p>
+      <ul>
+        <li><strong>Developer:</strong> DevPhoton ({publisherName})</li>
+        <li><strong>Email:</strong> <a href={`mailto:${supportEmail}`}>{supportEmail}</a></li>
+        <li><strong>Subject Line:</strong> <code>Cosmic Explorer Data Deletion Request</code></li>
+        <li><strong>Support Web Page:</strong> <a href="/support">{supportUrl}</a></li>
+      </ul>
+      <p>
+        We will acknowledge and respond to verified deletion or privacy inquiries without charge and within <strong>30 days</strong> (or shorter where required by applicable law).
+      </p>
+
+      <h3>Exceptions &amp; Data Outside DevPhoton's Control</h3>
+      <p>
+        While DevPhoton collects and holds no off-device user data from inside the App, the following technical/legal exceptions apply:
+      </p>
+      <ul>
+        <li>
+          <strong>Meta Platform &amp; Store Records:</strong> Account, entitlement, crash diagnostics opted into at the OS level, and store transaction records are managed independently by <strong>Meta Platforms Technologies</strong> under the Meta Privacy Policy and cannot be deleted by DevPhoton.
+        </li>
+        <li>
+          <strong>External Websites &amp; System Browser History:</strong> If you choose to tap <strong>"Read source"</strong> in an encyclopedia entry, your headset's browser and the destination site (such as NASA or Wikipedia) are outside our control; clear those records directly in your Quest Browser settings.
+        </li>
+        <li>
+          <strong>Support Correspondence Legal Retention:</strong> If you contact us by email, we will delete your email thread upon request unless retention is strictly required to resolve an active legal dispute or comply with applicable law.
+        </li>
+      </ul>
+
+      <h2>5. Children's Privacy</h2>
+      <p>
+        Cosmic Explorer is an educational Solar System experience that does not collect personal information from any user, including children under the age of 13 (or the equivalent minimum age in your jurisdiction).
+      </p>
+
+      <h2>6. Updates to This Privacy Policy</h2>
+      <p>
+        We may update this Privacy Policy to reflect App updates or platform/legal requirements. Any update will revise the <strong>Last Updated</strong> date above and be posted at the same public URL.
+      </p>
+
+      <h2>7. Contact Us</h2>
+      <p>
+        <strong>DevPhoton</strong> ({publisherName})<br />
+        <strong>Email:</strong> <a href={`mailto:${supportEmail}`}>{supportEmail}</a><br />
+        <strong>Support URL:</strong> <a href="/support">{supportUrl}</a>
+      </p>
+    </>
+  ) : (
+    <>
+      <div class="disclaimer-box">
+        <p>
+          <strong>IMPORTANT NOTICE — EDUCATIONAL &amp; VR COMFORT GUIDELINES:</strong><br />
+          Cosmic Explorer is an interactive educational visualization using real-time scaled models and procedural shaders designed for VR comfort. Follow all Meta Quest Health and Safety Warnings and maintain a clear physical play boundary while exploring in 6DoF.
+        </p>
+      </div>
+
+      <h2>1. Acceptance of Terms</h2>
+      <p>
+        By downloading, installing, accessing, or using <strong>Cosmic Explorer</strong> ("the App"), published by <strong>DevPhoton</strong> ("we", "us", "our") through the <strong>Meta Horizon Store</strong>, you agree to be bound by these Terms and Conditions ("Terms") and our <a href="/XR/cosmic-explorer/privacy"><strong>Privacy Policy</strong></a> (<code>{privacyUrl}</code>). If you do not agree to these Terms, do not install or use the App.
+      </p>
+      <p>
+        Your use of the App is also subject to the applicable <strong>Meta Platform Terms</strong>, <strong>Meta Horizon Store Terms of Service</strong>, and hardware terms governing your Meta Quest device.
+      </p>
+
+      <h2>2. License Grant &amp; Restrictions</h2>
+      <p>
+        Subject to your compliance with these Terms, DevPhoton grants you a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to download and use Cosmic Explorer solely for your <strong>personal, non-commercial, educational and entertainment use</strong> on authorized Meta Quest hardware.
+      </p>
+      <p>You agree not to:</p>
+      <ul>
+        <li>
+          Copy, modify, adapt, translate, reverse-engineer, decompile, disassemble, or extract source assets from the App, except to the extent expressly permitted by applicable law or underlying open licenses;
+        </li>
+        <li>
+          Redistribute, rent, lease, sell, sublicense, or commercially exhibit the App without prior written authorization from DevPhoton;
+        </li>
+        <li>
+          Remove or obscure copyright, attribution, or third-party notice files bundled with the App.
+        </li>
+      </ul>
+
+      <h2>3. Educational &amp; Astronomical Simulation Disclaimer</h2>
+      <p>
+        Cosmic Explorer is an interactive <strong>educational visualization</strong>, not a scientific ephemeris or aerospace navigation tool:
+      </p>
+      <ul>
+        <li>
+          Planetary sizes, orbital distances, surface lighting, moon scale markers, and time-lapse modes (<code>Visual Soothing</code>, <code>XR Real-Scale</code>, <code>True Realistic</code>) include visual scaling, compressed layout modes, and procedural shaders designed for real-time VR comfort and readability.
+        </li>
+        <li>
+          The <strong>Schwarzschild Black Hole Exhibit</strong> is an isolated educational visualization of relativistic light-bending concepts using bounded numerical approximations and illustrative thin-disk appearance.
+        </li>
+        <li>
+          Astronomical datasets and imagery are adapted from public NASA, JPL, ESA, Solar System Scope, and Wikipedia educational resources. <strong>Cosmic Explorer is not affiliated with, sponsored by, or endorsed by NASA, JPL, ESA, KDE, or Wikimedia.</strong>
+        </li>
+      </ul>
+
+      <h2>4. Virtual Reality Health, Safety &amp; Comfort</h2>
+      <p>
+        Virtual reality experiences involve simulated 6DoF movement, free-flight acceleration, turning, and spatial UI interaction. By using the App, you acknowledge and agree to:
+      </p>
+      <ul>
+        <li>Follow all <strong>Meta Quest Health and Safety Warnings</strong> and device guidelines prior to use;</li>
+        <li>Ensure a safe, unobstructed physical play space (<code>Guardian</code> / <code>Boundary</code> active) whether playing seated, standing, or roomscale;</li>
+        <li>Immediately pause or remove your headset if you experience motion discomfort, dizziness, nausea, disorientation, eye strain, or fatigue;</li>
+        <li>Supervise minors according to Meta Quest age guidelines and applicable local laws.</li>
+      </ul>
+
+      <h2>5. Third-Party Content, Credits &amp; External Links</h2>
+      <ul>
+        <li>
+          <strong>Third-Party Materials:</strong> Planetary textures (<a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener noreferrer">Solar System Scope</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>), NASA/JPL/LRO/MOLA/SOHO imagery and moon models, encyclopedia text excerpts (Wikipedia contributors, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>), and fonts (<code>Liberation Sans</code>, SIL OFL 1.1) remain governed by their respective licenses as listed in the App's <strong>Credits &amp; Citations</strong> view and <code>ThirdPartyNotices.txt</code>.
+        </li>
+        <li>
+          <strong>External Links (<code>Read source</code>):</strong> Choosing <strong>"Read source"</strong> inside encyclopedia guides launches an external third-party website in your headset browser. DevPhoton does not control, endorse, or assume responsibility for the availability, accuracy, or privacy practices of external websites.
+        </li>
+      </ul>
+
+      <h2>6. Privacy</h2>
+      <p>
+        Cosmic Explorer does not collect or transmit personal user data to external servers and stores visual/audio preferences only locally on your headset. Full details regarding data handling and user deletion rights are set out in our <a href="/XR/cosmic-explorer/privacy"><strong>Privacy Policy</strong></a> (<code>{privacyUrl}</code>).
+      </p>
+
+      <h2>7. Updates &amp; Availability</h2>
+      <p>
+        DevPhoton may release updates, bug fixes, visual improvements, or feature modifications for Cosmic Explorer through the Meta Horizon Store, and reserves the right to modify or discontinue features or support for older runtime versions without prior notice.
+      </p>
+
+      <h2>8. Disclaimer of Warranties</h2>
+      <p>
+        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, <strong>COSMIC EXPLORER IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND</strong>, WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING WITHOUT LIMITATION IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY OF SCIENTIFIC DATA, OR NON-INFRINGEMENT.
+      </p>
+
+      <h2>9. Limitation of Liability</h2>
+      <p>
+        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL DEVPHOTON BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF DATA, PERSONAL INJURY, OR PROPERTY DAMAGE ARISING OUT OF OR RELATED TO YOUR USE OF OR INABILITY TO USE COSMIC EXPLORER IN A PHYSICAL ENVIRONMENT, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. NOTHING IN THESE TERMS EXCLUDES OR LIMITS LIABILITY THAT CANNOT BE EXCLUDED UNDER APPLICABLE LAW.
+      </p>
+
+      <h2>10. Termination</h2>
+      <p>
+        These Terms remain effective until terminated. Your license automatically terminates if you fail to comply with any term herein. Upon termination, you must cease using and uninstall the App from your devices.
+      </p>
+
+      <h2>11. Governing Law &amp; Changes to Terms</h2>
+      <p>
+        These Terms are governed by the applicable laws of the jurisdiction in which DevPhoton operates, without regard to conflict-of-law principles, except where mandatory local consumer protection laws apply. We may revise these Terms from time to time by updating the <strong>Last Updated</strong> date and publishing the revised version at <a href={termsUrl}><code>{termsUrl}</code></a>.
+      </p>
+
+      <h2>12. Contact Information</h2>
+      <p>
+        For questions regarding these Terms and Conditions, licensing, attributions, or technical support:<br />
+        <strong>Developer:</strong> DevPhoton ({publisherName})<br />
+        <strong>Email:</strong> <a href={`mailto:${supportEmail}`}>{supportEmail}</a><br />
+        <strong>Support URL:</strong> <a href="/support">{supportUrl}</a>
+      </p>
+    </>
+  )}
+</LegalDocLayout>

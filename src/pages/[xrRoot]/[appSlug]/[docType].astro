@@ -1,0 +1,35 @@
+---
+import CosmicExplorerXrLegal from '../../../components/CosmicExplorerXrLegal.astro';
+
+export function getStaticPaths() {
+  const xrRoots = ['XR', 'xr'] as const;
+  const appSlugs = ['cosmic-explorer', 'cosmic explorer'] as const;
+  const docTypes = ['privacy', 'terms'] as const;
+
+  const paths: Array<{
+    params: { xrRoot: string; appSlug: string; docType: string };
+    props: { docType: 'privacy' | 'terms' };
+  }> = [];
+
+  for (const xrRoot of xrRoots) {
+    for (const appSlug of appSlugs) {
+      for (const docType of docTypes) {
+        paths.push({
+          params: { xrRoot, appSlug, docType },
+          props: { docType }
+        });
+      }
+    }
+  }
+
+  return paths;
+}
+
+interface Props {
+  docType: 'privacy' | 'terms';
+}
+
+const { docType } = Astro.props;
+---
+
+<CosmicExplorerXrLegal docType={docType} />
