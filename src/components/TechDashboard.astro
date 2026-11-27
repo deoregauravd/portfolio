@@ -180,15 +180,9 @@ const chartPayload = {
     overflow: hidden;
   }
 
-  .chart-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: var(--gradient-gemini);
-    opacity: 0.9;
+  .chart-card > * {
+    position: relative;
+    z-index: 1;
   }
 
   .chart-card-header {

@@ -80,12 +80,11 @@ const {
   .collapsible-panel-card {
     border-radius: var(--radius-md);
     background: var(--bg-card-plasma, var(--bg-card));
+    background-clip: padding-box;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(56, 189, 248, 0.2);
-    box-shadow: 
-      0 4px 20px -2px rgba(0, 0, 0, 0.06),
-      0 2px 6px -1px rgba(14, 165, 233, 0.06);
+    border: 1px solid rgba(56, 189, 248, 0.34);
+    box-shadow: var(--panel-border-glow);
     transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
     position: relative;
     overflow: hidden;
@@ -94,10 +93,12 @@ const {
   .collapsible-panel-card::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 12px;
     left: 0;
-    bottom: 0;
+    right: auto;
+    bottom: 12px;
     width: 3px;
+    border-radius: 0 3px 3px 0;
     background: var(--gradient-gemini);
     opacity: 0;
     transition: opacity var(--transition-fast);
@@ -105,10 +106,8 @@ const {
   }
 
   .collapsible-panel-card:hover {
-    border-color: rgba(56, 189, 248, 0.35);
-    box-shadow: 
-      0 6px 24px -2px rgba(0, 0, 0, 0.08),
-      0 3px 10px -1px rgba(14, 165, 233, 0.08);
+    border-color: rgba(56, 189, 248, 0.56);
+    box-shadow: var(--panel-border-glow-hover);
   }
 
   .collapsible-panel-card:hover::before {
@@ -116,11 +115,8 @@ const {
   }
 
   .collapsible-section.expanded .collapsible-panel-card {
-    border: 1px solid rgba(56, 189, 248, 0.45);
-    box-shadow: 
-      0 0 18px -2px rgba(56, 189, 248, 0.25),
-      0 8px 30px -4px rgba(0, 0, 0, 0.1),
-      0 4px 14px -2px rgba(14, 165, 233, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.6);
+    box-shadow: var(--panel-border-glow-hover);
   }
 
   .collapsible-section.expanded .collapsible-panel-card::before {
@@ -129,11 +125,8 @@ const {
 
   [data-theme="dark"] .collapsible-section.expanded .collapsible-panel-card {
     background: linear-gradient(135deg, rgba(16, 18, 24, 0.86) 0%, rgba(22, 26, 34, 0.78) 100%);
-    border: 1px solid rgba(56, 189, 248, 0.4);
-    box-shadow: 
-      0 0 20px -2px rgba(56, 189, 248, 0.28),
-      0 8px 30px -4px rgba(0, 0, 0, 0.4),
-      0 4px 14px -2px rgba(14, 165, 233, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.6);
+    box-shadow: var(--panel-border-glow-hover);
   }
 
   /* Accordion Header Bar inside the unified card */
